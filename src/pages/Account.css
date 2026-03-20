@@ -1,0 +1,64 @@
+.account-page { padding: 120px 0 80px; min-height: 100vh; }
+.account-gate {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+}
+.account-gate-inner {
+  text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.account-gate-inner span { font-size: 3rem; opacity: 0.4; }
+.account-gate-inner h2 { font-family: var(--font-display); font-size: 1.8rem; color: var(--white); }
+
+.account-header {
+  display: flex; align-items: center; gap: 24px; margin-bottom: 48px;
+}
+.account-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: #000; font-family: var(--font-display);
+  font-size: 2rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.account-name { font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; color: var(--white); }
+.account-email { font-size: 0.88rem; color: var(--text-muted); margin-top: 4px; }
+
+.account-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+}
+.account-card {
+  padding: 28px; display: flex; flex-direction: column; gap: 16px;
+}
+.account-card h3 {
+  font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--white);
+}
+.account-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+.account-empty-orders {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px; padding: 20px 0; text-align: center;
+}
+.account-empty-orders span { font-size: 2rem; opacity: 0.4; }
+.account-empty-orders p { font-size: 0.85rem; color: var(--text-muted); }
+
+.profile-detail {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid var(--black-border);
+  font-size: 0.88rem;
+}
+.profile-detail:last-of-type { border-bottom: none; }
+.profile-detail label { color: var(--text-muted); font-weight: 500; }
+.profile-detail span { color: var(--white); }
+
+.quick-links { display: flex; flex-direction: column; gap: 4px; }
+.quick-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-radius: var(--radius);
+  font-size: 0.88rem; color: var(--text-secondary);
+  background: none; border: none; text-align: left; cursor: pointer;
+  transition: var(--transition); text-decoration: none;
+}
+.quick-link:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+.quick-link-danger:hover { color: #e05555; background: rgba(224,85,85,0.08); }
+
+@media (max-width: 640px) {
+  .account-grid { grid-template-columns: 1fr; }
+}

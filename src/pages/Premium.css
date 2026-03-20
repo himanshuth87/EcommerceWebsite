@@ -1,0 +1,70 @@
+.premium-page { padding-top: 80px; }
+
+.premium-hero {
+  position: relative;
+  min-height: 580px;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.premium-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 40%, rgba(201,168,76,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 40%),
+    linear-gradient(160deg, var(--black) 40%, #0f0e0a 100%);
+}
+.premium-hero-content {
+  position: relative; z-index: 1;
+  padding: 100px 24px; max-width: 680px;
+}
+.premium-title { margin: 16px 0 24px; }
+.premium-hero-sub {
+  font-size: 1rem; color: var(--text-secondary); line-height: 1.8;
+  max-width: 540px; margin-bottom: 36px;
+}
+.premium-badges-row {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.premium-feature-badge {
+  padding: 7px 16px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--gold-light); letter-spacing: 0.5px;
+}
+
+.premium-products { background: var(--black-soft); border-top: 1px solid var(--black-border); }
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.premium-story-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.story-step {
+  padding: 32px 24px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.story-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem; font-weight: 700;
+  color: var(--gold); opacity: 0.4;
+  line-height: 1;
+}
+.story-step h3 { font-size: 0.95rem; font-weight: 700; color: var(--white); }
+.story-step p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .premium-grid { grid-template-columns: repeat(2, 1fr); }
+  .premium-story-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .premium-grid { grid-template-columns: 1fr; }
+  .premium-story-grid { grid-template-columns: 1fr; }
+}
