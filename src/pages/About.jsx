@@ -9,9 +9,9 @@ const VALUES = [
 ]
 
 const TEAM = [
-  { name: 'Arjun Mehta', role: 'Founder & CEO', initial: 'A' },
-  { name: 'Priya Sharma', role: 'Head of Design', initial: 'P' },
-  { name: 'Vikram Rao', role: 'Chief Product Officer', initial: 'V' },
+  { name: '', role: 'Founder & CEO', initial: 'A' },
+  { name: '', role: 'Head of Design', initial: 'P' },
+  { name: '', role: 'Chief Product Officer', initial: 'V' },
 ]
 
 export default function About() {
