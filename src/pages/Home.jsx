@@ -11,7 +11,7 @@ const HERO_SLIDES = [
     subtitle: 'Hardshell luggage engineered for the modern elite. TSA-approved, lifetime warranty.',
     cta: 'Shop Collection',
     href: '/products',
-    bg: '/assets/Creatives/Hero%201.jpg',
+    bg: '/assets/Creatives/hero-main.jpg',
   },
   {
     title: 'The Premium',
@@ -19,7 +19,7 @@ const HERO_SLIDES = [
     subtitle: 'Exclusive designs for discerning travellers. Limited edition pieces crafted for prestige.',
     cta: 'View Premium',
     href: '/premium',
-    bg: '/assets/Creatives/1920%20%C3%97%201080%20px%20(1).jpg',
+    bg: '/assets/Creatives/hero-1.jpg',
   },
   {
     title: 'Built for',
@@ -27,7 +27,7 @@ const HERO_SLIDES = [
     subtitle: 'From cabin to check-in, explore our full range of travel essentials.',
     cta: 'Explore All',
     href: '/products',
-    bg: '/assets/Creatives/1920%20%C3%97%201080%20px%20(2).jpg',
+    bg: '/assets/Creatives/hero-2.jpg',
   },
 ]
 
@@ -83,12 +83,7 @@ export default function Home() {
           >
             <div className="hero-overlay" />
             <div className="container hero-content">
-              <span className="section-label">Priority Bags ✦ Est. 2020</span>
-              <h1 className="hero-title">
-                {s.title}<br />
-                <span className="hero-accent">{s.titleAccent}</span>
-              </h1>
-              <p className="hero-subtitle">{s.subtitle}</p>
+              {/* Text removed per user request */}
               <div className="hero-actions">
                 <Link to={s.href} className="btn btn-gold btn-lg">{s.cta} →</Link>
                 <Link to="/about" className="btn btn-ghost btn-lg">Our Story</Link>
