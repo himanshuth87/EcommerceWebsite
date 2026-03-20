@@ -25,7 +25,7 @@ export default function Navbar() {
       <div className="container navbar-inner">
         <Link to="/" className="navbar-logo">
           <img src="/assets/Priority%20Logo-02.png" alt="Priority Bags" onError={e => { e.target.style.display='none'; e.target.nextSibling.style.display='block' }} />
-          <span className="logo-text" style={{display:'none'}}>PRIORITY</span>
+          <span className="logo-text">PRIORITY</span>
         </Link>
 
         <nav className={`navbar-nav ${menuOpen ? 'open' : ''}`}>

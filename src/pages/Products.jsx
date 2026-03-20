@@ -54,7 +54,7 @@ export default function Products() {
         <div className="container">
           <span className="section-label">Our Collection</span>
           <h1 className="section-title">
-            {activeCat === 'All' ? <>All <span>Products</span></> : <span>{activeCat}</span>}
+            {activeCat === 'All' ? <>All <span>Products</span></> : activeCat}
           </h1>
           <p className="products-hero-sub">{filtered.length} product{filtered.length !== 1 ? 's' : ''} found</p>
         </div>

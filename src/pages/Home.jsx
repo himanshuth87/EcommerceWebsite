@@ -38,12 +38,7 @@ const CATEGORIES = [
   { name: 'Accessories', img: '/assets/Category/Accessories.png', href: '/products?cat=Accessories', count: '3 items' },
 ]
 
-const FEATURES = [
-  { icon: '🔒', title: 'TSA-Approved Locks', desc: 'All luggage ships with certified combination locks for hassle-free security checks.' },
-  { icon: '🛡️', title: 'Lifetime Warranty', desc: 'We stand behind our craftsmanship. Every piece backed by a lifetime guarantee.' },
-  { icon: '🚀', title: 'Spinner Wheels', desc: '360° silent spinner wheels with a patented dual-bearing system for effortless glide.' },
-  { icon: '📦', title: 'Free Shipping', desc: 'Complimentary shipping on all orders above ₹2,000 across India.' },
-]
+
 
 export default function Home() {
   const [slide, setSlide] = useState(0)
@@ -84,10 +79,7 @@ export default function Home() {
             <div className="hero-overlay" />
             <div className="container hero-content">
               {/* Text removed per user request */}
-              <div className="hero-actions">
-                <Link to={s.href} className="btn btn-gold btn-lg">{s.cta} →</Link>
-                <Link to="/about" className="btn btn-ghost btn-lg">Our Story</Link>
-              </div>
+              {/* Buttons removed per user request */}
             </div>
           </div>
         ))}
@@ -104,27 +96,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FEATURES BAR ── */}
-      <section className="features-bar">
-        <div className="container features-grid">
-          {FEATURES.map(f => (
-            <div key={f.title} className="feature-item">
-              <span className="feature-icon">{f.icon}</span>
-              <div>
-                <h4 className="feature-title">{f.title}</h4>
-                <p className="feature-desc">{f.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* ── CATEGORIES ── */}
       <section className="categories section-pad">
         <div className="container">
           <div className="section-header">
             <span className="section-label">Browse by Category</span>
-            <h2 className="section-title">Everything You Need to <span>Travel Well</span></h2>
+            <h2 className="section-title">Shop by <span>Collection</span></h2>
           </div>
           <div className="categories-grid">
             {CATEGORIES.map(c => (
@@ -149,7 +128,7 @@ export default function Home() {
           <div className="section-header-row">
             <div>
               <span className="section-label">Our Collection</span>
-              <h2 className="section-title">Bestselling <span>Luggage</span></h2>
+              <h2 className="section-title">Best<span>sellers</span></h2>
             </div>
             <Link to="/products" className="btn btn-outline btn-sm">View All →</Link>
           </div>
@@ -178,39 +157,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── PREMIUM BANNER ── */}
-      {premiumProducts.length > 0 && (
-        <section className="premium-section section-pad">
-          <div className="container">
-            <div className="premium-inner">
-              <div className="premium-text">
-                <span className="section-label">Exclusive Access</span>
-                <h2 className="section-title">The <span>Premium</span><br />Collection</h2>
-                <p className="premium-desc">
-                  Handcrafted with aerospace-grade polycarbonate. Designed for those who
-                  refuse to compromise on quality or prestige.
-                </p>
-                <Link to="/premium" className="btn btn-gold btn-lg">Explore Premium →</Link>
-              </div>
-              <div className="premium-cards">
-                {premiumProducts.map(p => (
-                  <Link key={p.id} to={`/products/${p.id}`} className="premium-mini-card">
-                    <img
-                      src={p.image_url || '/assets/Category/Travelling%20Bag.png'}
-                      alt={p.name}
-                      onError={e => { e.target.src='/assets/Category/Travelling%20Bag.png' }}
-                    />
-                    <div className="premium-mini-info">
-                      <p>{p.name}</p>
-                      <span>{formatCurrency(p.price)}</span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+
 
       {/* ── TRUST STRIP ── */}
       <section className="trust-strip section-pad" style={{ paddingTop: 0 }}>
