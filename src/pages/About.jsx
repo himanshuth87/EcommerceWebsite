@@ -48,7 +48,7 @@ export default function About() {
               Every product is designed in Mumbai, tested in our labs, and shipped directly
               to your door with a lifetime warranty. No middlemen. No compromises.
             </p>
-            <Link to="/products" className="btn btn-gold btn-lg" style={{marginTop: 12}}>
+            <Link to="/products" className="btn btn-gold btn-lg" style={{ marginTop: 12 }}>
               Shop the Collection →
             </Link>
           </div>
@@ -60,7 +60,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="about-values section-pad" style={{paddingTop: 0}}>
+      <section className="about-values section-pad" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="section-header text-center">
             <span className="section-label">What We Stand For</span>
@@ -79,7 +79,7 @@ export default function About() {
       </section>
 
       {/* Team */}
-      <section className="about-team section-pad" style={{paddingTop: 0}}>
+      <section className="about-team section-pad" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="section-header text-center">
             <span className="section-label">The People Behind It</span>
@@ -98,7 +98,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="about-cta section-pad" style={{paddingTop: 0}}>
+      <section className="about-cta section-pad" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="about-cta-inner card">
             <span className="section-label">Ready to Travel Better?</span>
