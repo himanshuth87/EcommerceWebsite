@@ -46,7 +46,7 @@ export default function Login() {
         <div className="login-brand">
           <img src="/assets/Priority%20Logo-02.png" alt="Priority Bags" className="login-logo"
             onError={e => { e.target.style.display='none'; e.target.nextSibling.style.display='block' }} />
-          <span className="login-brand-text" style={{display:'none'}}>PRIORITY</span>
+          <span className="login-brand-text">PRIORITY</span>
           <p className="login-tagline">Your journey begins here.</p>
         </div>
 
