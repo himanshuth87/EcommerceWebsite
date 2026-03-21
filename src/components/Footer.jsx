@@ -33,7 +33,6 @@ export default function Footer() {
           </div>
           <div className="footer-col reveal" style={{ transitionDelay: '0.2s' }}>
             <h4>Company</h4>
-            <Link to="/about">About Us</Link>
             <a href="#">Careers</a>
             <a href="#">Press</a>
             <a href="#">Sustainability</a>

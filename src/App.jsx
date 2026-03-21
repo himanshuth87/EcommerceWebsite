@@ -10,10 +10,8 @@ import ProductDetail from './pages/ProductDetail'
 import Checkout from './pages/Checkout'
 import Login from './pages/Login'
 import Account from './pages/Account'
-import About from './pages/About'
 import Premium from './pages/Premium'
 import { useEffect } from 'react'
-import CustomCursor from './components/CustomCursor'
 import './styles/globals.css'
 
 export default function App() {
@@ -40,8 +38,6 @@ export default function App() {
     <AuthProvider>
       <CartProvider>
         <BrowserRouter>
-          <div className="noise-overlay" />
-          <CustomCursor />
           <Navbar />
           <CartDrawer />
           <Routes>
@@ -51,7 +47,6 @@ export default function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/login" element={<Login />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/about" element={<About />} />
             <Route path="/premium" element={<Premium />} />
           </Routes>
           <Footer />

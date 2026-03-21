@@ -28,14 +28,14 @@ export default function ProductCard({ product }) {
         {product.badge && (
           <span className={`badge ${getBadgeClass(product.badge)} product-badge`}>{product.badge}</span>
         )}
-        <button className="quick-add-btn btn btn-gold btn-sm" onClick={handleAdd}>
-          Add to Cart
-        </button>
       </div>
 
       <div className="product-info">
         <p className="product-category">{product.category}</p>
-        <h3 className="product-name">{product.name}</h3>
+        <div className="product-title-row">
+          <h3 className="product-name">{product.name}</h3>
+          <span className="product-price">{formatCurrency(product.price)}</span>
+        </div>
 
         {colors.length > 0 && (
           <div className="product-colors">
@@ -46,22 +46,16 @@ export default function ProductCard({ product }) {
           </div>
         )}
 
-        <div className="product-price-row">
-          <span className="product-price">{formatCurrency(product.price)}</span>
+        <div className="product-meta">
+          {product.rating > 0 && (
+            <div className="product-rating">
+              <span className="stars">{'★'.repeat(Math.floor(product.rating))}{'☆'.repeat(5 - Math.floor(product.rating))}</span>
+            </div>
+          )}
           {product.original_price > product.price && (
-            <>
-              <span className="product-orig">{formatCurrency(product.original_price)}</span>
-              <span className="product-disc">-{discount}%</span>
-            </>
+            <span className="product-disc">-{discount}% OFF</span>
           )}
         </div>
-
-        {product.rating > 0 && (
-          <div className="product-rating">
-            <span className="stars">{'★'.repeat(Math.floor(product.rating))}{'☆'.repeat(5 - Math.floor(product.rating))}</span>
-            <span className="rating-count">({product.reviews || 0})</span>
-          </div>
-        )}
       </div>
     </Link>
   )

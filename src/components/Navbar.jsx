@@ -74,7 +74,6 @@ export default function Navbar() {
           </div>
 
           <Link to="/premium" className="nav-link nav-gold">Premium ✦</Link>
-          <Link to="/about" className="nav-link">About</Link>
         </nav>
 
         <div className="navbar-actions">

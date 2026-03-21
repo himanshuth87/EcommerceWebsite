@@ -103,7 +103,7 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <span className="section-label">Browse by Category</span>
-            <h2 className="section-title">Shop by <span className="gold-gradient-text">Collection</span></h2>
+            <h2 className="section-title">Shop by <span>Collection</span></h2>
           </div>
           <div className="categories-grid">
             {CATEGORIES.map((c, i) => (
@@ -128,7 +128,7 @@ export default function Home() {
           <div className="section-header-row">
             <div>
               <span className="section-label">Our Collection</span>
-              <h2 className="section-title">Best<span className="gold-gradient-text">sellers</span></h2>
+              <h2 className="section-title">Best<span>sellers</span></h2>
             </div>
             <Link to="/products" className="btn btn-outline btn-sm">View All →</Link>
           </div>
