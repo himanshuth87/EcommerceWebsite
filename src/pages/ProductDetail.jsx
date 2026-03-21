@@ -87,8 +87,13 @@ export default function ProductDetail() {
           <div className="pd-image-section">
             <div className="pd-img-frame">
               <img
-                src={product.image_url || '/assets/Category/Travelling%20Bag.png'}
+                src={(function() {
+                  let mapping = {}
+                  try { mapping = typeof product.variant_images === 'string' ? JSON.parse(product.variant_images) : (product.variant_images || {}) } catch {}
+                  return mapping[selectedColor] || product.image_url || '/assets/Category/Travelling%20Bag.png'
+                })()}
                 alt={product.name}
+                key={selectedColor} // Force re-render/animation on color change
                 onError={e => { e.target.src = '/assets/Category/Travelling%20Bag.png' }}
               />
               {product.badge && (

@@ -39,11 +39,12 @@ export default function Home() {
   const [slide, setSlide] = useState(0)
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
-  const navigate = useNavigate()
+  const [productsSold, setProductsSold] = useState(54200)
 
   useEffect(() => {
     const timer = setInterval(() => setSlide(s => (s + 1) % HERO_SLIDES.length), 6000)
-    return () => clearInterval(timer)
+    const sellTimer = setInterval(() => setProductsSold(s => s + 100), 60000)
+    return () => { clearInterval(timer); clearInterval(sellTimer) }
   }, [])
 
   useEffect(() => {
@@ -119,7 +120,7 @@ export default function Home() {
       <section className="trust-strip section-pad reveal" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="trust-inner">
-            <div className="trust-stat hover-lift"><span className="trust-num">50,000+</span><span className="trust-label">Happy Travellers</span></div>
+            <div className="trust-stat hover-lift"><span className="trust-num">{productsSold.toLocaleString()}+</span><span className="trust-label">Happy Travellers</span></div>
             <div className="trust-divider" />
             <div className="trust-stat hover-lift"><span className="trust-num">4.8★</span><span className="trust-label">Average Rating</span></div>
             <div className="trust-divider" />

@@ -45,17 +45,18 @@ router.post('/products', auth, adminOnly, async (req, res) => {
     try {
         const {
             name, category, price, original_price, colors, sizes,
-            features, image_url, badge, is_premium, stock,
+            features, image_url, variant_images, badge, is_premium, stock,
             description, weight, material, lock_type, featured, product_code
         } = req.body;
 
         const results = await query(
-            `INSERT INTO products (name, category, price, original_price, colors, sizes, features, image_url, badge, is_premium, stock, description, weight, material, lock_type, featured, product_code)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id`,
+            `INSERT INTO products (name, category, price, original_price, colors, sizes, features, image_url, variant_images, badge, is_premium, stock, description, weight, material, lock_type, featured, product_code)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id`,
             [
                 name, category, price, original_price || null,
                 JSON.stringify(colors || []), JSON.stringify(sizes || []), JSON.stringify(features || []),
-                image_url, badge, is_premium ? true : false, stock || 0,
+                image_url, JSON.stringify(variant_images || {}),
+                badge, is_premium ? true : false, stock || 0,
                 description, weight, material, lock_type, featured ? true : false, product_code || null
             ]
         );
