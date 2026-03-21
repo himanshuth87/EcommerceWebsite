@@ -4,14 +4,25 @@
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+}
+
+.product-card:hover {
+  border-color: var(--gold-dark);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
 }
 
 .product-img-wrap {
   position: relative;
   overflow: hidden;
-  background: var(--black-soft);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  aspect-ratio: 4/3;
+  background: hsl(0, 0%, 12%);
+  aspect-ratio: 1/1;
 }
 
 .product-img-wrap img {

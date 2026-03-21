@@ -3,9 +3,9 @@ import './Footer.css'
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer reveal">
       <div className="footer-top container">
-        <div className="footer-brand">
+        <div className="footer-brand reveal-left">
           <img src="/assets/Priority%20Logo-02.png" alt="Priority Bags" className="footer-logo"
             onError={e => { e.target.style.display='none'; e.target.nextSibling.style.display='block' }} />
           <span className="footer-logo-text" style={{display:'none'}}>PRIORITY</span>
@@ -14,7 +14,7 @@ export default function Footer() {
           </p>
           <div className="footer-social">
             {['Instagram', 'Facebook', 'Twitter'].map(s => (
-              <a key={s} href="#" className="social-btn" aria-label={s}>
+              <a key={s} href="#" className="social-btn hover-lift" aria-label={s}>
                 {s[0]}
               </a>
             ))}
@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-links">
-          <div className="footer-col">
+          <div className="footer-col reveal" style={{ transitionDelay: '0.1s' }}>
             <h4>Shop</h4>
             <Link to="/products?cat=Cabin+Luggage">Cabin Luggage</Link>
             <Link to="/products?cat=Check-in+Luggage">Check-in Luggage</Link>
@@ -31,14 +31,14 @@ export default function Footer() {
             <Link to="/products?cat=Accessories">Accessories</Link>
             <Link to="/premium">Premium Collection</Link>
           </div>
-          <div className="footer-col">
+          <div className="footer-col reveal" style={{ transitionDelay: '0.2s' }}>
             <h4>Company</h4>
             <Link to="/about">About Us</Link>
             <a href="#">Careers</a>
             <a href="#">Press</a>
             <a href="#">Sustainability</a>
           </div>
-          <div className="footer-col">
+          <div className="footer-col reveal" style={{ transitionDelay: '0.3s' }}>
             <h4>Support</h4>
             <a href="#">Track Order</a>
             <a href="#">Returns & Exchanges</a>
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="footer-newsletter">
+        <div className="footer-newsletter reveal" style={{ transitionDelay: '0.4s' }}>
           <h4>Join the Inner Circle</h4>
           <p>Exclusive offers, early access, and travel insights for our subscribers.</p>
           <div className="newsletter-form">

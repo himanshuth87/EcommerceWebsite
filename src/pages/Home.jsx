@@ -99,15 +99,15 @@ export default function Home() {
 
 
       {/* ── CATEGORIES ── */}
-      <section className="categories section-pad">
+      <section className="categories section-pad reveal">
         <div className="container">
           <div className="section-header">
             <span className="section-label">Browse by Category</span>
-            <h2 className="section-title">Shop by <span>Collection</span></h2>
+            <h2 className="section-title">Shop by <span className="gold-gradient-text">Collection</span></h2>
           </div>
           <div className="categories-grid">
-            {CATEGORIES.map(c => (
-              <Link key={c.name} to={c.href} className="category-card card">
+            {CATEGORIES.map((c, i) => (
+              <Link key={c.name} to={c.href} className="category-card card reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
                 <div className="category-img-wrap">
                   <img src={c.img} alt={c.name} loading="lazy" onError={e => { e.target.src='/assets/Category/Travelling%20Bag.png' }} />
                 </div>
@@ -123,12 +123,12 @@ export default function Home() {
       </section>
 
       {/* ── PRODUCTS ── */}
-      <section className="products-section section-pad" style={{ paddingTop: 0 }}>
+      <section className="products-section section-pad reveal" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="section-header-row">
             <div>
               <span className="section-label">Our Collection</span>
-              <h2 className="section-title">Best<span>sellers</span></h2>
+              <h2 className="section-title">Best<span className="gold-gradient-text">sellers</span></h2>
             </div>
             <Link to="/products" className="btn btn-outline btn-sm">View All →</Link>
           </div>
@@ -151,7 +151,11 @@ export default function Home() {
             </div>
           ) : (
             <div className="products-grid">
-              {filtered.map(p => <ProductCard key={p.id} product={p} />)}
+              {filtered.map((p, i) => (
+                <div key={p.id} className="reveal" style={{ transitionDelay: `${i * 0.05}s` }}>
+                  <ProductCard product={p} />
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -160,16 +164,16 @@ export default function Home() {
 
 
       {/* ── TRUST STRIP ── */}
-      <section className="trust-strip section-pad" style={{ paddingTop: 0 }}>
+      <section className="trust-strip section-pad reveal" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="trust-inner">
-            <div className="trust-stat"><span className="trust-num">50,000+</span><span className="trust-label">Happy Travellers</span></div>
+            <div className="trust-stat hover-lift"><span className="trust-num">50,000+</span><span className="trust-label">Happy Travellers</span></div>
             <div className="trust-divider" />
-            <div className="trust-stat"><span className="trust-num">4.8★</span><span className="trust-label">Average Rating</span></div>
+            <div className="trust-stat hover-lift"><span className="trust-num">4.8★</span><span className="trust-label">Average Rating</span></div>
             <div className="trust-divider" />
-            <div className="trust-stat"><span className="trust-num">15+</span><span className="trust-label">Countries Shipped</span></div>
+            <div className="trust-stat hover-lift"><span className="trust-num">15+</span><span className="trust-label">Countries Shipped</span></div>
             <div className="trust-divider" />
-            <div className="trust-stat"><span className="trust-num">Lifetime</span><span className="trust-label">Warranty</span></div>
+            <div className="trust-stat hover-lift"><span className="trust-num">Lifetime</span><span className="trust-label">Warranty</span></div>
           </div>
         </div>
       </section>

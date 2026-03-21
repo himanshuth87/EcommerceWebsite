@@ -12,13 +12,36 @@ import Login from './pages/Login'
 import Account from './pages/Account'
 import About from './pages/About'
 import Premium from './pages/Premium'
+import { useEffect } from 'react'
+import CustomCursor from './components/CustomCursor'
 import './styles/globals.css'
 
 export default function App() {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active')
+        }
+      })
+    }, observerOptions)
+
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left')
+    revealElements.forEach(el => observer.observe(el))
+
+    return () => revealElements.forEach(el => observer.unobserve(el))
+  }, [])
+
   return (
     <AuthProvider>
       <CartProvider>
         <BrowserRouter>
+          <div className="noise-overlay" />
+          <CustomCursor />
           <Navbar />
           <CartDrawer />
           <Routes>

@@ -17,7 +17,7 @@ export default function ProductCard({ product }) {
   }
 
   return (
-    <Link to={`/products/${product.id}`} className="product-card card">
+    <Link to={`/products/${product.id}`} className="product-card">
       <div className="product-img-wrap">
         <img
           src={product.image_url || '/assets/Category/Travelling%20Bag.png'}
