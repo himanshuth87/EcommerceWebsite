@@ -31,12 +31,7 @@ const HERO_SLIDES = [
   },
 ]
 
-const CATEGORIES = [
-  { name: 'Cabin Luggage', img: '/assets/Category/Travelling%20Bag.png', href: '/products?cat=Cabin+Luggage', count: '3 styles' },
-  { name: 'Check-in Luggage', img: '/assets/Category/Travelling%20Bag.png', href: '/products?cat=Check-in+Luggage', count: '2 styles' },
-  { name: 'Backpacks', img: '/assets/Category/Backpack.png', href: '/products?cat=Backpacks', count: '3 styles' },
-  { name: 'Accessories', img: '/assets/Category/Accessories.png', href: '/products?cat=Accessories', count: '3 items' },
-]
+
 
 
 
@@ -44,7 +39,6 @@ export default function Home() {
   const [slide, setSlide] = useState(0)
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
-  const [activeFilter, setActiveFilter] = useState('all')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -59,12 +53,7 @@ export default function Home() {
       .catch(() => setLoading(false))
   }, [])
 
-  const filtered = activeFilter === 'all'
-    ? products.slice(0, 8)
-    : products.filter(p => p.category === activeFilter).slice(0, 8)
-
-  const premiumProducts = products.filter(p => p.is_premium).slice(0, 3)
-  const FILTER_TABS = ['all', 'Cabin Luggage', 'Check-in Luggage', 'Backpacks', 'Accessories']
+  const bestsellers = products.filter(p => p.badge === 'Bestseller' || p.is_bestseller).slice(0, 8)
 
   return (
     <main className="home">
@@ -98,51 +87,14 @@ export default function Home() {
 
 
 
-      {/* ── CATEGORIES ── */}
-      <section className="categories section-pad reveal">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-label">Browse by Category</span>
-            <h2 className="section-title">Shop by <span>Collection</span></h2>
-          </div>
-          <div className="categories-grid">
-            {CATEGORIES.map((c, i) => (
-              <Link key={c.name} to={c.href} className="category-card card reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
-                <div className="category-img-wrap">
-                  <img src={c.img} alt={c.name} loading="lazy" onError={e => { e.target.src='/assets/Category/Travelling%20Bag.png' }} />
-                </div>
-                <div className="category-info">
-                  <h3>{c.name}</h3>
-                  <span>{c.count}</span>
-                  <span className="cat-arrow">→</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── PRODUCTS ── */}
-      <section className="products-section section-pad reveal" style={{ paddingTop: 0 }}>
+      <section className="products-section section-pad reveal">
         <div className="container">
           <div className="section-header-row">
             <div>
-              <span className="section-label">Our Collection</span>
               <h2 className="section-title">Best<span>sellers</span></h2>
             </div>
             <Link to="/products" className="btn btn-outline btn-sm">View All →</Link>
-          </div>
-
-          <div className="filter-tabs">
-            {FILTER_TABS.map(t => (
-              <button
-                key={t}
-                className={`filter-tab ${activeFilter === t ? 'active' : ''}`}
-                onClick={() => setActiveFilter(t)}
-              >
-                {t === 'all' ? 'All Products' : t}
-              </button>
-            ))}
           </div>
 
           {loading ? (
@@ -151,7 +103,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="products-grid">
-              {filtered.map((p, i) => (
+              {bestsellers.map((p, i) => (
                 <div key={p.id} className="reveal" style={{ transitionDelay: `${i * 0.05}s` }}>
                   <ProductCard product={p} />
                 </div>
