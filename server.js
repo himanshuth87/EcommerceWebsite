@@ -95,7 +95,7 @@ app.post('/api/login', [
     if (!ok) return res.status(401).json({ error: 'Invalid credentials' });
     const token = jwt.sign(
       { id: user.id, name: user.name, role: user.role },
-      process.env.JWT_SECRET || 'priority_fallback_secret',
+      process.env.JWT_SECRET || 'priority_luggage_fallback_secret',
       { expiresIn: process.env.JWT_EXPIRE || '24h' }
     );
     res.json({ success: true, token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
