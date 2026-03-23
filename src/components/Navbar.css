@@ -39,10 +39,24 @@
   width: 100%;
 }
 
-.nav-left-group {
+/* Three-Column Layout for professional centered categories */
+.nav-col-left {
+  flex: 1;
   display: flex;
-  align-items: center;
-  gap: 64px; /* Space between logo and categories */
+  justify-content: flex-start;
+}
+
+.nav-col-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-col-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 32px;
 }
 
 .logo-text {
@@ -55,7 +69,7 @@
 
 .nav-links-list {
   display: flex;
-  gap: 32px;
+  gap: 40px; /* Increased gap for centered look */
   align-items: center;
 }
 
@@ -66,18 +80,12 @@
   padding: 12px 0;
   opacity: 0.85;
   transition: all 0.3s;
+  letter-spacing: 0.5px;
 }
 
 .nav-link:hover { opacity: 1; color: var(--tertiary); }
 
-/* Right Actions Group */
-.nav-right-group {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-/* SEARCH BAR (Small) */
+/* SEARCH BAR (Small & Expanding) */
 .nav-search-wrapper.small-search {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -85,12 +93,12 @@
   display: flex;
   align-items: center;
   padding: 8px 16px;
-  width: 240px; /* Smaller width */
+  width: 200px;
   transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .nav-search-wrapper.small-search:focus-within {
-  width: 320px; /* Expands on focus */
+  width: 280px;
   background: rgba(255, 255, 255, 0.15);
   border-color: var(--tertiary);
 }
@@ -104,10 +112,10 @@
 .nav-search-input {
   background: transparent;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.825rem;
   color: inherit;
   flex-grow: 1;
-  padding: 0 12px;
+  padding: 0 4px;
 }
 
 .search-icon {
@@ -119,15 +127,15 @@
   background: transparent;
   color: inherit;
   display: flex;
-  align-items: center;
 }
 
-/* Mega Menu Adjustment */
+/* Mega Menu Adjustment (Center variant) */
 .has-mega { position: relative; }
 .mega-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
   width: 500px;
   background: var(--surface);
   color: var(--on-surface);
@@ -137,7 +145,6 @@
   padding: 32px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px);
   transition: all 0.4s ease;
   border: 1px solid var(--outline-variant);
 }
@@ -145,7 +152,7 @@
 .has-mega:hover .mega-menu {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .mega-col h5 {
@@ -164,7 +171,7 @@
 
 .mega-col a:hover { color: var(--tertiary); }
 
-/* SIDE PANEL */
+/* SIDE PANEL remains same... */
 .side-panel-overlay {
   position: fixed;
   inset: 0;
@@ -175,9 +182,7 @@
   visibility: hidden;
   transition: all 0.5s;
 }
-
 .side-panel-overlay.active { opacity: 1; visibility: visible; }
-
 .side-panel {
   position: absolute;
   top: 0;
@@ -192,56 +197,16 @@
   display: flex;
   flex-direction: column;
 }
-
 .side-panel.active { transform: translateX(0); }
-
-.panel-group h4 {
-  font-size: 0.625rem;
-  letter-spacing: 0.3em;
-  opacity: 0.4;
-  margin-bottom: 24px;
-}
-
-.panel-item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  padding: 16px 0;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.3s;
-  background: transparent;
-  text-align: left;
-  color: inherit;
-}
-
+.panel-group h4 { font-size: 0.625rem; letter-spacing: 0.3em; opacity: 0.4; margin-bottom: 24px; }
+.panel-item { display: flex; align-items: center; gap: 20px; width: 100%; padding: 16px 0; font-size: 1rem; transition: color 0.3s; background: transparent; text-align: left; color: inherit; }
 .panel-item:hover { color: var(--tertiary); }
-
-.theme-switcher {
-  background: var(--surface-variant);
-  padding: 24px;
-  border-radius: 12px;
-}
-
-.theme-toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  padding: 12px 24px;
-  background: var(--primary);
-  color: var(--on-primary);
-  border-radius: 99px;
-  font-weight: 600;
-  font-size: 0.875rem;
-}
+.theme-switcher { background: var(--surface-variant); padding: 24px; border-radius: 12px; }
+.theme-toggle-btn { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; padding: 12px 24px; background: var(--primary); color: var(--on-primary); border-radius: 99px; font-weight: 600; font-size: 0.875rem; }
 
 @media (max-width: 1024px) {
-  .nav-links-desktop { display: none; }
+  .nav-col-center { display: none; }
 }
-
 @media (max-width: 768px) {
   .side-panel { width: 100%; }
   .navbar-main { padding: 0 24px; }

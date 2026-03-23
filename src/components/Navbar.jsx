@@ -37,12 +37,15 @@ export default function Navbar() {
     <>
       <header className={`navbar-safari ${scrolled ? 'scrolled' : ''}`}>
         <div className="container-fluid navbar-main">
-          {/* LEFT: LOGO & CATEGORIES */}
-          <div className="nav-left-group">
+          {/* LEFT: LOGO */}
+          <div className="nav-col-left">
             <Link to="/" className="navbar-logo-s">
               <span className="logo-text">PRIORITY</span>
             </Link>
-            
+          </div>
+          
+          {/* CENTER: CATEGORIES */}
+          <div className="nav-col-center">
             <nav className="nav-links-desktop">
               <ul className="nav-links-list">
                 <li className="has-mega">
@@ -81,8 +84,8 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* RIGHT: SEARCH (Small) & PANEL TRIGGER */}
-          <div className="nav-right-group">
+          {/* RIGHT: SEARCH & MENU */}
+          <div className="nav-col-right">
             <div className="nav-search-wrapper small-search">
               <span className="material-symbols-outlined search-icon">search</span>
               <input 

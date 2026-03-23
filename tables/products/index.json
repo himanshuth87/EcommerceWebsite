@@ -19,7 +19,7 @@
         "TSA-approved combo lock",
         "360° spinner wheels"
       ],
-      "image_url": "Public/Category/Travelling%20Bag.png",
+      "image_url": "/assets/Category/Travelling%20Bag.png",
       "badge": "Sale",
       "rating": 4.8,
       "reviews": 128,
@@ -50,7 +50,7 @@
         "Dual front pockets",
         "Silent spinner wheels"
       ],
-      "image_url": "Public/Category/Travelling%20Bag.png",
+      "image_url": "/assets/Category/Travelling%20Bag.png",
       "badge": "New",
       "rating": 4.7,
       "reviews": 64,
@@ -80,7 +80,7 @@
         "TSA lock",
         "Expandable zip"
       ],
-      "image_url": "Public/Category/Travelling%20Bag.png",
+      "image_url": "/assets/Category/Travelling%20Bag.png",
       "badge": "Bestseller",
       "rating": 4.9,
       "reviews": 193,
@@ -110,7 +110,7 @@
         "Expandable +15%",
         "Interior divider"
       ],
-      "image_url": "Public/Category/Travelling%20Bag.png",
+      "image_url": "/assets/Category/Travelling%20Bag.png",
       "badge": "Best Value",
       "rating": 4.7,
       "reviews": 92,
@@ -141,7 +141,7 @@
         "Anti-theft zipper",
         "360° rotation"
       ],
-      "image_url": "Public/Category/Travelling%20Bag.png",
+      "image_url": "/assets/Category/Travelling%20Bag.png",
       "badge": "New",
       "rating": 4.6,
       "reviews": 47,
@@ -236,7 +236,7 @@
         "Silent spinner wheels",
         "TSA locks"
       ],
-      "image_url": "Public/Category/Travelling%20Bag.png",
+      "image_url": "/assets/Category/Travelling%20Bag.png",
       "badge": "Sale",
       "rating": 4.7,
       "reviews": 66,
@@ -267,7 +267,7 @@
         "Padded laptop sleeve",
         "Ergonomic straps"
       ],
-      "image_url": "Public/Category/Backpack.png",
+      "image_url": "/assets/Category/Backpack.png",
       "badge": "Bestseller",
       "rating": 4.9,
       "reviews": 210,
@@ -298,7 +298,7 @@
         "Hip belt support",
         "Multiple compartments"
       ],
-      "image_url": "Public/Category/Backpack.png",
+      "image_url": "/assets/Category/Backpack.png",
       "badge": "New",
       "rating": 4.8,
       "reviews": 88,
@@ -328,7 +328,7 @@
         "Padded laptop sleeve",
         "USB charging port"
       ],
-      "image_url": "Public/Category/Backpack.png",
+      "image_url": "/assets/Category/Backpack.png",
       "badge": "Sale",
       "rating": 4.6,
       "reviews": 142,
@@ -358,7 +358,7 @@
         "Luggage tag included",
         "Packing cubes"
       ],
-      "image_url": "Public/Category/Accessories.png",
+      "image_url": "/assets/Category/Accessories.png",
       "badge": "New",
       "rating": 4.5,
       "reviews": 85,
@@ -389,7 +389,7 @@
         "4-digit code",
         "Stainless steel body"
       ],
-      "image_url": "Public/Category/Accessories.png",
+      "image_url": "/assets/Category/Accessories.png",
       "badge": "Bestseller",
       "rating": 4.7,
       "reviews": 320,
@@ -420,7 +420,7 @@
         "YKK zippers",
         "6 sizes included"
       ],
-      "image_url": "Public/Category/Accessories.png",
+      "image_url": "/assets/Category/Accessories.png",
       "badge": "Sale",
       "rating": 4.8,
       "reviews": 175,
@@ -451,7 +451,7 @@
         "Privacy flap",
         "Secure loop attachment"
       ],
-      "image_url": "Public/Category/Accessories.png",
+      "image_url": "/assets/Category/Accessories.png",
       "badge": "New",
       "rating": 4.6,
       "reviews": 95,

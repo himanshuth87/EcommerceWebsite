@@ -16,47 +16,63 @@ export default function ProductCard({ product }) {
     setIsOpen(true)
   }
 
+  // Fallback if image fails or path is weird
+  const getImgSrc = (url) => {
+    if (!url) return '/assets/Category/Travelling Bag.png'
+    if (url.startsWith('Public/')) return '/' + url.replace('Public/', 'assets/')
+    return url
+  }
+
   return (
-    <Link to={`/products/${product.id}`} className="product-card">
-      <div className="product-img-wrap">
-        <img
-          src={product.image_url || '/assets/Category/Travelling%20Bag.png'}
-          alt={product.name}
-          loading="lazy"
-          onError={e => { e.target.src = '/assets/Category/Travelling%20Bag.png' }}
-        />
-        {product.badge && (
-          <span className={`badge ${getBadgeClass(product.badge)} product-badge`}>{product.badge}</span>
-        )}
-      </div>
+    <div className="product-card-container">
+      <Link to={`/products/${product.id}`} className="product-card">
+        <div className="product-img-wrap">
+          <img
+            src={getImgSrc(product.image_url)}
+            alt={product.name}
+            loading="lazy"
+            onError={e => { e.target.src = '/assets/Category/Travelling Bag.png' }}
+          />
+          {product.badge && (
+            <span className={`badge ${getBadgeClass(product.badge)} product-badge`}>{product.badge}</span>
+          )}
+          {product.stock <= 0 && <span className="badge badge-soldout product-badge">SOLD OUT</span>}
+        </div>
 
-      <div className="product-info">
-        <p className="product-category">{product.category}</p>
-        <div className="product-title-row">
+        <div className="product-info">
           <h3 className="product-name">{product.name}</h3>
-          <span className="product-price">{formatCurrency(product.price)}</span>
-        </div>
-
-        {colors.length > 0 && (
-          <div className="product-colors">
-            {colors.slice(0, 5).map(c => (
-              <span key={c} className="color-dot" title={c} style={{ background: COLOR_MAP[c] || '#888' }} />
-            ))}
-            {colors.length > 5 && <span className="color-more">+{colors.length - 5}</span>}
-          </div>
-        )}
-
-        <div className="product-meta">
-          {product.rating > 0 && (
-            <div className="product-rating">
-              <span className="stars">{'★'.repeat(Math.floor(product.rating))}{'☆'.repeat(5 - Math.floor(product.rating))}</span>
+          
+          <div className="product-price-row">
+            <span className="price-current">{formatCurrency(product.price)}</span>
+            {product.original_price > product.price && (
+              <span className="price-original">{formatCurrency(product.original_price)}</span>
+            )}
+            <div className="product-rating-inline">
+              <span className="rating-val">{product.rating || '0.0'}</span>
+              <span className="material-symbols-outlined rating-star">star</span>
             </div>
-          )}
-          {product.original_price > product.price && (
-            <span className="product-disc">-{discount}% OFF</span>
-          )}
+          </div>
+
+          <p className="product-color-label">Colour</p>
+          <div className="product-swatches">
+            {/* Simple swatches for now. Real implementation might use variant images. */}
+            {colors.length > 0 ? (
+              colors.map(c => (
+                <div 
+                  key={c} 
+                  className="swatch-dot" 
+                  style={{ background: COLOR_MAP[c] || '#ccc' }} 
+                  title={c}
+                />
+              ))
+            ) : (
+                <div className="swatch-dot" style={{ background: '#eee' }} />
+            )}
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+      
+      {/* Quick Add button overlay can be added if desired */}
+    </div>
   )
 }

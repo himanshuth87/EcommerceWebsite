@@ -47,7 +47,7 @@ export default function Home() {
                     <img src={editorialBestsellers[0].image_url} alt={editorialBestsellers[0].name} />
                   </Link>
                 ) : (
-                  <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(1).jpg" alt="Collection Piece" />
+                  <img src="/assets/Creatives/editorial-1.jpg" alt="Collection Piece" />
                 )}
               </div>
             </div>
@@ -60,7 +60,7 @@ export default function Home() {
                     <img src={editorialBestsellers[1].image_url} alt={editorialBestsellers[1].name} />
                   </Link>
                 ) : (
-                  <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(2).jpg" alt="Collection Piece" />
+                  <img src="/assets/Creatives/editorial-2.jpg" alt="Collection Piece" />
                 )}
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function Home() {
               ) : (
                 <div className="bespoke-inner">
                   <div className="bespoke-image-wrap">
-                    <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(5).jpg" alt="Master Craftsman" />
+                    <img src="/assets/Creatives/editorial-5.jpg" alt="Master Craftsman" />
                   </div>
                   <div className="bespoke-content">
                     <p className="body-bespoke" style={{ opacity: 0.6 }}>Our master collection of new arrivals.</p>
