@@ -88,7 +88,7 @@ export default function Home() {
         <section className="products-section">
           <div className="container">
             <div className="products-header">
-              <h2 className="headline-large">Selected <span>Pieces</span></h2>
+              <h2 className="headline-large">Our <span>Collection</span></h2>
               <Link to="/products" className="btn-bespoke">View All</Link>
             </div>
 
