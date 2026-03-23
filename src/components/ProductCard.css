@@ -1,6 +1,7 @@
 .product-card {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   text-decoration: none;
   background: var(--surface-container-low);
   border: 1px solid rgba(255, 255, 255, 0.03);
@@ -19,12 +20,30 @@
   overflow: hidden;
   background: #1a1a1a;
   position: relative;
+=======
+  transition: var(--transition);
+  position: relative;
+  background: transparent;
+  border-radius: var(--radius);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-img-wrap {
+  position: relative;
+  overflow: hidden;
+  background: hsl(0, 0%, 12%);
+  aspect-ratio: 1/1;
+>>>>>>> 6e32c617df6189eb7371537514a16058e0f7e9b4
 }
 
 .product-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+<<<<<<< HEAD
   transition: transform 1s var(--transition-standard);
 }
 
@@ -61,10 +80,18 @@
   font-size: 0.875rem;
   color: var(--on-surface);
   font-weight: 300;
+=======
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img-wrap img {
+  transform: scale(1.06);
+>>>>>>> 6e32c617df6189eb7371537514a16058e0f7e9b4
 }
 
 .product-badge {
   position: absolute;
+<<<<<<< HEAD
   top: 16px;
   right: 16px;
   padding: 6px 12px;
@@ -73,10 +100,68 @@
   text-transform: uppercase;
   font-weight: 700;
   z-index: 10;
+=======
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+}
+
+.quick-add-btn {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: bottom 0.3s ease;
+  white-space: nowrap;
+  z-index: 3;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.product-card:hover .quick-add-btn {
+  bottom: 14px;
+}
+
+.product-info {
+  padding: 24px 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-category {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.product-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.product-name {
+  font-family: var(--font-body); /* Subtle body font for a cleaner look */
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.4;
+}
+
+.product-price {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+>>>>>>> 6e32c617df6189eb7371537514a16058e0f7e9b4
 }
 
 .product-colors {
   display: flex;
+<<<<<<< HEAD
   gap: 8px;
   margin-top: 4px;
 }
@@ -91,4 +176,22 @@
 .stars {
   font-size: 0.75rem;
   color: var(--tertiary);
+=======
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.product-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.product-disc {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold);
+>>>>>>> 6e32c617df6189eb7371537514a16058e0f7e9b4
 }
