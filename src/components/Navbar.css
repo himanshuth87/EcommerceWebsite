@@ -1,191 +1,188 @@
-.navbar {
+.navbar-gucci {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
   height: 96px;
+  background: transparent;
   display: flex;
   align-items: center;
   transition: all 0.5s var(--transition-standard);
-  background: linear-gradient(to bottom, var(--background), transparent);
 }
 
-.navbar.scrolled {
+.navbar-gucci.scrolled {
   height: 80px;
-  background: rgba(19, 19, 19, 0.85);
+  background: rgba(19, 19, 19, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar-inner {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
+  padding: 0 48px;
   width: 100%;
 }
 
-.navbar-logo {
+.nav-col-center {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
+  justify-content: center;
 }
 
-.navbar-logo img {
-  height: 32px;
-  width: auto;
+.nav-col-right {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.logo-text {
+.logo-text-gucci {
   font-family: var(--font-headline);
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   font-weight: 300;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.5em;
   color: var(--on-background);
+  transition: all 0.5s var(--transition-standard);
 }
 
-.navbar-nav {
-  display: none;
-  gap: 48px;
-  align-items: center;
+.navbar-gucci.scrolled .logo-text-gucci {
+  font-size: 1.75rem;
+  letter-spacing: 0.4em;
 }
 
-@media (min-width: 1024px) {
-  .navbar-nav {
-    display: flex;
-  }
-}
-
-.nav-link {
-  font-family: var(--font-headline);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--on-background);
-  text-decoration: none;
-  padding: 8px 0;
-  position: relative;
-  transition: opacity 0.3s;
-}
-
-.nav-link:hover {
-  opacity: 0.7;
-}
-
-.nav-link.active {
-  color: var(--tertiary);
-  border-bottom: 1px solid var(--tertiary);
-}
-
-.navbar-actions {
+.navbar-actions-gucci {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
 }
 
-.nav-icon-btn {
+.nav-icon-btn-gucci {
   background: transparent;
   border: none;
-  color: var(--primary);
+  color: var(--on-background);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s;
+  padding: 8px;
+  transition: opacity 0.3s;
 }
 
-.nav-icon-btn:hover {
-  transform: scale(1.1);
+.nav-icon-btn-gucci:hover {
   opacity: 0.7;
 }
 
-.cart-btn {
-  position: relative;
-}
-
-.cart-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: var(--tertiary);
-  color: var(--on-tertiary);
-  font-size: 0.65rem;
-  font-weight: 700;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
+.menu-toggle-gucci {
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Mega Menu Refinement */
-.mega-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100vw;
-  background: var(--surface-container);
-  padding: 48px;
-  display: flex;
-  justify-content: center;
-  gap: 64px;
-  border-bottom: 1px solid var(--outline-variant);
-  animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.mega-item {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 16px;
-  text-decoration: none;
-  color: var(--on-surface);
-  transition: opacity 0.3s;
-}
-
-.mega-item:hover {
-  opacity: 0.7;
-}
-
-.mega-item img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-}
-
-.mega-item span {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* Hamburger */
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
   background: transparent;
   border: none;
   cursor: pointer;
+  color: var(--on-background);
+  padding: 8px 0;
+  transition: opacity 0.3s;
 }
 
-@media (min-width: 1024px) {
-  .hamburger {
-    display: none;
-  }
+.menu-toggle-gucci:hover {
+  opacity: 0.7;
 }
 
-.hamburger span {
+.hamburger-gucci {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hamburger-gucci span {
   width: 24px;
   height: 1px;
   background: var(--on-background);
-  transition: all 0.3s;
+}
+
+.menu-label-gucci {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Mega Menu Overlay */
+.mega-menu-gucci {
+  position: fixed;
+  inset: 0;
+  background: #131313;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s var(--transition-standard);
+  transform: translateY(-20px);
+}
+
+.mega-menu-gucci.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.menu-close-btn {
+  position: absolute;
+  top: 48px;
+  right: 48px;
+  background: transparent;
+  border: none;
+  color: var(--on-background);
+  cursor: pointer;
+}
+
+.mega-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.mega-nav-links a {
+  font-family: var(--font-headline);
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--on-background);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.mega-nav-links a:hover {
+  color: var(--tertiary);
+}
+
+.logout-link-gucci {
+  background: transparent;
+  border: none;
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  color: var(--tertiary);
+  cursor: pointer;
+  margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+  .navbar-inner {
+    padding: 0 24px;
+  }
+  .hidden-mobile {
+    display: none;
+  }
+  .logo-text-gucci {
+    font-size: 1.25rem;
+    letter-spacing: 0.3em;
+  }
+  .mega-nav-links a {
+    font-size: 1.5rem;
+  }
 }
