@@ -18,6 +18,8 @@ export default function Home() {
   const editorialBestsellers = products.filter(p => p.badge === 'Bestseller' || p.is_bestseller).slice(0, 3)
   // Get others for the grid
   const standardBestsellers = products.filter(p => p.badge === 'Bestseller' || p.is_bestseller).slice(3, 7)
+  // Get New Arrivals
+  const newArrivals = products.filter(p => p.badge === 'New').slice(0, 4)
 
   return (
     <main className="home">
@@ -109,17 +111,34 @@ export default function Home() {
         </section>
       )}
 
-      {/* ── BESPOKE SERVICES ── */}
+      {/* ── NEW ARRIVALS ── */}
       <section className="bespoke-section">
         <div className="container">
-          <div className="bespoke-inner">
-            <div className="bespoke-image-wrap">
-              <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(5).jpg" alt="Master Craftsman" />
-            </div>
-            <div className="bespoke-content">
-              {/* Text removed per user request */}
-              <button className="btn-bespoke">Inquiry</button>
-            </div>
+          <div className="products-header" style={{ marginBottom: '48px' }}>
+            <h2 className="headline-large">New <span>Arrivals</span></h2>
+          </div>
+          <div className="products-grid">
+            {loading ? (
+              [...Array(4)].map((_, i) => <div key={i} className="skeleton" style={{ height: 450 }} />)
+            ) : (
+              newArrivals.length > 0 ? (
+                newArrivals.map((p, i) => (
+                  <div key={p.id} className="reveal active" style={{ transitionDelay: `${i * 0.1}s` }}>
+                    <ProductCard product={p} />
+                  </div>
+                ))
+              ) : (
+                <div className="bespoke-inner">
+                  <div className="bespoke-image-wrap">
+                    <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(5).jpg" alt="Master Craftsman" />
+                  </div>
+                  <div className="bespoke-content">
+                    <p className="body-bespoke" style={{ opacity: 0.6 }}>New arrivals coming soon to our collection.</p>
+                    <button className="btn-bespoke">Inquiry</button>
+                  </div>
+                </div>
+              )
+            )}
           </div>
         </div>
       </section>
