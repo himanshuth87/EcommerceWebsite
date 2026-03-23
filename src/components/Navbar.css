@@ -1,188 +1,246 @@
-.navbar-gucci {
+.navbar-safari {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
   height: 96px;
-  background: transparent;
+  background: white;
+  color: #1a1a1a;
   display: flex;
   align-items: center;
-  transition: all 0.5s var(--transition-standard);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: all 0.5s ease;
 }
 
-.navbar-gucci.scrolled {
+.navbar-safari.scrolled {
   height: 80px;
-  background: rgba(19, 19, 19, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.navbar-inner {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+.navbar-main {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 48px;
   width: 100%;
+  position: relative;
 }
 
-.nav-col-center {
-  display: flex;
-  justify-content: center;
-}
-
-.nav-col-right {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.logo-text-gucci {
+.logo-text {
   font-family: var(--font-headline);
-  font-size: 2.25rem;
-  font-weight: 300;
-  letter-spacing: 0.5em;
-  color: var(--on-background);
-  transition: all 0.5s var(--transition-standard);
-}
-
-.navbar-gucci.scrolled .logo-text-gucci {
   font-size: 1.75rem;
-  letter-spacing: 0.4em;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #1a1a1a;
 }
 
-.navbar-actions-gucci {
+.nav-links-list {
   display: flex;
-  align-items: center;
+  list-style: none;
   gap: 32px;
-}
-
-.nav-icon-btn-gucci {
-  background: transparent;
-  border: none;
-  color: var(--on-background);
-  cursor: pointer;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 8px;
-  transition: opacity 0.3s;
+  padding: 0;
+  margin: 0;
 }
 
-.nav-icon-btn-gucci:hover {
-  opacity: 0.7;
-}
-
-.menu-toggle-gucci {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--on-background);
-  padding: 8px 0;
-  transition: opacity 0.3s;
-}
-
-.menu-toggle-gucci:hover {
-  opacity: 0.7;
-}
-
-.hamburger-gucci {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.hamburger-gucci span {
-  width: 24px;
-  height: 1px;
-  background: var(--on-background);
-}
-
-.menu-label-gucci {
+.nav-link {
   font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #4a4a4a;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: color 0.3s;
+  padding: 12px 0;
 }
 
-/* Mega Menu Overlay */
-.mega-menu-gucci {
-  position: fixed;
-  inset: 0;
-  background: #131313;
-  z-index: 2000;
+.nav-link:hover {
+  color: #1a1a1a;
+}
+
+.badge-new-nav {
+  background: #10b981;
+  color: white;
+  font-size: 0.625rem;
+  padding: 2px 6px;
+  border-radius: 99px;
+  margin-left: 8px;
+  font-weight: 700;
+  vertical-align: super;
+}
+
+.pill-green {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white !important;
+  padding: 10px 24px !important;
+  border-radius: 99px;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+.pill-green:hover {
+  transform: translateY(-1px);
+}
+
+/* Mega Menu Styles */
+.has-mega {
+  position: static; /* Allows mega menu to be full width relative to container if needed, or relative to link */
+}
+
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  gap: 120px;
+  padding: 64px;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.5s var(--transition-standard);
-  transform: translateY(-20px);
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border-top: 1px solid #f0f0f0;
 }
 
-.mega-menu-gucci.open {
+.has-mega:hover .mega-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-.menu-close-btn {
-  position: absolute;
-  top: 48px;
-  right: 48px;
-  background: transparent;
-  border: none;
-  color: var(--on-background);
-  cursor: pointer;
-}
-
-.mega-nav-links {
+.mega-col {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 48px;
+  gap: 12px;
 }
 
-.mega-nav-links a {
-  font-family: var(--font-headline);
-  font-size: 2.5rem;
-  font-weight: 300;
+.mega-col h5 {
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #1a1a1a;
   letter-spacing: 0.1em;
-  color: var(--on-background);
+  margin-bottom: 24px;
+  opacity: 0.4;
+}
+
+.mega-col a {
+  font-size: 0.875rem;
+  color: #4a4a4a;
   text-decoration: none;
+  font-weight: 500;
   transition: color 0.3s;
 }
 
-.mega-nav-links a:hover {
-  color: var(--tertiary);
+.mega-col a:hover {
+  color: #10b981;
 }
 
-.logout-link-gucci {
+/* Account Wrapper & Dropdown */
+.account-wrapper {
+  position: relative;
+}
+
+.account-trigger {
   background: transparent;
   border: none;
-  font-family: var(--font-headline);
-  font-size: 1.5rem;
-  color: var(--tertiary);
   cursor: pointer;
-  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #1a1a1a;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.3s;
 }
 
-@media (max-width: 768px) {
-  .navbar-inner {
-    padding: 0 24px;
-  }
-  .hidden-mobile {
+.account-trigger:hover {
+  background: #f8f9fa;
+}
+
+.account-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.expand_more {
+  font-size: 1.25rem;
+  opacity: 0.5;
+}
+
+.account-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.dropdown-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f3f4f6;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+.drop-search-input {
+  background: transparent;
+  border: none;
+  font-size: 0.875rem;
+  flex-grow: 1;
+  outline: none;
+}
+
+.drop-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a4a4a;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.drop-item:hover {
+  background: #f8f9fa;
+  color: #1a1a1a;
+}
+
+.drop-item span {
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+.logout-red {
+  color: #ff4d4d;
+}
+
+.logout-red:hover {
+  background: #fff5f5;
+  color: #ff4d4d;
+}
+
+@media (max-width: 1024px) {
+  .nav-center {
     display: none;
-  }
-  .logo-text-gucci {
-    font-size: 1.25rem;
-    letter-spacing: 0.3em;
-  }
-  .mega-nav-links a {
-    font-size: 1.5rem;
   }
 }

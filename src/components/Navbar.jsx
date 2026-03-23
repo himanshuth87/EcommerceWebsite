@@ -9,7 +9,7 @@ export default function Navbar() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [accountOpen, setAccountOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -17,65 +17,140 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleLogout = () => { logout(); navigate('/') }
+  const handleLogout = () => {
+    logout()
+    setAccountOpen(false)
+    navigate('/')
+  }
 
   return (
-    <header className={`navbar-gucci ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container-fluid navbar-inner">
-        {/* Left spacer for centering logo */}
-        <div className="nav-col-left hidden-mobile" />
-
-        <div className="nav-col-center">
-          <Link to="/" className="navbar-logo-large">
-            <span className="logo-text-gucci">PRIORITY</span>
+    <header className={`navbar-safari ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container-fluid navbar-main">
+        <div className="nav-left">
+          <Link to="/" className="navbar-logo-s">
+            <span className="logo-text">PRIORITY</span>
           </Link>
         </div>
 
-        <div className="nav-col-right">
-          <div className="navbar-actions-gucci">
-            <button className="nav-icon-btn-gucci search-btn">
-              <span className="material-symbols-outlined">search</span>
-            </button>
-            
-            <button className="nav-icon-btn-gucci cart-btn" onClick={() => setIsOpen(true)}>
-              <span className="material-symbols-outlined">shopping_bag</span>
-              {totalItems > 0 && <span className="cart-badge-gucci">{totalItems}</span>}
-            </button>
-
-            {user ? (
-              <Link to="/account" className="nav-icon-btn-gucci hidden-mobile">
-                <span className="material-symbols-outlined">person</span>
+        <nav className="nav-center">
+          <ul className="nav-links-list">
+            <li>
+              <Link to="/products" className="nav-link">
+                Priority Select <span className="badge-new-nav">New</span>
               </Link>
-            ) : (
-              <Link to="/login" className="nav-icon-btn-gucci hidden-mobile">
-                <span className="material-symbols-outlined">login</span>
+            </li>
+            <li>
+              <Link to="/products" className="nav-link pill-green">
+                Back to School
               </Link>
-            )}
-
-            <button className="menu-toggle-gucci" onClick={() => setMenuOpen(!menuOpen)}>
-              <div className="hamburger-gucci">
-                <span></span>
-                <span></span>
-                <span></span>
+            </li>
+            <li className="has-mega">
+              <Link to="/products?cat=Luggage" className="nav-link">Trolley Bags</Link>
+              <div className="mega-menu">
+                <div className="mega-col">
+                  <h5>HARD LUGGAGE</h5>
+                  <Link to="/products?sub=Hardside">Hardside Trolleys</Link>
+                  <Link to="/products?sub=Cabin">Cabin Luggage</Link>
+                  <Link to="/products?sub=Check-in">Check-in Luggage</Link>
+                </div>
+                <div className="mega-col">
+                  <h5>SOFT LUGGAGE</h5>
+                  <Link to="/products?sub=Softside">Softside Trolleys</Link>
+                  <Link to="/products?sub=Travel">Travel Duffels</Link>
+                </div>
+                <div className="mega-col">
+                  <h5>SETS</h5>
+                  <Link to="/products?sub=Sets">Luggage Sets</Link>
+                </div>
               </div>
-              <span className="menu-label-gucci">MENU</span>
+            </li>
+            <li><Link to="/products?cat=Combos" className="nav-link">Combos</Link></li>
+            <li className="has-mega">
+              <Link to="/products?cat=Backpacks" className="nav-link">Backpacks</Link>
+              <div className="mega-menu">
+                <div className="mega-col">
+                  <h5>LAPTOP BAGS</h5>
+                  <Link to="/products?sub=Laptop">Professional Laptop</Link>
+                  <Link to="/products?sub=Sleek">Sleek Laptop</Link>
+                </div>
+                <div className="mega-col">
+                  <h5>CASUAL</h5>
+                  <Link to="/products?sub=Daypack">Daypacks</Link>
+                  <Link to="/products?sub=College">College Backpacks</Link>
+                </div>
+              </div>
+            </li>
+            <li className="has-mega">
+              <Link to="/products?cat=Accessories" className="nav-link">Accessories</Link>
+              <div className="mega-menu">
+                <div className="mega-col">
+                  <h5>TRAVEL ESSENTIALS</h5>
+                  <Link to="/products?sub=Locks">Luggage Locks</Link>
+                  <Link to="/products?sub=Covers">Suitcase Covers</Link>
+                </div>
+                <div className="mega-col">
+                  <h5>HANDCRAFTED</h5>
+                  <Link to="/products?sub=Wallets">Leather Wallets</Link>
+                  <Link to="/products?sub=Belts">Premium Belts</Link>
+                </div>
+              </div>
+            </li>
+            <li><Link to="/premium" className="nav-link">Premium ✦</Link></li>
+          </ul>
+        </nav>
+
+        <div className="nav-right">
+          <div className="account-wrapper">
+            <button 
+              className="account-trigger"
+              onClick={() => setAccountOpen(!accountOpen)}
+            >
+              <span className="material-symbols-outlined">person</span>
+              <span className="account-label">{user ? 'MY ACCOUNT' : 'LOGIN'}</span>
+              <span className="material-symbols-outlined expand-icon">expand_more</span>
             </button>
+
+            {accountOpen && (
+              <div className="account-dropdown">
+                {/* Search inside account per request */}
+                <div className="dropdown-search">
+                  <input type="text" placeholder="Search products..." className="drop-search-input" />
+                  <span className="material-symbols-outlined">search</span>
+                </div>
+
+                <Link to="/account" onClick={() => setAccountOpen(false)} className="drop-item">
+                  <span className="material-symbols-outlined">account_circle</span>
+                  Profile
+                </Link>
+
+                {/* Cart inside account per request */}
+                <button 
+                  onClick={() => { setIsOpen(true); setAccountOpen(false) }} 
+                  className="drop-item"
+                >
+                  <span className="material-symbols-outlined">shopping_bag</span>
+                  Cart ({totalItems})
+                </button>
+
+                {user && (
+                  <>
+                    <hr />
+                    <button onClick={handleLogout} className="drop-item logout-red">
+                      <span className="material-symbols-outlined">logout</span>
+                      Log out
+                    </button>
+                  </>
+                )}
+                {!user && (
+                  <Link to="/login" onClick={() => setAccountOpen(false)} className="drop-item">
+                    <span className="material-symbols-outlined">login</span>
+                    Sign In
+                  </Link>
+                )}
+              </div>
+            )}
           </div>
         </div>
-      </div>
-
-      {/* Full Screen Menu Overlay */}
-      <div className={`mega-menu-gucci ${menuOpen ? 'open' : ''}`}>
-        <button className="menu-close-btn" onClick={() => setMenuOpen(false)}>
-          <span className="material-symbols-outlined">close</span>
-        </button>
-        <nav className="mega-nav-links">
-          <Link to="/products" onClick={() => setMenuOpen(false)}>New Arrivals</Link>
-          <Link to="/products" onClick={() => setMenuOpen(false)}>Collections</Link>
-          <Link to="/about" onClick={() => setMenuOpen(false)}>Our Heritage</Link>
-          <Link to="/premium" onClick={() => setMenuOpen(false)}>Premium ✦</Link>
-          {user && <button onClick={handleLogout} className="logout-link-gucci">Logout</button>}
-        </nav>
       </div>
     </header>
   )
