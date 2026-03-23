@@ -21,6 +21,7 @@ export default function Products() {
   const [priceRange, setPriceRange] = useState([0, 30000])
 
   const activeCat = searchParams.get('cat') || 'All'
+  const activeSub = searchParams.get('sub') || ''
 
   useEffect(() => {
     setLoading(true)
@@ -31,12 +32,13 @@ export default function Products() {
   }, [])
 
   const setCat = (cat) => {
-    if (cat === 'All') searchParams.delete('cat')
+    if (cat === 'All') { searchParams.delete('cat'); searchParams.delete('sub') }
     else setSearchParams({ cat })
   }
 
   let filtered = products
   if (activeCat !== 'All') filtered = filtered.filter(p => p.category === activeCat)
+  if (activeSub) filtered = filtered.filter(p => p.sub_category === activeSub)
   if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()) || (p.description || '').toLowerCase().includes(search.toLowerCase()))
   filtered = filtered.filter(p => p.price >= priceRange[0] && p.price <= priceRange[1])
 
