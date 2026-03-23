@@ -6,13 +6,13 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <span className="footer-logo-text">PRIORITY</span>
-        
+
         <div className="footer-links">
           <div className="footer-brand-side">
             <div className="footer-col">
               <h4>OUR BRANDS</h4>
-              <span className="brand-logo" style={{ fontWeight: '900', fontSize: '1.25rem' }}>URBAN JUNGLE</span>
-              <span className="brand-logo-alt" style={{ fontFamily: 'cursive', fontSize: '1.25rem', color: '#ff4d4d' }}>Genie</span>
+              <span className="brand-logo" style={{ fontWeight: '900', fontSize: '1.25rem' }}>Traworld</span>
+              <span className="brand-logo-alt" style={{ fontFamily: 'cursive', fontSize: '1.25rem', color: '#ff4d4d' }}>Priority</span>
               <div className="social-links">
                 <a href="#" className="social-icon"><span className="material-symbols-outlined">public</span></a>
                 <a href="#" className="social-icon"><span className="material-symbols-outlined">camera</span></a>
@@ -26,7 +26,6 @@ export default function Footer() {
             <Link to="/products?cat=Luggage">Luggage</Link>
             <Link to="/products?cat=Backpacks">Backpacks</Link>
             <Link to="/about">Blog</Link>
-            <Link to="/about">Store Locator</Link>
           </div>
 
           <div className="footer-col">
@@ -44,7 +43,7 @@ export default function Footer() {
             <Link to="/about">About Us</Link>
             <Link to="/about">Contact us</Link>
             <Link to="/account">Account</Link>
-            <Link to="/about">Investor Relations</Link>
+            <Link to="/about">Our Team</Link>
             <Link to="#">Return Request</Link>
           </div>
         </div>
