@@ -38,8 +38,8 @@ export default function Admin() {
       <aside className="admin-sidebar">
         <div className="admin-logo"><h2>PRIORITY <span>ADMIN</span></h2></div>
         <nav className="admin-nav">
-          <NavLink to="/admin" end className="nav-item">Dashboard</NavLink>
-          <NavLink to="/admin/products" className="nav-item">Inventory</NavLink>
+          <NavLink to="/admin" end className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>Dashboard</NavLink>
+          <NavLink to="/admin/products" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>Inventory</NavLink>
           <div className="nav-divider" />
           <Link to="/" className="nav-item">Switch to Website</Link>
         </nav>
@@ -67,7 +67,13 @@ function ProductManagement({ token, refreshStats }) {
     image_url: '', badge: 'None', colors: [], description: ''
   })
 
-  const load = () => fetch('/api/v1/catalog/products').then(r => r.json()).then(d => setProducts(d.data || []))
+  const load = () => {
+    fetch('/api/v1/catalog/products')
+      .then(r => r.json())
+      .then(d => setProducts(d.data || []))
+      .catch(e => console.error('Fetch error:', e))
+  }
+
   useEffect(() => { load() }, [])
 
   useEffect(() => {
@@ -96,13 +102,13 @@ function ProductManagement({ token, refreshStats }) {
       const res = await fetch('/api/admin/upload', { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: formData })
       const d = await res.json()
       if (d.success) setForm(prev => ({ ...prev, image_url: d.url }))
-      else alert('Deployment Limitation: Local uploads are disabled on Vercel. Please use the "Paste URL" field instead.')
+      else alert('Server filesystem is read-only. Please use the External URL field.')
     } finally { setLoading(false) }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!form.image_url) return alert('Photo required')
+    if (!form.image_url) return alert('Photo required (Paste URL)')
     try {
       setLoading(true)
       const res = await fetch('/api/v1/catalog/products', {
@@ -115,28 +121,29 @@ function ProductManagement({ token, refreshStats }) {
         setForm({ name: '', category: 'Backpack', sub_category: '', price: '', stock: 0, image_url: '', badge: 'None', colors: [], description: '' })
       } else {
         const er = await res.json()
-        alert(er.error || 'Add failed')
+        alert(er.error || 'Add product failed')
       }
-    } finally { setLoading(false) }
+    } catch { alert('Network error') }
+    finally { setLoading(false) }
   }
 
   return (
     <div className="products-view">
        <div className="view-header">
-          <h1>Manage Inventory</h1>
+          <h1>Inventory Catalog</h1>
           <button className="btn-primary" onClick={() => setShowAdd(true)}>+ ADD PRODUCT</button>
        </div>
 
        {showAdd && (
-         <div className="admin-modal-overlay">
+         <div className="admin-modal-overlay" onClick={(e) => { if(e.target.className === 'admin-modal-overlay') setShowAdd(false) }}>
            <div className="admin-modal">
-             <div className="modal-header"><h3>Add New Item</h3><button onClick={() => setShowAdd(false)}>×</button></div>
+             <div className="modal-header"><h3>Add Item Details</h3><button onClick={() => setShowAdd(false)}>×</button></div>
              <form onSubmit={handleSubmit} className="admin-form">
                 <div className="form-grid">
-                  <div className="form-group grid-span-2"><label>Name</label><input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required /></div>
+                  <div className="form-group grid-span-2"><label>Title</label><input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required /></div>
                   <div className="form-group"><label>Category</label><select value={form.category} onChange={e => setForm({...form, category: e.target.value})}>{Object.keys(CATEGORY_MAP).map(k => <option key={k}>{k}</option>)}</select></div>
-                  <div className="form-group"><label>Sub-Category</label><select value={form.sub_category} onChange={e => setForm({...form, sub_category: e.target.value})}>{(CATEGORY_MAP[form.category] || []).map(s => <option key={s}>{s}</option>)}</select></div>
-                  <div className="form-group"><label>Rate (₹)</label><input type="number" value={form.price} onChange={e => setForm({...form, price: e.target.value})} required /></div>
+                  <div className="form-group"><label>Sub-Cat</label><select value={form.sub_category} onChange={e => setForm({...form, sub_category: e.target.value})}>{(CATEGORY_MAP[form.category] || []).map(s => <option key={s}>{s}</option>)}</select></div>
+                  <div className="form-group"><label>Price (₹)</label><input type="number" value={form.price} onChange={e => setForm({...form, price: e.target.value})} required /></div>
                   <div className="form-group"><label>Initial Units</label><input type="number" value={form.stock} onChange={e => setForm({...form, stock: e.target.value})} /></div>
                   <div className="form-group grid-span-2">
                     <label>Colors</label>
@@ -148,46 +155,50 @@ function ProductManagement({ token, refreshStats }) {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>Image Source</label>
-                  <input type="text" placeholder="Paste External Photo URL" value={form.image_url} onChange={e=>setForm({...form, image_url: e.target.value})} className="url-input" />
+                  <label>Paste Image URL</label>
+                  <input type="text" placeholder="https://..." value={form.image_url} onChange={e=>setForm({...form, image_url: e.target.value})} className="url-input" />
                 </div>
-                <div className="modal-footer"><button type="submit" className="btn-save">{loading ? 'Saving...' : 'Confirm Launch'}</button></div>
+                <div className="modal-footer"><button type="submit" className="btn-save" disabled={loading}>{loading ? 'Saving...' : 'Launch Product'}</button></div>
              </form>
            </div>
          </div>
        )}
 
        <div className="inventory-grid">
-         {products.map(p => (
-           <div key={p.id} className="inventory-card">
-              <div className="card-top">
-                 <div className="select-box"><input type="checkbox" /></div>
-                 <img src={p.image_url} alt="" />
-                 <div className="card-actions">
-                    <button className="icon-btn del" onClick={() => handleDelete(p.id)} title="Delete item">×</button>
-                 </div>
-              </div>
-              <div className="card-body">
-                 <p className="card-cat">{p.category?.toUpperCase()} • {p.sub_category?.toUpperCase()}</p>
-                 <h3 className="card-title">{p.name || 'Untitled Item'}</h3>
-                 <div className="card-colors">
-                    {(p.colors || []).length > 0 ? p.colors.map(c => (
-                      <span key={c} className="color-dot" style={{ background: PRESET_COLORS.find(pc => pc.name === c)?.hex || '#ccc' }} />
-                    )) : <span className="no-colors">No colors set</span>}
-                 </div>
-                 <div className="card-footer">
-                    <div className="footer-price">
-                       <span className="old-price">₹{Math.floor(p.price*1.1)}</span>
-                       <span className="main-price">₹{p.price?.toLocaleString()}</span>
-                    </div>
-                    <div className="footer-stock">
-                       <p className="stock-label">INVENTORY</p>
-                       <p className="stock-val">{p.stock || 0} Units</p>
-                    </div>
-                 </div>
-              </div>
-           </div>
-         ))}
+         {products.map(p => {
+           let colorsParsed = []
+           try { colorsParsed = typeof p.colors === 'string' ? JSON.parse(p.colors) : (p.colors || []) } catch(e) {}
+           
+           return (
+             <div key={p.id} className="inventory-card">
+                <div className="card-top">
+                   <img src={p.image_url} alt="" onError={(e) => { e.target.src='https://via.placeholder.com/300?text=No+Image' }} />
+                   <div className="card-actions">
+                      <button className="icon-btn del" onClick={() => handleDelete(p.id)}>×</button>
+                   </div>
+                </div>
+                <div className="card-body">
+                   <p className="card-cat">{(p.category || 'Shop')?.toUpperCase()} • {(p.sub_category || 'General')?.toUpperCase()}</p>
+                   <h3 className="card-title">{p.name || 'Untitled'}</h3>
+                   <div className="card-colors">
+                      {colorsParsed.length > 0 ? colorsParsed.map(c => (
+                        <span key={c} className="color-dot" style={{ background: PRESET_COLORS.find(pc => pc.name === c)?.hex || '#ccc' }} />
+                      )) : <span className="no-colors">No colors set</span>}
+                   </div>
+                   <div className="card-footer">
+                      <div className="footer-price">
+                         <span className="old-price">₹{Math.floor((p.price || 0) * 1.25)}</span>
+                         <span className="main-price">₹{(p.price || 0)?.toLocaleString()}</span>
+                      </div>
+                      <div className="footer-stock">
+                         <p className="stock-label">INVENTORY</p>
+                         <p className="stock-val">{(p.stock || 0)} Units</p>
+                      </div>
+                   </div>
+                </div>
+             </div>
+           )
+         })}
        </div>
     </div>
   )
