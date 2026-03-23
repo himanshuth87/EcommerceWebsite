@@ -3,12 +3,16 @@ import { useSearchParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 import './Products.css'
 
-const CATEGORIES = ['All', 'Cabin Luggage', 'Check-in Luggage', 'Luggage Sets', 'Backpacks', 'Accessories']
+const CATEGORY_MAP = {
+  'Luggage': ['Duffle', 'Trekking', 'Hard Luggage'],
+  'Backpack': ['School', 'College', 'Laptop'],
+  'Accessories': ['Pouches', 'Lunch Bags', 'Shopping Bag']
+}
+
 const SORT_OPTIONS = [
   { value: 'featured', label: 'Featured' },
   { value: 'price_asc', label: 'Price: Low to High' },
   { value: 'price_desc', label: 'Price: High to Low' },
-  { value: 'rating', label: 'Best Rated' },
   { value: 'newest', label: 'Newest' },
 ]
 
@@ -32,8 +36,17 @@ export default function Products() {
   }, [])
 
   const setCat = (cat) => {
-    if (cat === 'All') { searchParams.delete('cat'); searchParams.delete('sub') }
-    else setSearchParams({ cat })
+    if (cat === 'All') {
+      searchParams.delete('cat')
+      searchParams.delete('sub')
+      setSearchParams(searchParams)
+    } else {
+      setSearchParams({ cat })
+    }
+  }
+
+  const setSub = (sub) => {
+    setSearchParams({ cat: activeCat, sub })
   }
 
   let filtered = products
@@ -45,56 +58,60 @@ export default function Products() {
   filtered = [...filtered].sort((a, b) => {
     if (sort === 'price_asc') return a.price - b.price
     if (sort === 'price_desc') return b.price - a.price
-    if (sort === 'rating') return (b.rating || 0) - (a.rating || 0)
     return 0
   })
 
   return (
     <main className="products-page">
-      {/* Page Hero */}
       <div className="products-hero">
         <div className="container">
-          <span className="section-label">Our Collection</span>
+          <span className="section-label">Inventory</span>
           <h1 className="section-title">
-            {activeCat === 'All' ? <>All <span>Products</span></> : activeCat}
+            {activeCat === 'All' ? 'Our Collection' : activeCat}
+            {activeSub && <span className="sub-title"> / {activeSub}</span>}
           </h1>
-          <p className="products-hero-sub">{filtered.length} product{filtered.length !== 1 ? 's' : ''} found</p>
+          <p className="products-hero-sub">{filtered.length} items matched</p>
         </div>
       </div>
 
       <div className="container products-layout">
-        {/* Sidebar */}
         <aside className="products-sidebar">
           <div className="sidebar-section">
             <h3>Categories</h3>
-            {CATEGORIES.map(cat => (
-              <button
-                key={cat}
-                className={`sidebar-cat-btn ${activeCat === cat ? 'active' : ''}`}
-                onClick={() => setCat(cat)}
-              >
-                {cat}
-                <span className="cat-count">
-                  {cat === 'All' ? products.length : products.filter(p => p.category === cat).length}
-                </span>
-              </button>
+            <button className={`sidebar-cat-btn ${activeCat === 'All' ? 'active' : ''}`} onClick={() => setCat('All')}>
+              All Products
+            </button>
+            {Object.keys(CATEGORY_MAP).map(cat => (
+              <div key={cat} className="sidebar-cat-group">
+                <button
+                  className={`sidebar-cat-btn ${activeCat === cat ? 'active' : ''}`}
+                  onClick={() => setCat(cat)}
+                >
+                  {cat}
+                </button>
+                {activeCat === cat && (
+                  <div className="sidebar-sub-list">
+                    {CATEGORY_MAP[cat].map(sub => (
+                      <button
+                        key={sub}
+                        className={`sub-cat-btn ${activeSub === sub ? 'active' : ''}`}
+                        onClick={() => setSub(sub)}
+                      >
+                        {sub}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
 
           <div className="sidebar-section">
             <h3>Price Range</h3>
             <div className="price-inputs">
-              <div className="price-input-wrap">
-                <span>₹</span>
-                <input type="number" value={priceRange[0]} min={0} max={priceRange[1]}
-                  onChange={e => setPriceRange([+e.target.value, priceRange[1]])} />
-              </div>
-              <span className="price-dash">—</span>
-              <div className="price-input-wrap">
-                <span>₹</span>
-                <input type="number" value={priceRange[1]} min={priceRange[0]} max={50000}
-                  onChange={e => setPriceRange([priceRange[0], +e.target.value])} />
-              </div>
+               <div className="price-box">₹{priceRange[0]}</div>
+               <span className="dash">—</span>
+               <div className="price-box">₹{priceRange[1]}</div>
             </div>
             <input type="range" className="price-slider" min={0} max={30000} step={500}
               value={priceRange[1]}
@@ -102,16 +119,10 @@ export default function Products() {
           </div>
         </aside>
 
-        {/* Main */}
         <div className="products-main">
           <div className="products-toolbar">
             <div className="search-wrap">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-              <input
-                type="text" placeholder="Search products…"
-                value={search} onChange={e => setSearch(e.target.value)}
-              />
-              {search && <button className="search-clear" onClick={() => setSearch('')}>✕</button>}
+              <input type="text" placeholder="Search products…" value={search} onChange={e => setSearch(e.target.value)} />
             </div>
             <select className="sort-select" value={sort} onChange={e => setSort(e.target.value)}>
               {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
@@ -124,12 +135,8 @@ export default function Products() {
             </div>
           ) : filtered.length === 0 ? (
             <div className="no-results">
-              <p className="no-results-icon">🔍</p>
               <h3>No products found</h3>
-              <p>Try adjusting your filters or search term.</p>
-              <button className="btn btn-outline btn-sm" onClick={() => { setSearch(''); setCat('All'); setPriceRange([0, 30000]) }}>
-                Clear Filters
-              </button>
+              <button className="btn btn-outline btn-sm" onClick={() => { setSearch(''); setCat('All'); setPriceRange([0, 30000]) }}>Clear All</button>
             </div>
           ) : (
             <div className="products-grid-main">
