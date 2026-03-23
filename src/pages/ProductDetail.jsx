@@ -20,7 +20,7 @@ export default function ProductDetail() {
   useEffect(() => {
     window.scrollTo(0, 0)
     setLoading(true)
-    fetch('/tables/products')
+    fetch('/api/v1/catalog/products')
       .then(r => r.json())
       .then(d => {
         const all = d.data || []

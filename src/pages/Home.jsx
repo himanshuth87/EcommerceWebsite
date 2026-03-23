@@ -8,7 +8,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/tables/products')
+    fetch('/api/v1/catalog/products')
       .then(r => r.json())
       .then(d => { setProducts(d.data || []); setLoading(false) })
       .catch(() => setLoading(false))

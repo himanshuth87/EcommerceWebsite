@@ -145,27 +145,27 @@ app.post('/api/admin/upload', auth, adminOnly, upload.single('image'), (req, res
   res.json({ success: true, url: relativePath });
 });
 
-app.post('/api/admin/products', auth, adminOnly, async (req, res, next) => {
+app.get('/api/admin/seed', auth, adminOnly, async (req, res, next) => {
   try {
     const filePath = path.join(__dirname, 'tables', 'products', 'index.json');
-    const json = await fs.readJson(filePath);
-    const newProduct = { ...req.body, id: `prod_${Date.now()}` };
-    json.data.unshift(newProduct);
-    await fs.writeJson(filePath, json, { spaces: 2 });
-    res.status(201).json({ success: true, product: newProduct });
-  } catch (err) { next(err); }
-});
+    const { data } = await fs.readJson(filePath);
+    
+    // Check if table is empty
+    const existing = await query('SELECT count(*) FROM products', []);
+    if (existing[0].count > 0) return res.json({ success: true, message: 'Database already has data. Seed skipped.' });
 
-app.delete('/api/admin/products/:id', auth, adminOnly, async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const filePath = path.join(__dirname, 'tables', 'products', 'index.json');
-    const json = await fs.readJson(filePath);
-    const initialLen = json.data.length;
-    json.data = json.data.filter(p => p.id !== id);
-    if (json.data.length === initialLen) return res.status(404).json({ error: 'Product not found' });
-    await fs.writeJson(filePath, json, { spaces: 2 });
-    res.json({ success: true, message: 'Deleted successfully' });
+    for (const p of data) {
+      await query(
+        `INSERT INTO products (id, name, category, price, original_price, colors, sizes, features, image_url, badge, is_premium, stock, description)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          p.id, p.name, p.category, p.price, p.original_price || null,
+          JSON.stringify(p.colors || []), JSON.stringify(p.sizes || []), JSON.stringify(p.features || []),
+          p.image_url, p.badge || null, p.is_premium || false, p.stock || 0, p.description || ''
+        ]
+      );
+    }
+    res.json({ success: true, message: `Seeded ${data.length} products to database.` });
   } catch (err) { next(err); }
 });
 
