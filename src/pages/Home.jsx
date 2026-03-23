@@ -20,6 +20,8 @@ export default function Home() {
   const standardBestsellers = products.filter(p => p.badge === 'Bestseller' || p.is_bestseller).slice(3, 7)
   // Get New Arrivals
   const newArrivals = products.filter(p => p.badge === 'New').slice(0, 4)
+  // Featured Showcase Product (Front Open Luggage)
+  const featuredProduct = products.find(p => p.name?.toLowerCase().includes('luggage') || p.name?.toLowerCase().includes('cabin')) || products[0]
 
   return (
     <main className="home">
@@ -31,7 +33,6 @@ export default function Home() {
           alt="Luxury leather detail" 
           className="hero-image"
         />
-        {/* Text removed per user request */}
       </section>
 
       {/* ── EDITORIAL COLLECTION GRID ── */}
@@ -64,52 +65,64 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Slot 3: Asymmetric Row */}
-          <div className="grid-12" style={{ marginTop: '96px' }}>
-            <div className="col-span-5 col-start-2 item-group">
-              <div className="img-container aspect-square">
-                {editorialBestsellers[2] ? (
-                  <Link to={`/products/${editorialBestsellers[2].id}`}>
-                    <img src={editorialBestsellers[2].image_url} alt={editorialBestsellers[2].name} />
-                  </Link>
-                ) : (
-                  <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(3).jpg" alt="Collection Piece" />
-                )}
-              </div>
+      {/* ── FEATURED VIDEO SHOWCASE ── */}
+      <section className="showcase-section">
+        <div className="container">
+          <div className="showcase-grid">
+            <div className="showcase-visual">
+              <video 
+                className="showcase-video"
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                poster="/assets/Creatives/hero-main.jpg"
+              >
+                <source src="https://v1.mixkit.co/videos/download/mixkit-opening-a-luxury-hard-suitcase-40091-medium.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
-            <div className="col-span-4 col-start-8" style={{ alignSelf: 'center' }}>
-              {/* Text removed per user request */}
+            <div className="showcase-text">
+              <h2 className="showcase-title">Pack - Expand - Explore</h2>
+              <p className="showcase-body">
+                Step into a new era of travel with our "Front Open" series. Engineered for effortless access and featuring a 25% expandable packing capacity, it's the ultimate companion for your spontaneous escapes and extended journeys.
+              </p>
+              {featuredProduct && (
+                <Link to={`/products/${featuredProduct.id}`} className="btn-showcase">
+                  SHOP NOW
+                </Link>
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── GRID OF OTHER BESTSELLERS ── */}
-      {standardBestsellers.length > 0 && (
-        <section className="products-section">
-          <div className="container">
-            <div className="products-header">
-              <h2 className="headline-large">Our <span>Collection</span></h2>
-              <Link to="/products" className="btn-bespoke">View All</Link>
-            </div>
-
-            {loading ? (
-              <div className="products-grid">
-                {[...Array(4)].map((_, i) => <div key={i} className="skeleton" style={{ height: 450 }} />)}
-              </div>
-            ) : (
-              <div className="products-grid">
-                {standardBestsellers.map((p, i) => (
-                  <div key={p.id} className="reveal active" style={{ transitionDelay: `${i * 0.1}s` }}>
-                    <ProductCard product={p} />
-                  </div>
-                ))}
-              </div>
-            )}
+      {/* ── OUR COLLECTION ── */}
+      <section className="products-section">
+        <div className="container">
+          <div className="products-header">
+            <h2 className="headline-large">Our <span>Collection</span></h2>
+            <Link to="/products" className="btn-bespoke">View All</Link>
           </div>
-        </section>
-      )}
+
+          {loading ? (
+            <div className="products-grid">
+              {[...Array(4)].map((_, i) => <div key={i} className="skeleton" style={{ height: 450 }} />)}
+            </div>
+          ) : (
+            <div className="products-grid">
+              {standardBestsellers.map((p, i) => (
+                <div key={p.id} className="reveal active" style={{ transitionDelay: `${i * 0.1}s` }}>
+                  <ProductCard product={p} />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* ── NEW ARRIVALS ── */}
       <section className="bespoke-section">
@@ -133,8 +146,7 @@ export default function Home() {
                     <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(5).jpg" alt="Master Craftsman" />
                   </div>
                   <div className="bespoke-content">
-                    <p className="body-bespoke" style={{ opacity: 0.6 }}>New arrivals coming soon to our collection.</p>
-                    <button className="btn-bespoke">Inquiry</button>
+                    <p className="body-bespoke" style={{ opacity: 0.6 }}>Our master collection of new arrivals.</p>
                   </div>
                 </div>
               )
