@@ -373,20 +373,22 @@
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
 .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
 .form-group label { font-size: 0.75rem; font-weight: 600; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; }
-.form-group input, .form-group select, .form-group textarea {
-  padding: 12px 16px;
-  background: var(--surface-variant);
-  border: 1px solid var(--outline-variant);
-  border-radius: 10px;
-  color: var(--on-surface);
-  font-size: 0.875rem;
-  transition: border-color 0.2s;
-  font-family: inherit;
-}
-.form-group textarea { resize: vertical; min-height: 80px; }
-.form-group input:focus, .form-group textarea:focus { border-color: var(--primary); outline: none; }
+.admin-color-dots { display: flex; flex-wrap: wrap; gap: 12px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 12px; }
+.color-pick { cursor: pointer; border: 2px solid transparent; border-radius: 50%; padding: 4px; transition: 0.2s; position: relative; }
+.color-pick.active { border-color: var(--primary); background: rgba(var(--primary-rgb), 0.1); }
+.color-pick .dot { display: block; width: 24px; height: 24px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
 
-.grid-span-2 { grid-column: span 2; }
+.image-choice { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+.url-input { width: 100%; border: 1px solid var(--outline-variant); background: var(--surface-variant); padding: 14px; border-radius: 12px; color: var(--on-surface); font-size: 0.9rem; }
+.image-choice .divider { text-align: center; position: relative; }
+.image-choice .divider::before { content: ""; position: absolute; left: 0; top: 50%; width: 40%; height: 1px; background: var(--outline-variant); }
+.image-choice .divider::after { content: ""; position: absolute; right: 0; top: 50%; width: 40%; height: 1px; background: var(--outline-variant); }
+.image-choice .divider span { font-size: 0.7rem; font-weight: 700; opacity: 0.5; text-transform: uppercase; background: var(--surface); padding: 0 8px; }
+.up-btn { display: inline-block; padding: 12px 24px; background: var(--surface-variant); border: 2px dashed var(--outline-variant); border-radius: 12px; cursor: pointer; text-align: center; color: var(--on-surface); font-weight: 600; width: 100%; }
+.up-success { display: block; margin-top: 8px; font-size: 0.75rem; color: #4CAF50; font-weight: 700; text-align: center; animation: slideUp 0.3s ease-out; }
+
+.btn-save { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+.btn-save:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
 
 .upload-box {
   border: 2px dashed var(--outline-variant);
