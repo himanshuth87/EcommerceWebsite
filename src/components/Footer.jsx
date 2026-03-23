@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="footer-col">
             <h4>SHOP</h4>
             <Link to="/products?cat=Luggage">Luggage</Link>
-            <Link to="/products?cat=Backpacks">Backpacks</Link>
+            <Link to="/products?cat=Backpack">Backpacks</Link>
             <Link to="/about">Blog</Link>
           </div>
 
