@@ -22,7 +22,7 @@ export default function Home() {
       <section className="hero-luxury">
         <div className="hero-gradient-overlay" />
         <img 
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuATx2yBZO5s19JH_awbb2889JFg8x-zfiV8f5DJeeTUA6aD2dhdmvEMjbkK0POPx2JGttrGijM57aJ6bM-PyQZngmHjRnjEytwf990-Om4oJomdEuDxsEC0WxjEzovS_OcF4XnMNoj3LR6v2PMboEtcMoVJ3ie07E2reMiauInB-u7IAJVgpyPiq8OtFxClgt61ztDNEJ77s6EKEQ_J9g0r-7joF5Wi7oW-SSJeQkS4ouRgK2WKXdoRtViQd_H0OaYa0G2N-XmPHBo" 
+          src="/assets/Creatives/hero-main.jpg" 
           alt="Luxury leather detail" 
           className="hero-image"
         />
@@ -41,7 +41,7 @@ export default function Home() {
             {/* Flagship Item */}
             <div className="col-span-8 item-group">
               <div className="img-container aspect-16-10">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQVG6pZIuy0MgqzI2cFM_dqJAlCt-Di-RcaQU2anAxC56JJ_Yq79dfjPxcecTi5K3aUv1uSrHqAssTDmsQdU8nCvdQScdCHKXhB34lPA0huZ928J5Of-JahC6b_kqt41wLuB_clV0qYlK8jR4ADrk1GxM7HKLFsofhE5ImfhcTY6YFwdsx6mdlcgxBEKPKs-8V7WEqwNP3JFxaUFKYUa0T9O7Mch-UZDVZPgHG41lfCbEFGdHO2MkwItmE9ybJU0cTxwO1CuVtQGs" alt="L'Atelier Series" />
+                <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(1).jpg" alt="L'Atelier Series" />
               </div>
               <div className="editorial-header">
                 <h2 className="headline-large">L'Atelier Series</h2>
@@ -52,7 +52,7 @@ export default function Home() {
             {/* Supporting Item */}
             <div className="col-span-4 item-group" style={{ paddingBottom: '48px' }}>
               <div className="img-container aspect-3-4">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRPjKdenl59DoV06ITYXZkM2Q1kEuFidtWpDLE9h9JeG_SnDRZZ8_yvmWV-abxyWtZQr1wu89VwkAQiEyQ91ZDnYP-5nXwPbC60XCasv7wea7Vwj76_lJHGerQSuXUlJ9J4U6rnEMB-wANTtpG7MSx1dj_hek2R-7iHJ4N-B3ao8_aZPaXj-aSp5rgaL73tlinwkbaVgBtLt7NmSL8heyYn39oZgRuufTF7nDHHT5s33nE3YTIXwT6o8NMGW53gBzep-VGSii4z88" alt="Nocturne Collection" />
+                <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(2).jpg" alt="Nocturne Collection" />
               </div>
               <div>
                 <h3 className="headline-medium">Nocturne Clutch</h3>
@@ -65,7 +65,7 @@ export default function Home() {
           <div className="grid-12" style={{ marginTop: '96px' }}>
             <div className="col-span-5 col-start-2 item-group">
               <div className="img-container aspect-square">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPZ0snfTKIYvKNA_IoRCznsgM26OBDZIAbxwYwICpTQXerO8boRiiDBecK2OjKFT3RpcBVgKNqAffx7ky6VuNz8qTNGpS9R0kRzvnR3L6m_9k6J7vNkNS8CCCEJV64OydyN6Bubzwe204_Y8JAmuJEdhsrKSePhaUvaPYABO31U7YwG5wbNO_cs_LxTmXlhgEy6VszOWE35TbTm3M6fGweedGyeFxZwtl6x7UJhGAytUm8Z9QR4mCJwYqUM1jYuasr0Za380u09LQ" alt="Monolith Tote" />
+                <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(3).jpg" alt="Monolith Tote" />
               </div>
               <h3 className="headline-medium">The Monolith Tote</h3>
             </div>
@@ -111,7 +111,7 @@ export default function Home() {
         <div className="container">
           <div className="bespoke-inner">
             <div className="bespoke-image-wrap">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUyT35uR0WXcO_YEzR9oKBVz0Rmh2NHLg1NwZ1oKerE4YnN4o7BhiHstwtoz5Ee8-XLbNjrcJzprvSKe5huxNM3vzYgiJHAQzA3tQnjkYzIZ3Y74uASOC90HU7wPomgHvq0At_GefoCVUOmkrzw8ICD4YZYVoz5p_h_78dzvlszPK9fjXR7YIe238DJZ1LsbTcBArIN5TxQ86b7DB9u3QPfMbZMhBPJOfk2jxpTxXG9qH58nfXfA89rNejYpMJOeA95ni2wdAyxGA" alt="Master Craftsman" />
+              <img src="/assets/Creatives/1920%20%C3%97%201080%20px%20(5).jpg" alt="Master Craftsman" />
             </div>
             <div className="bespoke-content">
               <h2 className="headline-bespoke">Bespoke <br/>Craftsmanship</h2>
