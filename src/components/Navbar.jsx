@@ -115,8 +115,7 @@ export default function Navbar() {
               <Link to="/products?cat=Backpack" onClick={() => setPanelOpen(false)} className="panel-item">Backpacks</Link>
               <Link to="/products?cat=Accessories" onClick={() => setPanelOpen(false)} className="panel-item">Accessories</Link>
             </div>
-            <div className="panel-group" style={{ marginTop: '24px' }}>
-              <h4>PERSONAL</h4>
+            <div className="panel-group" style={{ marginTop: '32px' }}>
               <Link to="/account" onClick={() => setPanelOpen(false)} className="panel-item">
                 <span className="material-symbols-outlined">account_circle</span> My Account
               </Link>
