@@ -111,7 +111,6 @@ export default function Navbar() {
           </div>
           <div className="panel-content">
             <div className="panel-group">
-              <h4>COLLECTIONS</h4>
               <Link to="/products?cat=Luggage" onClick={() => setPanelOpen(false)} className="panel-item">Luggage</Link>
               <Link to="/products?cat=Backpack" onClick={() => setPanelOpen(false)} className="panel-item">Backpacks</Link>
               <Link to="/products?cat=Accessories" onClick={() => setPanelOpen(false)} className="panel-item">Accessories</Link>
