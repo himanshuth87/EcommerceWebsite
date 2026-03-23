@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p className="footer-copy">© {new Date().getFullYear()} PRIORITY LEATHERWORKS. ALL RIGHTS RESERVED.</p>
+          <p className="footer-copy">© {new Date().getFullYear()} PRIORITY Bags. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
     </footer>
