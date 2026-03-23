@@ -77,15 +77,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── PRODUCT CATEGORY HIGHLIGHT ── */}
-      <section className="showcase-section">
+      {/* ── SECONDARY PROMO BANNER ── */}
+      <section className="promo-banner-section reveal">
         <div className="container">
-          <div className="showcase-grid">
-            <div className="showcase-visual"><video autoPlay muted loop playsInline className="showcase-video"><source src="https://v1.mixkit.co/videos/download/mixkit-opening-a-luxury-hard-suitcase-40091-medium.mp4" type="video/mp4" /></video></div>
-            <div className="showcase-text">
-              <h2 className="showcase-title">Pack - Expand - Explore</h2>
-              <p className="showcase-body">Uncompromising quality for the modern traveler. Explore our Front Open series with 25% extra capacity.</p>
-              <Link to="/products" className="btn-showcase">EXPLORE ALL</Link>
+          <div className="promo-split">
+            <div className="promo-visual">
+               <img src="https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?q=80&w=1600&auto=format&fit=crop" alt="Icon Series" />
+               <div className="promo-overlay-text">ION</div>
+            </div>
+            <div className="promo-text-box">
+               <div className="promo-text-content">
+                  <p className="promo-sub">VIP ION</p>
+                  <h2 className="promo-title">Lightweight. Durable. Effortless.</h2>
+                  <p className="promo-body">
+                    Meet VIP Ion — the perfect blend of strength and style for today's traveler. Crafted with a tough polycarbonate shell and smooth 360° spinner wheels, Ion keeps your journeys hassle-free and your belongings safe.
+                  </p>
+                  <Link to="/products" className="promo-btn">SHOP NOW</Link>
+               </div>
             </div>
           </div>
         </div>

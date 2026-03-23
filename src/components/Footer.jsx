@@ -5,61 +5,77 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <span className="footer-logo-text">PRIORITY</span>
-
-        <div className="footer-links">
-          <div className="footer-brand-side">
-            <div className="footer-col">
-              <h4>OUR BRANDS</h4>
-              <Link to="/premium" className="brand-logo" style={{ fontWeight: '900', fontSize: '1.25rem', textDecoration: 'none', color: 'inherit' }}>Traworld</Link>
-              <span className="brand-logo-alt" style={{ fontFamily: 'cursive', fontSize: '1.25rem', color: '#ff4d4d' }}>Priority</span>
-              
-              <div className="footer-subscribe-small">
-                <p>Stay Updated</p>
-                <form className="footer-news-form" onSubmit={e => e.preventDefault()}>
-                  <input type="email" placeholder="Email" />
-                  <button type="submit"><span className="material-symbols-outlined">arrow_forward</span></button>
-                </form>
-              </div>
-
-              <div className="social-links">
-                <a href="https://facebook.com" className="social-icon" target="_blank" rel="noopener noreferrer"><span className="material-symbols-outlined">public</span></a>
-                <a href="https://instagram.com" className="social-icon" target="_blank" rel="noopener noreferrer"><span className="material-symbols-outlined">camera</span></a>
-                <a href="mailto:support@prioritybags.com" className="social-icon"><span className="material-symbols-outlined">mail</span></a>
-              </div>
+        
+        {/* ── WHY TO BUY SECTION ── */}
+        <div className="footer-value-props">
+          <p className="props-label">Know The Reason</p>
+          <h2 className="props-title">WHY TO BUY FROM VIP</h2>
+          <div className="props-underline"></div>
+          
+          <div className="props-grid">
+            <div className="prop-item">
+              <span className="material-symbols-outlined prop-icon">local_shipping</span>
+              <h4>Free Shipping</h4>
+              <p>Prompt shipping across India.</p>
+            </div>
+            <div className="prop-item">
+              <span className="material-symbols-outlined prop-icon">lock</span>
+              <h4>Secure Payment</h4>
+              <p>Ensuring top-tier payment security.</p>
+            </div>
+            <div className="prop-item">
+              <span className="material-symbols-outlined prop-icon">verified_user</span>
+              <h4>Brand Warranty</h4>
+              <p>All products are backed by international warranty.</p>
+            </div>
+            <div className="prop-item">
+              <span className="material-symbols-outlined prop-icon">package_2</span>
+              <h4>Genuine Products</h4>
+              <p>Subjected to rigorous 8-level testing.</p>
             </div>
           </div>
+        </div>
 
-          <div className="footer-col">
-            <h4>SHOP</h4>
-            <Link to="/products?cat=Luggage">Luggage</Link>
-            <Link to="/products?cat=Backpack">Backpacks</Link>
-            <Link to="/about">Blog</Link>
+        {/* ── ACCORDION LINKS ── */}
+        <div className="footer-accordions">
+          <div className="acc-row">
+            <span>QUICK LINKS</span>
+            <span className="material-symbols-outlined">expand_more</span>
           </div>
-
-          <div className="footer-col">
-            <h4>POLICIES</h4>
-            <Link to="/about">Privacy policy</Link>
-            <Link to="/about">Returns & Exchanges</Link>
-            <Link to="/about">Shipping policy</Link>
-            <Link to="/about">Terms & Conditions</Link>
-            <Link to="/about">Warranty policy</Link>
-            <Link to="/about">Warranty Registration</Link>
+          <div className="acc-row">
+            <span>CONSUMER</span>
+            <span className="material-symbols-outlined">expand_more</span>
           </div>
-
-          <div className="footer-col">
-            <h4>SUPPORT</h4>
-            <Link to="/about">About Us</Link>
-            <Link to="/about">Contact us</Link>
-            <Link to="/account">Account</Link>
-            <Link to="/about">Our Team</Link>
-            <Link to="/about">Return Request</Link>
+          <div className="acc-row">
+            <span>OFFICE USE</span>
+            <span className="material-symbols-outlined">expand_more</span>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p className="footer-copy">© {new Date().getFullYear()} PRIORITY Bags. ALL RIGHTS RESERVED.</p>
+        {/* ── SOCIALS ── */}
+        <div className="footer-social-row">
+          <a href="#" className="soc-icon"><i className="fa-brands fa-facebook"></i></a>
+          <a href="#" className="soc-icon"><i className="fa-brands fa-instagram"></i></a>
+          <a href="#" className="soc-icon"><i className="fa-brands fa-youtube"></i></a>
+          <a href="#" className="soc-icon"><i className="fa-brands fa-x-twitter"></i></a>
+          <a href="#" className="soc-icon"><i className="fa-brands fa-whatsapp"></i></a>
         </div>
+
+        {/* ── CONTACT ── */}
+        <div className="footer-contact-info">
+          <p>
+            For Orders and Delivery: <span>support@vipbags.com</span> | 
+            For Product and After Sales Service: <span>feedback@vipbags.com</span> | 
+            Call Us: <span>022-41724444</span>
+          </p>
+        </div>
+
+        {/* ── COPYRIGHT ── */}
+        <div className="footer-copyright-box">
+          <p>© 2026 VIP. All rights reserved | Terms & Conditions | Privacy Policy</p>
+          <p className="footer-time">(Monday To Sunday, 8.00 AM To 8 PM)</p>
+        </div>
+
       </div>
     </footer>
   )
