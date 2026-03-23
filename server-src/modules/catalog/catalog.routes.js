@@ -44,20 +44,20 @@ router.get('/products/:id', async (req, res) => {
 router.post('/products', auth, adminOnly, async (req, res) => {
     try {
         const {
-            name, category, price, original_price, colors, sizes,
+            name, category, sub_category, price, original_price, colors, sizes,
             features, image_url, variant_images, badge, is_premium, stock,
             description, weight, material, lock_type, featured, product_code
         } = req.body;
 
         const results = await query(
-            `INSERT INTO products (name, category, price, original_price, colors, sizes, features, image_url, variant_images, badge, is_premium, stock, description, weight, material, lock_type, featured, product_code)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id`,
+            `INSERT INTO products (name, category, sub_category, price, original_price, colors, sizes, features, image_url, variant_images, badge, is_premium, stock, description, weight, material, lock_type, featured, product_code)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id`,
             [
-                name, category, price, original_price || null,
+                name, category, sub_category || '', price, original_price || price,
                 JSON.stringify(colors || []), JSON.stringify(sizes || []), JSON.stringify(features || []),
                 image_url, JSON.stringify(variant_images || {}),
-                badge, is_premium ? true : false, stock || 0,
-                description, weight, material, lock_type, featured ? true : false, product_code || null
+                badge || 'None', is_premium || false, stock || 0,
+                description || '', weight || null, material || null, lock_type || null, featured || false, product_code || null
             ]
         );
 
