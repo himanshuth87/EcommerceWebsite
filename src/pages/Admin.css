@@ -344,6 +344,8 @@
   background: var(--surface);
   width: 100%;
   max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
   border-radius: 20px;
   border: 1px solid var(--outline-variant);
   box-shadow: 0 32px 64px rgba(0,0,0,0.25);
