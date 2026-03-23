@@ -132,17 +132,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── NEWSLETTER ── */}
-      <section className="newsletter-section">
-        <div className="container">
-          <div className="newsletter-inner">
-            <form className="news-form" onSubmit={e => e.preventDefault()}>
-              <input type="email" placeholder="EMAIL ADDRESS" className="news-input" />
-              <button type="submit" className="btn-news">Subscribe</button>
-            </form>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }

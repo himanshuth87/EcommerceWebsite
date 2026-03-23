@@ -40,6 +40,62 @@
   margin-bottom: 24px;
 }
 
+.brand-logo {
+  display: block;
+  margin-bottom: 8px !important;
+  transition: opacity 0.3s;
+}
+
+.brand-logo:hover {
+  opacity: 0.7;
+}
+
+.footer-subscribe-small {
+  margin: 24px 0 32px 0;
+  max-width: 200px;
+}
+
+.footer-subscribe-small p {
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.4;
+  color: white;
+}
+
+.footer-news-form {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+  align-items: center;
+}
+
+.footer-news-form input {
+  background: transparent;
+  border: none;
+  font-size: 0.81rem;
+  color: white;
+  width: 100%;
+  outline: none;
+}
+
+.footer-news-form button {
+  background: transparent;
+  color: white;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+  display: flex;
+  cursor: pointer;
+}
+
+.footer-news-form button:hover {
+  opacity: 1;
+}
+
+.footer-news-form button span { font-size: 1.1rem; }
+
 .footer-col a {
   font-family: var(--font-body);
   font-size: 0.8125rem;

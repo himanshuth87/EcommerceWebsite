@@ -11,12 +11,21 @@ export default function Footer() {
           <div className="footer-brand-side">
             <div className="footer-col">
               <h4>OUR BRANDS</h4>
-              <span className="brand-logo" style={{ fontWeight: '900', fontSize: '1.25rem' }}>Traworld</span>
+              <Link to="/premium" className="brand-logo" style={{ fontWeight: '900', fontSize: '1.25rem', textDecoration: 'none', color: 'inherit' }}>Traworld</Link>
               <span className="brand-logo-alt" style={{ fontFamily: 'cursive', fontSize: '1.25rem', color: '#ff4d4d' }}>Priority</span>
+              
+              <div className="footer-subscribe-small">
+                <p>Stay Updated</p>
+                <form className="footer-news-form" onSubmit={e => e.preventDefault()}>
+                  <input type="email" placeholder="Email" />
+                  <button type="submit"><span className="material-symbols-outlined">arrow_forward</span></button>
+                </form>
+              </div>
+
               <div className="social-links">
-                <a href="#" className="social-icon"><span className="material-symbols-outlined">public</span></a>
-                <a href="#" className="social-icon"><span className="material-symbols-outlined">camera</span></a>
-                <a href="#" className="social-icon"><span className="material-symbols-outlined">mail</span></a>
+                <a href="https://facebook.com" className="social-icon" target="_blank" rel="noopener noreferrer"><span className="material-symbols-outlined">public</span></a>
+                <a href="https://instagram.com" className="social-icon" target="_blank" rel="noopener noreferrer"><span className="material-symbols-outlined">camera</span></a>
+                <a href="mailto:support@prioritybags.com" className="social-icon"><span className="material-symbols-outlined">mail</span></a>
               </div>
             </div>
           </div>
@@ -30,12 +39,12 @@ export default function Footer() {
 
           <div className="footer-col">
             <h4>POLICIES</h4>
-            <Link to="#">Privacy policy</Link>
-            <Link to="#">Returns & Exchanges</Link>
-            <Link to="#">Shipping policy</Link>
-            <Link to="#">Terms & Conditions</Link>
-            <Link to="#">Warranty policy</Link>
-            <Link to="#">Warranty Registration</Link>
+            <Link to="/about">Privacy policy</Link>
+            <Link to="/about">Returns & Exchanges</Link>
+            <Link to="/about">Shipping policy</Link>
+            <Link to="/about">Terms & Conditions</Link>
+            <Link to="/about">Warranty policy</Link>
+            <Link to="/about">Warranty Registration</Link>
           </div>
 
           <div className="footer-col">
@@ -44,7 +53,7 @@ export default function Footer() {
             <Link to="/about">Contact us</Link>
             <Link to="/account">Account</Link>
             <Link to="/about">Our Team</Link>
-            <Link to="#">Return Request</Link>
+            <Link to="/about">Return Request</Link>
           </div>
         </div>
 

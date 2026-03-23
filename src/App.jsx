@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 import { AuthProvider } from './context/AuthContext'
 import { ThemeProvider } from './context/ThemeContext'
@@ -13,47 +13,52 @@ import Login from './pages/Login'
 import Account from './pages/Account'
 import Premium from './pages/Premium'
 import Admin from './pages/Admin'
+import About from './pages/About'
+import AppLayout from './components/AppLayout' 
 import { useEffect } from 'react'
 import './styles/globals.css'
 
-export default function App() {
+function AppRoutes() {
+  const location = useLocation()
+  const isAdmin = location.pathname.startsWith('/admin')
+
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1
-    }
-
+    const observerOptions = { threshold: 0.1 }
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active')
-        }
-      })
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active') })
     }, observerOptions)
-
     const revealElements = document.querySelectorAll('.reveal, .reveal-left')
     revealElements.forEach(el => observer.observe(el))
-
     return () => revealElements.forEach(el => observer.unobserve(el))
-  }, [])
+  }, [location.pathname])
 
+  return (
+    <>
+      {!isAdmin && <Navbar />}
+      <CartDrawer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/premium" element={<Premium />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/admin/*" element={<Admin />} />
+      </Routes>
+      {!isAdmin && <Footer />}
+    </>
+  )
+}
+
+export default function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
         <CartProvider>
           <BrowserRouter>
-            <Navbar />
-            <CartDrawer />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:id" element={<ProductDetail />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/account" element={<Account />} />
-              <Route path="/premium" element={<Premium />} />
-              <Route path="/admin/*" element={<Admin />} />
-            </Routes>
-            <Footer />
+            <AppRoutes />
           </BrowserRouter>
         </CartProvider>
       </AuthProvider>

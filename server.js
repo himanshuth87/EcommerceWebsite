@@ -13,6 +13,8 @@ const { body, validationResult } = require('express-validator');
 const { query } = require('./config/db');
 const errorHandler = require('./middleware/error-handler');
 const { auth, adminOnly } = require('./middleware/auth');
+const fs = require('fs-extra');
+const multer = require('multer');
 
 const catalogRoutes = require('./server-src/modules/catalog/catalog.routes');
 const authV1Routes  = require('./server-src/modules/auth/auth.routes');
@@ -127,6 +129,43 @@ app.get('/api/orders', auth, adminOnly, async (_req, res, next) => {
   try {
     const orders = await query('SELECT * FROM orders ORDER BY created_at DESC', []);
     res.json({ success: true, count: orders.length, data: orders });
+  } catch (err) { next(err); }
+});
+
+// ── Admin Panel (Product Management) ──────────────────────
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, path.join(__dirname, 'public', 'assets', 'products')),
+  filename: (req, file, cb) => cb(null, `upload_${Date.now()}_${file.originalname}`)
+});
+const upload = multer({ storage });
+
+app.post('/api/admin/upload', auth, adminOnly, upload.single('image'), (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+  const relativePath = `/assets/products/${req.file.filename}`;
+  res.json({ success: true, url: relativePath });
+});
+
+app.post('/api/admin/products', auth, adminOnly, async (req, res, next) => {
+  try {
+    const filePath = path.join(__dirname, 'tables', 'products', 'index.json');
+    const json = await fs.readJson(filePath);
+    const newProduct = { ...req.body, id: `prod_${Date.now()}` };
+    json.data.unshift(newProduct);
+    await fs.writeJson(filePath, json, { spaces: 2 });
+    res.status(201).json({ success: true, product: newProduct });
+  } catch (err) { next(err); }
+});
+
+app.delete('/api/admin/products/:id', auth, adminOnly, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const filePath = path.join(__dirname, 'tables', 'products', 'index.json');
+    const json = await fs.readJson(filePath);
+    const initialLen = json.data.length;
+    json.data = json.data.filter(p => p.id !== id);
+    if (json.data.length === initialLen) return res.status(404).json({ error: 'Product not found' });
+    await fs.writeJson(filePath, json, { spaces: 2 });
+    res.json({ success: true, message: 'Deleted successfully' });
   } catch (err) { next(err); }
 });
 
