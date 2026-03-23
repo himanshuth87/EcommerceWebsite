@@ -166,8 +166,8 @@ function ProductManagement({ token, refreshStats }) {
   
   // Form State
   const [form, setForm] = useState({
-    name: '', category: 'Luggage', price: '', stock: 10, image_url: '',
-    original_price: '', description: ''
+    name: '', category: 'Luggage', sub_category: '', price: '', stock: 10, 
+    image_url: '', badge: 'None', colors_text: '', description: ''
   })
   const [tempFile, setTempFile] = useState(null)
 
@@ -196,8 +196,6 @@ function ProductManagement({ token, refreshStats }) {
     if (!file) return
     setTempFile(file)
     
-    // OPTIONAL: Auto-upload now or wait for form submit
-    // I will auto-upload to get the URL
     const formData = new FormData()
     formData.append('image', file)
     
@@ -230,12 +228,14 @@ function ProductManagement({ token, refreshStats }) {
         body: JSON.stringify({
           ...form,
           price: Number(form.price),
-          original_price: Number(form.original_price || form.price)
+          original_price: Number(form.price),
+          colors: form.colors_text.split(',').map(c => c.trim()).filter(c => c),
+          is_bestseller: form.badge === 'Bestseller'
         })
       })
       if (res.ok) {
         setShowAdd(false)
-        setForm({ name: '', category: 'Luggage', price: '', stock: 10, image_url: '' })
+        setForm({ name: '', category: 'Luggage', sub_category: '', price: '', stock: 10, image_url: '', badge: 'None', colors_text: '', description: '' })
         load()
         refreshStats()
       }
@@ -262,10 +262,11 @@ function ProductManagement({ token, refreshStats }) {
              </div>
              <form onSubmit={handleSubmit} className="admin-form">
                 <div className="form-grid">
-                  <div className="form-group">
+                  <div className="form-group grid-span-2">
                     <label>Product Name</label>
-                    <input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required placeholder="e.g., Jetsetter 65cm" />
+                    <input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required placeholder="e.g., Dreamer 55cm Cabin" />
                   </div>
+                  
                   <div className="form-group">
                     <label>Category</label>
                     <select value={form.category} onChange={e => setForm({...form, category: e.target.value})}>
@@ -275,6 +276,11 @@ function ProductManagement({ token, refreshStats }) {
                     </select>
                   </div>
                   <div className="form-group">
+                    <label>Sub Category</label>
+                    <input type="text" value={form.sub_category} onChange={e => setForm({...form, sub_category: e.target.value})} placeholder="e.g., Hardside, Laptop" />
+                  </div>
+
+                  <div className="form-group">
                     <label>Price (₹)</label>
                     <input type="number" value={form.price} onChange={e => setForm({...form, price: e.target.value})} required />
                   </div>
@@ -282,15 +288,32 @@ function ProductManagement({ token, refreshStats }) {
                     <label>Stock</label>
                     <input type="number" value={form.stock} onChange={e => setForm({...form, stock: e.target.value})} required />
                   </div>
+
+                  <div className="form-group">
+                    <label>Store Placement</label>
+                    <select value={form.badge} onChange={e => setForm({...form, badge: e.target.value})}>
+                       <option>None</option>
+                       <option>New</option>
+                       <option>Bestseller</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Available Colors</label>
+                    <input type="text" value={form.colors_text} onChange={e => setForm({...form, colors_text: e.target.value})} placeholder="e.g., Black, Rose Gold" />
+                  </div>
+                  <div className="form-group grid-span-2">
+                    <label>Product Description</label>
+                    <textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})} placeholder="Describe your product highlights..." rows="3" />
+                  </div>
                 </div>
 
                 <div className="form-group">
-                  <label>Service Image</label>
+                  <label>Product Image</label>
                   <div className="upload-box">
                     {form.image_url ? (
                       <div className="preview-wrap">
                         <img src={form.image_url} alt="preview" />
-                        <button type="button" onClick={() => setForm({...form, image_url: ''})}>Change</button>
+                        <button type="button" onClick={() => setForm({...form, image_url: ''})}>Change Image</button>
                       </div>
                     ) : (
                       <div className="upload-trigger">
@@ -331,7 +354,10 @@ function ProductManagement({ token, refreshStats }) {
                   <td>
                     <div className="product-cell">
                        <img src={p.image_url} alt="" className="table-img" />
-                       <span className="table-product-name">{p.name}</span>
+                       <div className="table-product-details">
+                          <span className="table-product-name">{p.name}</span>
+                          {p.badge && p.badge !== 'None' && <span className="table-mini-badge">{p.badge}</span>}
+                       </div>
                     </div>
                   </td>
                   <td>{p.category}</td>
