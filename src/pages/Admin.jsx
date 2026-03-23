@@ -118,9 +118,14 @@ function ProductManagement({ token, refreshStats }) {
       setLoading(true)
       const res = await fetch('/api/admin/upload', { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: formData })
       const d = await res.json()
-      if (d.success) setForm(prev => ({ ...prev, image_url: d.url }))
-      else alert('Deployment Error: Vercel does not allow local file uploads. Try using an External URL.')
-    } catch { alert('Upload error') }
+      if (d.success) {
+        setForm(prev => ({ ...prev, image_url: d.url }))
+      } else {
+        alert('Server Environment Error: Vercel uses a read-only filesystem, so local file uploads are disabled. Please use the "Paste External Image URL" field instead!')
+      }
+    } catch { 
+      alert('Cloud Upload Error: This environment does not support local storage. Please host your image elsewhere (like Imgur or Supabase) and use its URL.')
+    }
     finally { setLoading(false) }
   }
 
