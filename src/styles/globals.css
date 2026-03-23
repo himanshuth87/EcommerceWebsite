@@ -2,7 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 :root {
-  /* MONOLITH Luxury Palette */
+  /* Common Variables */
+  --font-headline: 'Noto Serif', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Inter', sans-serif;
+  --transition-standard: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-fast: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+[data-theme='dark'] {
   --background: #131313;
   --on-background: #e2e2e2;
   --surface: #131313;
@@ -31,15 +39,37 @@
   
   --outline: #8e9192;
   --outline-variant: #444748;
+}
+
+[data-theme='light'] {
+  --background: #ffffff;
+  --on-background: #1a1a1a;
+  --surface: #ffffff;
+  --on-surface: #1a1a1a;
+  --surface-variant: #f3f4f6;
+  --on-surface-variant: #4b5563;
+  --surface-container: #f9fafb;
+  --surface-container-low: #f3f4f6;
+  --surface-container-high: #e5e7eb;
+  --surface-container-highest: #d1d5db;
   
-  /* Typography */
-  --font-headline: 'Noto Serif', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-label: 'Inter', sans-serif;
+  --primary: #1a1a1a;
+  --on-primary: #ffffff;
+  --primary-container: #f3f4f6;
+  --on-primary-container: #4b5563;
   
-  /* Spacing & Transitions */
-  --transition-standard: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  --transition-fast: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  --secondary: #4b5563;
+  --on-secondary: #ffffff;
+  --secondary-container: #f3f4f6;
+  --on-secondary-container: #1a1a1a;
+  
+  --tertiary: #a58e4e;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #fef9c3;
+  --on-tertiary-container: #713f12;
+  
+  --outline: #d1d5db;
+  --outline-variant: #9ca3af;
 }
 
 *, *::before, *::after { 
