@@ -297,7 +297,17 @@ function ProductManagement({ token, refreshStats }) {
                   </div>
                   <div className="form-group">
                     <label>Sub Category</label>
-                    <input type="text" value={form.sub_category} onChange={e => setForm({...form, sub_category: e.target.value})} />
+                    <select value={form.sub_category} onChange={e => setForm({...form, sub_category: e.target.value})}>
+                       <option value="">None</option>
+                       <option>Hardside</option>
+                       <option>Softside</option>
+                       <option>Cabin Luggage</option>
+                       <option>Check-in</option>
+                       <option>Laptop Bag</option>
+                       <option>Casual</option>
+                       <option>Travel Duffel</option>
+                       <option>Accessories</option>
+                    </select>
                   </div>
                   <div className="form-group">
                     <label>Price (₹)</label>
