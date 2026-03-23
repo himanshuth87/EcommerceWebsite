@@ -37,30 +37,12 @@ export default function Navbar() {
     <>
       <header className={`navbar-safari ${scrolled ? 'scrolled' : ''}`}>
         <div className="container-fluid navbar-main">
-          {/* LEFT: LOGO */}
-          <div className="nav-left">
+          {/* LEFT: LOGO & CATEGORIES */}
+          <div className="nav-left-group">
             <Link to="/" className="navbar-logo-s">
               <span className="logo-text">PRIORITY</span>
             </Link>
-          </div>
-
-          {/* CENTER: SEARCH BAR (as requested) */}
-          <div className="nav-center-search">
-            <div className="nav-search-wrapper">
-              <span className="material-symbols-outlined search-icon">search</span>
-              <input 
-                type="text" 
-                placeholder="Search for luggage, backpacks and more..." 
-                className="nav-search-input"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleSearch}
-              />
-            </div>
-          </div>
-
-          {/* RIGHT: CATEGORIES & PANEL TRIGGER */}
-          <div className="nav-right-actions">
+            
             <nav className="nav-links-desktop">
               <ul className="nav-links-list">
                 <li className="has-mega">
@@ -97,6 +79,21 @@ export default function Navbar() {
                 <li><Link to="/premium" className="nav-link">Premium ✦</Link></li>
               </ul>
             </nav>
+          </div>
+
+          {/* RIGHT: SEARCH (Small) & PANEL TRIGGER */}
+          <div className="nav-right-group">
+            <div className="nav-search-wrapper small-search">
+              <span className="material-symbols-outlined search-icon">search</span>
+              <input 
+                type="text" 
+                placeholder="Search..." 
+                className="nav-search-input"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearch}
+              />
+            </div>
 
             <button 
               className="panel-trigger"
