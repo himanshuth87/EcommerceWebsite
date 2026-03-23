@@ -35,35 +35,21 @@ export default function Home() {
         />
       </section>
 
-      {/* ── EDITORIAL COLLECTION GRID ── */}
-      <section className="editorial-section">
+      {/* ── BEST SELLERS SECTION ── */}
+      <section className="bestsellers-section reveal">
         <div className="container">
-          <div className="grid-12">
-            {/* Slot 1: Flagship Item */}
-            <div className="col-span-8 item-group">
-              <div className="img-container aspect-16-10">
-                {editorialBestsellers[0] ? (
-                  <Link to={`/products/${editorialBestsellers[0].id}`}>
-                    <img src={editorialBestsellers[0].image_url} alt={editorialBestsellers[0].name} />
-                  </Link>
-                ) : (
-                  <img src="/assets/Creatives/editorial-1.jpg" alt="Collection Piece" />
-                )}
-              </div>
-            </div>
-
-            {/* Slot 2: Supporting Item */}
-            <div className="col-span-4 item-group" style={{ paddingBottom: '48px' }}>
-              <div className="img-container aspect-3-4">
-                {editorialBestsellers[1] ? (
-                  <Link to={`/products/${editorialBestsellers[1].id}`}>
-                    <img src={editorialBestsellers[1].image_url} alt={editorialBestsellers[1].name} />
-                  </Link>
-                ) : (
-                  <img src="/assets/Creatives/editorial-2.jpg" alt="Collection Piece" />
-                )}
-              </div>
-            </div>
+          <div className="home-section-header">
+            <p className="section-label">CURATED COLLECTION</p>
+            <h2 className="section-title">Best <span>Sellers</span></h2>
+          </div>
+          <div className="bestsellers-grid">
+            {loading ? (
+              [...Array(4)].map((_, i) => <div key={i} className="skeleton-card" />)
+            ) : (
+              products.filter(p => p.badge === 'Bestseller').slice(0, 4).map(p => (
+                <ProductCard key={p.id} product={p} />
+              ))
+            )}
           </div>
         </div>
       </section>
