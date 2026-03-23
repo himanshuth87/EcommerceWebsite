@@ -3,6 +3,12 @@ import { NavLink, useNavigate, Routes, Route, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './Admin.css'
 
+const CATEGORY_MAP = {
+  'Backpack': ['School', 'College', 'Laptop'],
+  'Luggage': ['Duffle', 'Trekking', 'Hard Luggage'],
+  'Accessories': ['Pouches', 'Lunch Bags', 'Shopping Bag']
+}
+
 export default function Admin() {
   const { user, token } = useAuth()
   const [stats, setStats] = useState({ products: 0, orders: 0, revenue: 0, users: 42 })
@@ -104,7 +110,7 @@ function DashboardOverview({ stats }) {
               <div className="stat-info">
                  <p className="stat-label">Total Products</p>
                  <h3 className="stat-value">{stats.products}</h3>
-                 <p className="stat-change">Database driven</p>
+                 <p className="stat-change">Active collection</p>
               </div>
            </div>
            <div className="stat-card">
@@ -168,37 +174,41 @@ function ProductManagement({ token, refreshStats }) {
     image_url: '', badge: 'None', colors_text: '', description: ''
   })
 
+  // Ensure initial subcost is set if cat changes
+  useEffect(() => {
+    const subs = CATEGORY_MAP[form.category] || []
+    if (!subs.includes(form.sub_category)) {
+      setForm(prev => ({ ...prev, sub_category: subs[0] || '' }))
+    }
+  }, [form.category])
+
   const load = () => fetch('/api/v1/catalog/products').then(r => r.json()).then(d => setProducts(d.data || []))
   useEffect(() => { load() }, [])
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this product from the database?')) return
+    if (!window.confirm('Delete this product?')) return
     try {
       const res = await fetch(`/api/v1/catalog/products/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       })
-      if (res.ok) {
-        setProducts(products.filter(p => p.id !== id))
-        refreshStats()
-      } else {
+      if (res.ok) { load(); refreshStats() }
+      else {
         const er = await res.json()
         alert(er.error || 'Delete failed')
       }
-    } catch (e) { alert('Network error while deleting') }
+    } catch (e) { alert('Delete failed') }
   }
 
   const handleSeed = async () => {
-    if (!window.confirm('This will copy all products from the local JSON file to your database. Continue?')) return
+    if (!window.confirm('Sync JSON to Database?')) return
     try {
       setLoading(true)
       const res = await fetch('/api/admin/seed', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       const d = await res.json()
-      alert(d.message)
-      load()
-      refreshStats()
+      alert(d.message); load(); refreshStats()
     } catch (e) { alert('Seed failed') }
     finally { setLoading(false) }
   }
@@ -217,68 +227,53 @@ function ProductManagement({ token, refreshStats }) {
       })
       const d = await res.json()
       if (d.success) setForm(prev => ({ ...prev, image_url: d.url }))
-      else alert('Upload failed')
-    } catch (e) { alert('Error uploading') }
+    } catch (e) { alert('Upload failed') }
     finally { setLoading(false) }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!form.image_url) return alert('Please upload an image first')
+    if (!form.image_url) return alert('Photo required')
     try {
       setLoading(true)
       const res = await fetch('/api/v1/catalog/products', {
         method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({
           ...form,
           price: Number(form.price),
           original_price: Number(form.price),
-          colors: form.colors_text.split(',').map(c => c.trim()).filter(c => c),
-          is_premium: form.category === 'Premium'
+          colors: form.colors_text.split(',').map(c => c.trim()).filter(c => c)
         })
       })
       if (res.ok) {
         setShowAdd(false)
         setForm({ name: '', category: 'Luggage', sub_category: '', price: '', stock: 10, image_url: '', badge: 'None', colors_text: '', description: '' })
-        load()
-        refreshStats()
+        load(); refreshStats()
       }
-    } catch (e) { alert('Failed to add product') }
+    } catch (e) { alert('Add failed') }
     finally { setLoading(false) }
   }
 
   return (
     <div className="products-view">
        <div className="view-header">
-          <h1 className="page-title">Manage Products</h1>
+          <h1 className="page-title">Products Collection</h1>
           <div className="header-actions">
             <button className="btn-secondary" onClick={handleSeed} disabled={loading}>
-               <span className="material-symbols-outlined">sync</span>
-               Sync from JSON
+               <span className="material-symbols-outlined">sync</span> Sync JSON
             </button>
             <button className="btn-primary" onClick={() => setShowAdd(true)}>
-               <span className="material-symbols-outlined">add</span>
-               Add Product
+               <span className="material-symbols-outlined">add</span> Add Product
             </button>
           </div>
        </div>
-
-       {products.length === 0 && !loading && (
-         <div className="empty-state-alert">
-            <span className="material-symbols-outlined">database_off</span>
-            <p>Your database is empty. Click <strong>Sync from JSON</strong> above to import baseline products.</p>
-         </div>
-       )}
 
        {showAdd && (
          <div className="admin-modal-overlay">
            <div className="admin-modal">
              <div className="modal-header">
-               <h3>Add New Product</h3>
+               <h3>New Product Details</h3>
                <button onClick={() => setShowAdd(false)} className="close-btn">×</button>
              </div>
              <form onSubmit={handleSubmit} className="admin-form">
@@ -287,49 +282,51 @@ function ProductManagement({ token, refreshStats }) {
                     <label>Product Name</label>
                     <input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required />
                   </div>
+                  
                   <div className="form-group">
-                    <label>Category</label>
+                    <label>Main Category</label>
                     <select value={form.category} onChange={e => setForm({...form, category: e.target.value})}>
                        <option>Luggage</option>
-                       <option>Backpacks</option>
-                       <option>Premium</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Sub Category</label>
-                    <select value={form.sub_category} onChange={e => setForm({...form, sub_category: e.target.value})}>
-                       <option value="">None</option>
-                       <option>Hardside</option>
-                       <option>Softside</option>
-                       <option>Cabin Luggage</option>
-                       <option>Check-in</option>
-                       <option>Laptop Bag</option>
-                       <option>Casual</option>
-                       <option>Travel Duffel</option>
+                       <option>Backpack</option>
                        <option>Accessories</option>
                     </select>
                   </div>
+                  
+                  <div className="form-group">
+                    <label>Sub Category</label>
+                    <select value={form.sub_category} onChange={e => setForm({...form, sub_category: e.target.value})}>
+                       {(CATEGORY_MAP[form.category] || []).map(sub => (
+                         <option key={sub} value={sub}>{sub}</option>
+                       ))}
+                    </select>
+                  </div>
+
                   <div className="form-group">
                     <label>Price (₹)</label>
                     <input type="number" value={form.price} onChange={e => setForm({...form, price: e.target.value})} required />
                   </div>
                   <div className="form-group">
-                    <label>Placement</label>
+                    <label>Label</label>
                     <select value={form.badge} onChange={e => setForm({...form, badge: e.target.value})}>
                        <option>None</option>
                        <option>New</option>
                        <option>Bestseller</option>
                     </select>
                   </div>
+                  
                   <div className="form-group grid-span-2">
-                    <label>Description</label>
-                    <textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})} rows="3" />
+                    <label>Short Description</label>
+                    <textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})} rows="2" />
+                  </div>
+                  <div className="form-group grid-span-2">
+                    <label>Available Colors</label>
+                    <input type="text" value={form.colors_text} onChange={e => setForm({...form, colors_text: e.target.value})} placeholder="Black, Grey, Blue..." />
                   </div>
                 </div>
 
                 <div className="form-group">
                   <label>Product Image</label>
-                  <div className="upload-box">
+                  <div className="upload-box" style={{ minHeight: '120px' }}>
                     {form.image_url ? (
                       <div className="preview-wrap">
                         <img src={form.image_url} alt="preview" />
@@ -338,7 +335,7 @@ function ProductManagement({ token, refreshStats }) {
                     ) : (
                       <div className="upload-trigger">
                         <span className="material-symbols-outlined">cloud_upload</span>
-                        <p>{loading ? 'Uploading...' : 'Upload Image'}</p>
+                        <p>{loading ? 'Uploading...' : 'Click to Upload'}</p>
                         <input type="file" accept="image/*" onChange={handleUpload} />
                       </div>
                     )}
@@ -347,7 +344,7 @@ function ProductManagement({ token, refreshStats }) {
 
                 <div className="modal-footer">
                    <button type="button" className="btn-secondary" onClick={() => setShowAdd(false)}>Cancel</button>
-                   <button type="submit" className="btn-primary" disabled={loading}>Save</button>
+                   <button type="submit" className="btn-primary" disabled={loading}>Save Product</button>
                 </div>
              </form>
            </div>
@@ -360,8 +357,8 @@ function ProductManagement({ token, refreshStats }) {
               <tr>
                 <th>Product</th>
                 <th>Category</th>
+                <th>Sub-Category</th>
                 <th>Price</th>
-                <th>Stock</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -371,18 +368,14 @@ function ProductManagement({ token, refreshStats }) {
                   <td>
                     <div className="product-cell">
                        <img src={p.image_url} alt="" className="table-img" />
-                       <div className="table-product-details">
-                          <span className="table-product-name">{p.name}</span>
-                       </div>
+                       <span className="table-product-name">{p.name}</span>
                     </div>
                   </td>
                   <td>{p.category}</td>
+                  <td>{p.sub_category}</td>
                   <td>₹{p.price?.toLocaleString()}</td>
-                  <td>{p.stock}</td>
                   <td>
-                    <div className="table-actions">
-                       <button className="action-btn delete" onClick={() => handleDelete(p.id)}><span className="material-symbols-outlined">delete</span></button>
-                    </div>
+                    <button className="action-btn delete" onClick={() => handleDelete(p.id)}><span className="material-symbols-outlined">delete</span></button>
                   </td>
                 </tr>
               ))}
