@@ -14,7 +14,6 @@ import Account from './pages/Account'
 import Premium from './pages/Premium'
 import Admin from './pages/Admin'
 import About from './pages/About'
-import AppLayout from './components/AppLayout' 
 import { useEffect } from 'react'
 import './styles/globals.css'
 
