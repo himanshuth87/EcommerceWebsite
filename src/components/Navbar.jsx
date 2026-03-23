@@ -104,18 +104,12 @@ export default function Navbar() {
       <div className={`side-panel-overlay ${panelOpen ? 'active' : ''}`} onClick={() => setPanelOpen(false)}>
         <div className={`side-panel ${panelOpen ? 'active' : ''}`} onClick={e => e.stopPropagation()}>
           <div className="panel-header">
-            <h3>Menu</h3>
             <button className="panel-close" onClick={() => setPanelOpen(false)}>
               <span className="material-symbols-outlined">close</span>
             </button>
           </div>
           <div className="panel-content">
             <div className="panel-group">
-              <Link to="/products?cat=Luggage" onClick={() => setPanelOpen(false)} className="panel-item">Luggage</Link>
-              <Link to="/products?cat=Backpack" onClick={() => setPanelOpen(false)} className="panel-item">Backpacks</Link>
-              <Link to="/products?cat=Accessories" onClick={() => setPanelOpen(false)} className="panel-item">Accessories</Link>
-            </div>
-            <div className="panel-group" style={{ marginTop: '32px' }}>
               <Link to="/account" onClick={() => setPanelOpen(false)} className="panel-item">
                 <span className="material-symbols-outlined">account_circle</span> My Account
               </Link>
