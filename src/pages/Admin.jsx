@@ -184,8 +184,11 @@ function ProductManagement({ token, refreshStats }) {
       if (res.ok) {
         setProducts(products.filter(p => p.id !== id))
         refreshStats()
+      } else {
+        const er = await res.json()
+        alert(er.error || 'Delete failed')
       }
-    } catch (e) { alert('Delete failed') }
+    } catch (e) { alert('Network error while deleting') }
   }
 
   const handleUpload = async (e) => {
