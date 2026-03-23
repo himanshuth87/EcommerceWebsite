@@ -27,12 +27,14 @@
 .admin-logo h2 { font-size: 1.2rem; font-weight: 800; color: #fff; letter-spacing: 1px; }
 .admin-logo span { color: var(--admin-accent); }
 
-.admin-nav { display: flex; flex-direction: column; gap: 8px; }
+.admin-nav { display: flex; flex-direction: column; gap: 4px; }
 .nav-item {
-  color: #fff; text-decoration: none; padding: 14px 24px; font-size: 0.9rem; font-weight: 500;
-  transition: 0.2s; opacity: 0.6;
+  color: #fff; text-decoration: none; padding: 16px 24px; font-size: 0.9rem; font-weight: 500;
+  transition: 0.2s; opacity: 0.5; display: flex; align-items: center; gap: 12px;
 }
-.nav-item:hover, .nav-item.active { opacity: 1; background: rgba(255,255,255,0.05); color: var(--admin-accent); }
+.nav-item .material-symbols-outlined { font-size: 1.25rem; opacity: 0.7; }
+.nav-item:hover, .nav-item.active { opacity: 1; background: rgba(255,255,255,0.06); color: var(--admin-accent); }
+.nav-item.active .material-symbols-outlined { opacity: 1; }
 
 .admin-main { flex: 1; padding: 48px; }
 .view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 48px; }
@@ -136,3 +138,26 @@
   width: 100%; padding: 16px; background: var(--admin-accent); color: #000; border: none;
   border-radius: 12px; font-weight: 800; font-size: 1rem; cursor: pointer;
 }
+
+/* KPI & Performance Styles */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 40px; }
+.kpi-card { background: var(--admin-surface); padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+.kpi-label { font-size: 0.65rem; font-weight: 700; opacity: 0.4; letter-spacing: 1px; margin-bottom: 8px; color: #fff; }
+.kpi-value { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.kpi-trend { font-size: 0.75rem; font-weight: 600; color: #fff; opacity: 0.6; }
+.kpi-trend.up { color: #4CAF50; opacity: 1; }
+
+.performance-chart-mock {
+  height: 200px; display: flex; align-items: flex-end; gap: 12px;
+  background: rgba(255,255,255,0.02); padding: 20px; border-radius: 16px; margin-top: 20px;
+}
+.performance-chart-mock .bar { flex: 1; background: var(--admin-accent); border-radius: 4px; opacity: 0.2; }
+
+.icon-btn.edit { background: rgba(0,0,0,0.05); color: #333; margin-right: 6px; }
+.icon-btn.edit:hover { background: var(--admin-accent); color: #000; }
+.icon-btn .material-symbols-outlined { font-size: 1.1rem; vertical-align: middle; }
+
+/* Status Pills */
+.status-pill { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
+.status-pill.paid, .status-pill.delivered { background: rgba(76,175,80,0.1); color: #4CAF50; }
+.status-pill.pending, .status-pill.created { background: rgba(255,152,0,0.1); color: #FF9800; }

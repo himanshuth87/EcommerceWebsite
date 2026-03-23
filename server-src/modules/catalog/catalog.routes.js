@@ -79,4 +79,31 @@ router.delete('/products/:id', auth, adminOnly, async (req, res) => {
     }
 });
 
+// @route   PATCH /api/v1/catalog/products/:id
+// @desc    Update a product (Admin Only)
+router.patch('/products/:id', auth, adminOnly, async (req, res) => {
+    try {
+        const {
+            name, category, sub_category, price, original_price, colors, sizes,
+            features, image_url, variant_images, badge, is_premium, stock,
+            description, weight, material, lock_type, featured, product_code
+        } = req.body;
+
+        await query(
+            `UPDATE products SET name=?, category=?, sub_category=?, price=?, original_price=?, colors=?, sizes=?, features=?, image_url=?, variant_images=?, badge=?, is_premium=?, stock=?, description=?, weight=?, material=?, lock_type=?, featured=?, product_code=? WHERE id=?`,
+            [
+                name, category, sub_category || '', price, original_price || price,
+                JSON.stringify(colors || []), JSON.stringify(sizes || []), JSON.stringify(features || []),
+                image_url, JSON.stringify(variant_images || {}),
+                badge || 'None', is_premium || false, stock || 0,
+                description || '', weight || null, material || null, lock_type || null, featured || false, product_code || null,
+                req.params.id
+            ]
+        );
+        res.json({ success: true, message: 'Product updated.' });
+    } catch (err) {
+        res.status(500).json({ success: false, error: 'Database update failed.' });
+    }
+});
+
 module.exports = router;
