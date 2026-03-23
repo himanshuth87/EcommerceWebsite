@@ -34,16 +34,6 @@ export default function Navbar() {
 
         <nav className="nav-center">
           <ul className="nav-links-list">
-            <li>
-              <Link to="/products" className="nav-link">
-                Priority Select <span className="badge-new-nav">New</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/products" className="nav-link pill-green">
-                Back to School
-              </Link>
-            </li>
             <li className="has-mega">
               <Link to="/products?cat=Luggage" className="nav-link">Trolley Bags</Link>
               <div className="mega-menu">
@@ -64,7 +54,6 @@ export default function Navbar() {
                 </div>
               </div>
             </li>
-            <li><Link to="/products?cat=Combos" className="nav-link">Combos</Link></li>
             <li className="has-mega">
               <Link to="/products?cat=Backpacks" className="nav-link">Backpacks</Link>
               <div className="mega-menu">
