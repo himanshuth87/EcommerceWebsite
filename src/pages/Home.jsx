@@ -6,6 +6,7 @@ import './Home.css'
 export default function Home() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState('Bestseller')
 
   useEffect(() => {
     fetch('/api/v1/catalog/products')
@@ -14,110 +15,81 @@ export default function Home() {
       .catch(() => setLoading(false))
   }, [])
 
-  // Get the first 3 bestsellers for editorial display
-  const editorialBestsellers = products.filter(p => p.badge === 'Bestseller' || p.is_bestseller).slice(0, 3)
-  // Get others for the grid
-  const standardBestsellers = products.filter(p => p.badge === 'Bestseller' || p.is_bestseller).slice(3, 7)
-  // Get New Arrivals
-  const newArrivals = products.filter(p => p.badge === 'New').slice(0, 4)
-  // Featured Showcase Product (Front Open Luggage)
-  const featuredProduct = products.find(p => p.name?.toLowerCase().includes('luggage') || p.name?.toLowerCase().includes('cabin')) || products[0]
+  // Filter products based on active tab
+  const tabProducts = products.filter(p => p.badge === activeTab).slice(0, 4)
+  const featuredProduct = products.find(p => p.badge === activeTab) || products[0]
 
   return (
     <main className="home">
       {/* ── HERO ── */}
       <section className="hero-luxury">
         <div className="hero-gradient-overlay" />
-        <img 
-          src="/assets/Creatives/hero-main.jpg" 
-          alt="Luxury leather detail" 
-          className="hero-image"
-        />
+        <img src="/assets/Creatives/hero-main.jpg" alt="Luxury Travel" className="hero-image" />
       </section>
 
-      {/* ── BEST SELLERS SECTION ── */}
-      <section className="bestsellers-section reveal">
+      {/* ── NEW PRODUCT SHOWCASE (TABBED) ── */}
+      <section className="tabbed-showcase reveal">
         <div className="container">
-          <div className="home-section-header">
-            <p className="section-label">CURATED COLLECTION</p>
-            <h2 className="section-title">Best <span>Sellers</span></h2>
+          {/* Tabs Container */}
+          <div className="tabs-header">
+            <button className={`tab-btn ${activeTab === 'New' ? 'active' : ''}`} onClick={() => setActiveTab('New')}>New Arrivals</button>
+            <button className={`tab-btn ${activeTab === 'Bestseller' ? 'active' : ''}`} onClick={() => setActiveTab('Bestseller')}>Bestseller</button>
           </div>
-          <div className="bestsellers-grid">
-            {loading ? (
-              [...Array(4)].map((_, i) => <div key={i} className="skeleton-card" />)
-            ) : (
-              products.filter(p => p.badge === 'Bestseller').slice(0, 4).map(p => (
-                <ProductCard key={p.id} product={p} />
-              ))
-            )}
+
+          <div className="showcase-split-layout">
+            {/* Left Feature Image */}
+            <div className="showcase-feature">
+              <div className="feature-img-box">
+                <img src={featuredProduct?.image_url || '/assets/Creatives/editorial-1.jpg'} alt="Feature" />
+                <div className="feature-overlay">
+                  <Link to="/products" className="view-all-btn">VIEW ALL</Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Products Grid */}
+            <div className="showcase-products">
+              <div className="products-inline-grid">
+                {loading ? (
+                  [...Array(4)].map((_, i) => <div key={i} className="skeleton-thumb" />)
+                ) : (
+                  tabProducts.map(p => (
+                    <div key={p.id} className="thumb-item">
+                       <Link to={`/products/${p.id}`} className="thumb-link">
+                          <img src={p.image_url} alt={p.name} />
+                          <div className="thumb-info">
+                             <h4>{p.name}</h4>
+                             <p className="thumb-price">
+                                <span className="old">MRP ₹{Math.floor(p.price*1.1)}</span> 
+                                ₹{p.price?.toLocaleString()}
+                             </p>
+                          </div>
+                       </Link>
+                    </div>
+                  ))
+                )}
+              </div>
+              <div className="bottom-view-all">
+                <Link to="/products" className="view-all-dark">VIEW ALL</Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── FEATURED VIDEO SHOWCASE ── */}
+      {/* ── PRODUCT CATEGORY HIGHLIGHT ── */}
       <section className="showcase-section">
         <div className="container">
           <div className="showcase-grid">
-            <div className="showcase-visual">
-              <video 
-                className="showcase-video"
-                autoPlay 
-                muted 
-                loop 
-                playsInline
-                poster="/assets/Creatives/hero-main.jpg"
-              >
-                <source src="https://v1.mixkit.co/videos/download/mixkit-opening-a-luxury-hard-suitcase-40091-medium.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+            <div className="showcase-visual"><video autoPlay muted loop playsInline className="showcase-video"><source src="https://v1.mixkit.co/videos/download/mixkit-opening-a-luxury-hard-suitcase-40091-medium.mp4" type="video/mp4" /></video></div>
             <div className="showcase-text">
               <h2 className="showcase-title">Pack - Expand - Explore</h2>
-              <p className="showcase-body">
-                Step into a new era of travel with our "Front Open" series. Engineered for effortless access and featuring a 25% expandable packing capacity, it's the ultimate companion for your spontaneous escapes and extended journeys.
-              </p>
-              {featuredProduct && (
-                <Link to={`/products/${featuredProduct.id}`} className="btn-showcase">
-                  SHOP NOW
-                </Link>
-              )}
+              <p className="showcase-body">Uncompromising quality for the modern traveler. Explore our Front Open series with 25% extra capacity.</p>
+              <Link to="/products" className="btn-showcase">EXPLORE ALL</Link>
             </div>
           </div>
         </div>
       </section>
-
-
-      {/* ── NEW ARRIVALS ── */}
-      <section className="bespoke-section">
-        <div className="container">
-          <div className="products-header" style={{ marginBottom: '48px' }}>
-            <h2 className="headline-large">New <span>Arrivals</span></h2>
-          </div>
-          <div className="products-grid">
-            {loading ? (
-              [...Array(4)].map((_, i) => <div key={i} className="skeleton" style={{ height: 450 }} />)
-            ) : (
-              newArrivals.length > 0 ? (
-                newArrivals.map((p, i) => (
-                  <div key={p.id} className="reveal active" style={{ transitionDelay: `${i * 0.1}s` }}>
-                    <ProductCard product={p} />
-                  </div>
-                ))
-              ) : (
-                <div className="bespoke-inner">
-                  <div className="bespoke-image-wrap">
-                    <img src="/assets/Creatives/editorial-5.jpg" alt="Master Craftsman" />
-                  </div>
-                  <div className="bespoke-content">
-                    <p className="body-bespoke" style={{ opacity: 0.6 }}>Our master collection of new arrivals.</p>
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </section>
-
     </main>
   )
 }
