@@ -12,6 +12,7 @@ import Checkout from './pages/Checkout'
 import Login from './pages/Login'
 import Account from './pages/Account'
 import Premium from './pages/Premium'
+import Admin from './pages/Admin'
 import { useEffect } from 'react'
 import './styles/globals.css'
 
@@ -50,6 +51,7 @@ export default function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/account" element={<Account />} />
               <Route path="/premium" element={<Premium />} />
+              <Route path="/admin/*" element={<Admin />} />
             </Routes>
             <Footer />
           </BrowserRouter>

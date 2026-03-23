@@ -130,6 +130,12 @@ export default function Navbar() {
                 <span className="material-symbols-outlined">favorite</span>
                 Wishlist
               </Link>
+              {user?.role === 'admin' && (
+                <Link to="/admin" onClick={() => setPanelOpen(false)} className="panel-item admin-red">
+                  <span className="material-symbols-outlined">settings</span>
+                  Admin Panel
+                </Link>
+              )}
               <button 
                 onClick={() => { setIsOpen(true); setPanelOpen(false) }} 
                 className="panel-item"
