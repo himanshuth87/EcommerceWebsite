@@ -100,29 +100,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── OUR COLLECTION ── */}
-      <section className="products-section">
-        <div className="container">
-          <div className="products-header">
-            <h2 className="headline-large">Our <span>Collection</span></h2>
-            <Link to="/products" className="btn-bespoke">View All</Link>
-          </div>
-
-          {loading ? (
-            <div className="products-grid">
-              {[...Array(4)].map((_, i) => <div key={i} className="skeleton" style={{ height: 450 }} />)}
-            </div>
-          ) : (
-            <div className="products-grid">
-              {standardBestsellers.map((p, i) => (
-                <div key={p.id} className="reveal active" style={{ transitionDelay: `${i * 0.1}s` }}>
-                  <ProductCard product={p} />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* ── NEW ARRIVALS ── */}
       <section className="bespoke-section">
