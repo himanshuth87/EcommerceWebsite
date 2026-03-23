@@ -46,38 +46,11 @@ export default function Navbar() {
           <div className="nav-col-center">
             <nav className="nav-links-desktop">
               <ul className="nav-links-list">
-                <li className="has-mega">
-                  <Link to="/products?cat=Luggage" className="nav-link">Luggage</Link>
-                  <div className="mega-menu">
-                    <div className="mega-col">
-                      <h5>COLLECTIONS</h5>
-                      <Link to="/products?cat=Luggage&sub=Hard Luggage">Hard Luggage</Link>
-                      <Link to="/products?cat=Luggage&sub=Duffle">Travel Duffle</Link>
-                      <Link to="/products?cat=Luggage&sub=Trekking">Trekking Bags</Link>
-                    </div>
-                  </div>
+                <li>
+                  <Link to="/products" className="nav-link">SHOP</Link>
                 </li>
-                <li className="has-mega">
-                  <Link to="/products?cat=Backpack" className="nav-link">Backpacks</Link>
-                  <div className="mega-menu">
-                    <div className="mega-col">
-                      <h5>CATEGORIES</h5>
-                      <Link to="/products?cat=Backpack&sub=School">School Bags</Link>
-                      <Link to="/products?cat=Backpack&sub=College">College Backpacks</Link>
-                      <Link to="/products?cat=Backpack&sub=Laptop">Laptop Professionals</Link>
-                    </div>
-                  </div>
-                </li>
-                <li className="has-mega">
-                  <Link to="/products?cat=Accessories" className="nav-link">Accessories</Link>
-                  <div className="mega-menu">
-                    <div className="mega-col">
-                      <h5>ESSENTIALS</h5>
-                      <Link to="/products?cat=Accessories&sub=Pouches">Pouches</Link>
-                      <Link to="/products?cat=Accessories&sub=Lunch Bags">Lunch Bags</Link>
-                      <Link to="/products?cat=Accessories&sub=Shopping Bag">Shopping Bags</Link>
-                    </div>
-                  </div>
+                <li>
+                  <Link to="/premium" className="nav-link premium-nav-link">PREMIUM</Link>
                 </li>
               </ul>
             </nav>
