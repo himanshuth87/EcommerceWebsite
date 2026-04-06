@@ -3,14 +3,14 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 40px 0;
+  padding: 16px 0;
   z-index: 1000;
-  transition: all 0.8s var(--transition-standard);
+  transition: all 0.5s var(--transition-standard);
   border-bottom: 1px solid transparent;
 }
 
 .navbar-atelier.scrolled {
-  padding: 20px 0;
+  padding: 12px 0;
   background: rgba(var(--surface-container-low-rgb), 0.7);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
