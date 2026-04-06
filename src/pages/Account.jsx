@@ -8,7 +8,7 @@ export default function Account() {
   const navigate = useNavigate()
 
   if (!isLoggedIn) return (
-    <div className="account-gate">
+    <div className="account-gate home-atelier" data-theme="dark">
       <div className="account-gate-inner">
         <span>🔐</span>
         <h2>Sign in to view your account</h2>
@@ -20,7 +20,7 @@ export default function Account() {
   const handleLogout = () => { logout(); navigate('/') }
 
   return (
-    <main className="account-page">
+    <main className="account-page home-atelier" data-theme="dark">
       <div className="container">
         <div className="account-header">
           <div className="account-avatar">{user.name?.[0]?.toUpperCase() || 'U'}</div>

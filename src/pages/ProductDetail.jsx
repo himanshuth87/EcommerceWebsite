@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
-import { formatCurrency, calcDiscount, COLOR_MAP, getBadgeClass } from '../hooks/useApi'
+import { apiFetch, formatCurrency, calcDiscount, COLOR_MAP, getBadgeClass } from '../hooks/useApi'
 import ProductCard from '../components/ProductCard'
 import './ProductDetail.css'
 
@@ -20,24 +20,26 @@ export default function ProductDetail() {
   useEffect(() => {
     window.scrollTo(0, 0)
     setLoading(true)
-    fetch('/api/v1/catalog/products')
-      .then(r => r.json())
+    apiFetch('/api/v1/catalog/products')
       .then(d => {
         const all = d.data || []
         const found = all.find(p => String(p.id) === String(id))
         setProduct(found || null)
         if (found) {
-          setRelated(all.filter(p => p.category === found.category && p.id !== found.id).slice(0, 4))
-          let colors = []
-          try { colors = typeof found.colors === 'string' ? JSON.parse(found.colors) : (found.colors || []) } catch {}
-          let sizes = []
-          try { sizes = typeof found.sizes === 'string' ? JSON.parse(found.sizes) : (found.sizes || []) } catch {}
-          setSelectedColor(colors[0] || null)
-          setSelectedSize(sizes[0] || null)
+          setRelated(all.filter(p => (p.category === found.category) && String(p.id) !== String(found.id)).slice(0, 4))
+          let clrs = []
+          try { clrs = typeof found.colors === 'string' ? JSON.parse(found.colors) : (found.colors || []) } catch {}
+          let szs = []
+          try { szs = typeof found.sizes === 'string' ? JSON.parse(found.sizes) : (found.sizes || []) } catch {}
+          setSelectedColor(clrs[0] || null)
+          setSelectedSize(szs[0] || null)
         }
         setLoading(false)
       })
-      .catch(() => setLoading(false))
+      .catch((err) => {
+        console.error("PD Load error:", err)
+        setLoading(false)
+      })
   }, [id])
 
   if (loading) return (
@@ -73,7 +75,7 @@ export default function ProductDetail() {
   }
 
   return (
-    <main className="pd-page">
+    <main className="pd-page home-atelier" data-theme="dark">
       <div className="container">
         <div className="pd-breadcrumb">
           <Link to="/">Home</Link> <span>/</span>
@@ -112,7 +114,10 @@ export default function ProductDetail() {
 
             {product.rating > 0 && (
               <div className="pd-rating">
-                <span className="stars">{'★'.repeat(Math.floor(product.rating))}{'☆'.repeat(5 - Math.floor(product.rating))}</span>
+                <span className="stars">
+                  {'★'.repeat(Math.min(5, Math.max(0, Math.floor(product.rating))))}
+                  {'☆'.repeat(Math.max(0, 5 - Math.min(5, Math.max(0, Math.floor(product.rating)))))}
+                </span>
                 <span className="pd-rating-val">{product.rating}</span>
                 <span className="pd-rating-count">({product.reviews || 0} reviews)</span>
               </div>
