@@ -14,21 +14,59 @@ export default function Checkout() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
+  const [payMethod, setPayMethod] = useState('razorpay') // 'razorpay', 'cod', 'upi'
 
   const onChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
   const handleOrder = async () => {
+    if (payMethod === 'cod') {
+      return handleCodOrder()
+    }
+    
     setLoading(true)
     setError('')
     try {
-      await apiFetch('/api/create-order', {
+      const orderData = await apiFetch('/api/create-order', {
         method: 'POST',
-        body: JSON.stringify({ amount: totalPrice, customerName: form.name, email: form.email, phone: form.phone }),
+        body: JSON.stringify({ amount: total, customerName: form.name, email: form.email, phone: form.phone }),
       })
+
+      const options = {
+        key: 'rzp_test_placeholder', // Should be in .env
+        amount: orderData.amount,
+        currency: orderData.currency,
+        name: "Priority Bags",
+        description: "The Digital Atelier Checkout",
+        order_id: orderData.id,
+        handler: async function (response) {
+          // In real world, verify payment on server here
+          clearCart()
+          setSuccess(true)
+        },
+        prefill: { name: form.name, email: form.email, contact: form.phone },
+        theme: { color: "#c9a84c" }
+      };
+      
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      setError('Payment initiation failed. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleCodOrder = async () => {
+    setLoading(true)
+    setError('')
+    try {
+      // In a real app, you'd call an endpoint like '/api/create-order-cod'
+      // For now we'll simulate success for COD
+      await new Promise(r => setTimeout(r, 1500))
       clearCart()
       setSuccess(true)
     } catch (err) {
-      setError('Payment initiation failed. Please try again.')
+      setError('Failed to process order. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -148,11 +186,34 @@ export default function Checkout() {
                   ))}
                 </div>
 
+                <div className="payment-selection">
+                  <h4>Choose Payment Method</h4>
+                  <div className={`pay-option ${payMethod === 'razorpay' ? 'active' : ''}`} onClick={() => setPayMethod('razorpay')}>
+                    <span className="material-symbols-outlined">credit_card</span>
+                    <div>
+                      <p>Razorpay (Card/Netbanking/UPI)</p>
+                      <span>Standard Transaction Fees Apply</span>
+                    </div>
+                  </div>
+                  
+                  <div className={`pay-option ${payMethod === 'cod' ? 'active' : ''}`} onClick={() => setPayMethod('cod')}>
+                    <span className="material-symbols-outlined">payments</span>
+                    <div>
+                      <p>Cash on Delivery (Standard)</p>
+                      <span>No Online Payment Required — FREE</span>
+                    </div>
+                  </div>
+
+                  <div className="upi-direct-note">
+                    <p>💡 Tip: For <strong>0% Transaction Fees</strong>, select UPI inside the Razorpay modal or ask about our Direct QR flow.</p>
+                  </div>
+                </div>
+
                 {error && <div className="checkout-error">{error}</div>}
                 <button className="btn btn-gold btn-lg btn-full" onClick={handleOrder} disabled={loading}>
-                  {loading ? 'Processing…' : `Pay ${formatCurrency(total)} →`}
+                  {loading ? 'Processing…' : payMethod === 'cod' ? 'Complete Order' : `Pay ${formatCurrency(total)} →`}
                 </button>
-                <p className="checkout-secure">🔒 Secured by Razorpay · SSL Encrypted</p>
+                <p className="checkout-secure">🔒 Secure checkout · SSL Encrypted</p>
               </div>
             )}
           </div>
