@@ -44,27 +44,10 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
         >
-          <motion.h1 
-            className="hero-headline editorial-header"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-          >
-            Refining the Art <br />
-            <span className="gold-gradient-text">Of Odyssey</span>
-          </motion.h1>
-          <motion.p 
-            className="hero-subline"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1.5 }}
-          >
-            Engineered for the Modern Voyager. Crafted for the Decisive Soul.
-          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 1 }}
+            transition={{ delay: 1, duration: 1 }}
           >
             <Link to="/products" className="btn btn-primary">Discover the Collection</Link>
           </motion.div>

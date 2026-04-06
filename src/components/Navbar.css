@@ -3,16 +3,18 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 32px 0;
+  padding: 40px 0;
   z-index: 1000;
-  transition: padding 0.8s var(--transition-standard), background 0.8s var(--transition-standard);
+  transition: all 0.8s var(--transition-standard);
+  border-bottom: 1px solid transparent;
 }
 
 .navbar-atelier.scrolled {
-  padding: 16px 0;
-  background: rgba(var(--surface-container-low-rgb), 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  padding: 20px 0;
+  background: rgba(var(--surface-container-low-rgb), 0.7);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-bottom: 1px solid rgba(var(--on-background-rgb), 0.05);
 }
 
 .navbar-inner {
@@ -35,13 +37,32 @@
 
 .nav-item {
   color: var(--on-surface-variant);
-  transition: var(--transition-fast);
-  font-weight: 600;
-  letter-spacing: 1px;
+  transition: var(--transition-standard);
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  position: relative;
+  padding: 8px 0;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--primary);
+  transition: width 0.6s var(--transition-standard);
 }
 
 .nav-item:hover {
-  color: var(--primary);
+  color: var(--on-background);
+}
+
+.nav-item:hover::after {
+  width: 100%;
 }
 
 .premium-gold {
@@ -58,22 +79,31 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 8px 16px;
-  border: 1px solid var(--outline-variant);
+  background: rgba(var(--on-background-rgb), 0.03);
+  padding: 8px 20px;
+  border-radius: 40px;
+  border: 1px solid rgba(var(--on-background-rgb), 0.08);
+  transition: all 0.4s var(--transition-standard);
+}
+
+.search-box:focus-within {
+  background: rgba(var(--on-background-rgb), 0.05);
+  border-color: rgba(var(--on-background-rgb), 0.2);
+  transform: translateY(-1px);
 }
 
 .search-box input {
   background: transparent;
-  width: 80px;
+  width: 100px;
   border: none;
   padding: 0;
   color: var(--on-surface);
-  transition: width 0.4s var(--transition-standard);
+  transition: width 0.6s var(--transition-standard);
+  outline: none;
 }
 
 .search-box input:focus {
-  width: 140px;
+  width: 180px;
 }
 
 .icon-btn {

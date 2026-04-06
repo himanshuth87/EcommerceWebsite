@@ -60,6 +60,7 @@
   width: 100%;
   margin-top: 16px;
   -webkit-appearance: none;
+  appearance: none;
   height: 2px;
   background: var(--outline-variant);
   outline: none;
