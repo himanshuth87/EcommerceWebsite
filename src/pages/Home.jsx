@@ -124,42 +124,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CRAFTSMANSHIP SECTION ── */}
-      <section className="craft-section section-split">
-        <div className="container">
-          <div className="craft-layout">
-            <motion.div className="craft-visual" {...fadeInUp}>
-              <img src="/assets/Creatives/editorial-2.jpg" alt="Craftsmanship" className="craft-img" />
-              <div className="craft-accent glass">
-                <p className="label-xs">01 / ARCHITECTURE</p>
-                <h3>Engineered Integrity</h3>
-              </div>
-            </motion.div>
-            <motion.div className="craft-info" {...fadeInUp}>
-              <h2 className="editorial-header">Built for the <br /> <span className="gold-gradient-text">Infinite Path</span></h2>
-              <p className="body-md">
-                Every Priority bag is a masterclass in industrial design. Utilizing high-impact polycarbonate and reinforced recycled aircraft-grade aluminum, our shells are designed to deflect the rigors of global transit while maintaining a silhouette of pure elegance.
-              </p>
-              <ul className="spec-list">
-                <li><span>Material</span> <span>Makrolon® Polycarbonate</span></li>
-                <li><span>Hardware</span> <span>Japanese 360° Hinomoto Wheels</span></li>
-                <li><span>Security</span> <span>Integrated TSA Lock System</span></li>
-              </ul>
-              <Link to="/about" className="btn btn-outline">Our Philosophy</Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── EDITORIAL BANNER ── */}
-      <section className="editorial-banner">
-        <div className="banner-vessel">
-          <img src="/assets/Creatives/editorial-3.jpg" alt="Editorial" />
-          <div className="banner-overlay glass">
-            <h2 className="editorial-header gold-gradient-text">Quiet Luxury. <br /> Loud Legacy.</h2>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }
