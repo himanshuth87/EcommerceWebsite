@@ -29,7 +29,7 @@ export default function Navbar() {
   return (
     <>
       <motion.header 
-        className={`navbar-atelier glass ${scrolled ? 'scrolled' : ''}`}
+        className={`navbar-atelier ${scrolled ? 'scrolled glass' : ''}`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}

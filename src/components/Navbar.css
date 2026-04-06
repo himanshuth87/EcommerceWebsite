@@ -3,14 +3,14 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 16px 0;
+  padding: 12px 0;
   z-index: 1000;
   transition: all 0.5s var(--transition-standard);
   border-bottom: 1px solid transparent;
 }
 
 .navbar-atelier.scrolled {
-  padding: 12px 0;
+  padding: 8px 0;
   background: rgba(var(--surface-container-low-rgb), 0.7);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
@@ -24,7 +24,7 @@
 }
 
 .atelier-logo {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   letter-spacing: 4px;
   color: var(--on-background);
   font-weight: 900;
@@ -32,7 +32,7 @@
 
 .nav-list {
   display: flex;
-  gap: 48px;
+  gap: 32px;
 }
 
 .nav-item {
@@ -72,7 +72,7 @@
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
 .search-box {
