@@ -1,0 +1,467 @@
+{
+  "data": [
+    {
+      "id": "prod_101",
+      "name": "Dreamer 55cm Cabin",
+      "category": "Cabin Luggage",
+      "price": 5999,
+      "original_price": 8999,
+      "colors": [
+        "Midnight Black",
+        "Arctic White",
+        "Rose Gold"
+      ],
+      "sizes": [
+        "Small (20-inch)"
+      ],
+      "features": [
+        "100% polycarbonate shell",
+        "TSA-approved combo lock",
+        "360° spinner wheels"
+      ],
+      "image_url": "/assets/Category/Travelling%20Bag.png",
+      "badge": "Sale",
+      "rating": 4.8,
+      "reviews": 128,
+      "stock": 45,
+      "description": "Our best-selling cabin bag made to fit overhead bins perfectly. Lightweight yet ultra-durable.",
+      "weight": "2.8 kg",
+      "material": "Polycarbonate",
+      "lock_type": "TSA Combination Lock",
+      "featured": true,
+      "created_at": "2024-01-15T00:00:00Z"
+    },
+    {
+      "id": "prod_106",
+      "name": "Fuse 20\" Hardshell Cabin",
+      "category": "Cabin Luggage",
+      "price": 6499,
+      "original_price": 9500,
+      "colors": [
+        "Ocean Blue",
+        "Graphite Grey",
+        "Coral Red"
+      ],
+      "sizes": [
+        "Small (20-inch)"
+      ],
+      "features": [
+        "Scratch-resistant hardshell",
+        "Dual front pockets",
+        "Silent spinner wheels"
+      ],
+      "image_url": "/assets/Category/Travelling%20Bag.png",
+      "badge": "New",
+      "rating": 4.7,
+      "reviews": 64,
+      "stock": 30,
+      "description": "A sleek and sturdy cabin bag with modern styling. Built for frequent flyers.",
+      "weight": "2.6 kg",
+      "material": "ABS",
+      "lock_type": "TSA Combination Lock",
+      "featured": true,
+      "created_at": "2024-04-10T00:00:00Z"
+    },
+    {
+      "id": "prod_107",
+      "name": "Element Lite Cabin 22\"",
+      "category": "Cabin Luggage",
+      "price": 4799,
+      "original_price": 6999,
+      "colors": [
+        "Jade Green",
+        "Midnight Black"
+      ],
+      "sizes": [
+        "Small (22-inch)"
+      ],
+      "features": [
+        "Ultra-lightweight at 2.2kg",
+        "TSA lock",
+        "Expandable zip"
+      ],
+      "image_url": "/assets/Category/Travelling%20Bag.png",
+      "badge": "Bestseller",
+      "rating": 4.9,
+      "reviews": 193,
+      "stock": 60,
+      "description": "The lightest cabin bag in our lineup without compromising on durability.",
+      "weight": "2.2 kg",
+      "material": "Polycarbonate",
+      "lock_type": "TSA Combination Lock",
+      "featured": false,
+      "created_at": "2024-02-20T00:00:00Z"
+    },
+    {
+      "id": "prod_104",
+      "name": "Expedition 75cm Check-in",
+      "category": "Check-in Luggage",
+      "price": 8499,
+      "original_price": 12000,
+      "colors": [
+        "Graphite Grey",
+        "Midnight Black"
+      ],
+      "sizes": [
+        "Large (28-inch)"
+      ],
+      "features": [
+        "Scratch-resistant texture",
+        "Expandable +15%",
+        "Interior divider"
+      ],
+      "image_url": "/assets/Category/Travelling%20Bag.png",
+      "badge": "Best Value",
+      "rating": 4.7,
+      "reviews": 92,
+      "stock": 30,
+      "description": "Enough packing space for a 2-week getaway. Expandable with interior divider.",
+      "weight": "4.2 kg",
+      "material": "ABS + Polycarbonate",
+      "lock_type": "TSA Combination Lock",
+      "featured": false,
+      "created_at": "2023-11-20T00:00:00Z"
+    },
+    {
+      "id": "prod_108",
+      "name": "Wanderer 65cm Check-in",
+      "category": "Check-in Luggage",
+      "price": 7499,
+      "original_price": 10500,
+      "colors": [
+        "Rose Gold",
+        "Silver",
+        "Midnight Black"
+      ],
+      "sizes": [
+        "Medium (24-inch)"
+      ],
+      "features": [
+        "Dual-wheel spinners",
+        "Anti-theft zipper",
+        "360° rotation"
+      ],
+      "image_url": "/assets/Category/Travelling%20Bag.png",
+      "badge": "New",
+      "rating": 4.6,
+      "reviews": 47,
+      "stock": 40,
+      "description": "The perfect medium-size check-in for weekend trips and short holidays.",
+      "weight": "3.8 kg",
+      "material": "Polycarbonate",
+      "lock_type": "TSA Combination Lock",
+      "featured": true,
+      "created_at": "2024-05-01T00:00:00Z"
+    },
+    {
+      "id": "prod_109",
+      "name": "Black Diamond XL 80cm",
+      "category": "Check-in Luggage",
+      "price": 12999,
+      "original_price": 18000,
+      "colors": [
+        "Ocean Blue",
+        "Charcoal"
+      ],
+      "sizes": [
+        "X-Large (30-inch)"
+      ],
+      "features": [
+        "Extra large capacity",
+        "Compression straps",
+        "Lifetime warranty",
+        "Aircraft-grade Polycarbonate"
+      ],
+      "image_url": "https://images.unsplash.com/photo-1581553680321-4fffae59fccd?q=80&w=800&auto=format&fit=crop",
+      "badge": "Limited",
+      "is_premium": true,
+      "rating": 4.9,
+      "reviews": 81,
+      "stock": 5,
+      "description": "The ultimate expression of travel luxury. The Black Diamond series uses aerospace materials for a weightless experience.",
+      "weight": "4.6 kg",
+      "material": "Titanium-Polycarbonate",
+      "lock_type": "TSA Combination Lock",
+      "featured": true,
+      "created_at": "2024-03-15T00:00:00Z"
+    },
+    {
+      "id": "prod_105",
+      "name": "The Dynasty 3-Piece Set",
+      "category": "Luggage Sets",
+      "price": 24999,
+      "original_price": 35000,
+      "colors": [
+        "Ocean Blue",
+        "Silver",
+        "Rose Gold"
+      ],
+      "sizes": [
+        "Set of 3 (20, 24, 28 inch)"
+      ],
+      "features": [
+        "Nested storage",
+        "Matching design",
+        "TSA locks on all",
+        "Hand-stitched leather handles"
+      ],
+      "image_url": "https://images.unsplash.com/photo-1565026073747-4835608da998?q=80&w=800&auto=format&fit=crop",
+      "badge": "Exclusive",
+      "is_premium": true,
+      "rating": 5.0,
+      "reviews": 115,
+      "stock": 3,
+      "description": "Our flagship set for the modern dynasty. Includes three perfectly engineered pieces for every travel need.",
+      "weight": "10.5 kg total",
+      "material": "Polycarbonate & Leather",
+      "lock_type": "TSA Combination Lock",
+      "featured": true,
+      "created_at": "2024-01-05T00:00:00Z"
+    },
+    {
+      "id": "prod_110",
+      "name": "Duo Traveller Set (2-Piece)",
+      "category": "Luggage Sets",
+      "price": 13999,
+      "original_price": 19000,
+      "colors": [
+        "Midnight Black",
+        "Graphite Grey"
+      ],
+      "sizes": [
+        "Set of 2 (20, 24 inch)"
+      ],
+      "features": [
+        "Matching design",
+        "Silent spinner wheels",
+        "TSA locks"
+      ],
+      "image_url": "/assets/Category/Travelling%20Bag.png",
+      "badge": "Sale",
+      "rating": 4.7,
+      "reviews": 66,
+      "stock": 18,
+      "description": "Two perfectly matched bags for couples and light travellers.",
+      "weight": "7.2 kg total",
+      "material": "ABS + Polycarbonate",
+      "lock_type": "TSA Combination Lock",
+      "featured": false,
+      "created_at": "2024-02-14T00:00:00Z"
+    },
+    {
+      "id": "prod_102",
+      "name": "Urban Explorer Backpack 30L",
+      "category": "Backpacks",
+      "price": 3499,
+      "original_price": 4999,
+      "colors": [
+        "Forest Green",
+        "Midnight Black",
+        "Khaki"
+      ],
+      "sizes": [
+        "30L"
+      ],
+      "features": [
+        "Water-resistant canvas",
+        "Padded laptop sleeve",
+        "Ergonomic straps"
+      ],
+      "image_url": "/assets/Category/Backpack.png",
+      "badge": "Bestseller",
+      "rating": 4.9,
+      "reviews": 210,
+      "stock": 120,
+      "description": "The perfect everyday carry for the urban explorer. Fits 15\" laptop.",
+      "weight": "0.9 kg",
+      "material": "Water-resistant canvas",
+      "lock_type": "None",
+      "featured": true,
+      "created_at": "2024-02-10T00:00:00Z"
+    },
+    {
+      "id": "prod_111",
+      "name": "Trek Pro Backpack 45L",
+      "category": "Backpacks",
+      "price": 4999,
+      "original_price": 6999,
+      "colors": [
+        "Army Green",
+        "Charcoal",
+        "Navy Blue"
+      ],
+      "sizes": [
+        "45L"
+      ],
+      "features": [
+        "Raincover included",
+        "Hip belt support",
+        "Multiple compartments"
+      ],
+      "image_url": "/assets/Category/Backpack.png",
+      "badge": "New",
+      "rating": 4.8,
+      "reviews": 88,
+      "stock": 75,
+      "description": "Made for weekend hikes and backpacking adventures. Durable & feature-packed.",
+      "weight": "1.4 kg",
+      "material": "Nylon 600D",
+      "lock_type": "None",
+      "featured": true,
+      "created_at": "2024-05-10T00:00:00Z"
+    },
+    {
+      "id": "prod_112",
+      "name": "Slim Laptop Daypack 20L",
+      "category": "Backpacks",
+      "price": 2499,
+      "original_price": 3499,
+      "colors": [
+        "Midnight Black",
+        "Slate Grey"
+      ],
+      "sizes": [
+        "20L"
+      ],
+      "features": [
+        "Slim profile",
+        "Padded laptop sleeve",
+        "USB charging port"
+      ],
+      "image_url": "/assets/Category/Backpack.png",
+      "badge": "Sale",
+      "rating": 4.6,
+      "reviews": 142,
+      "stock": 200,
+      "description": "A slim, stylish daypack perfect for office commutes and short trips.",
+      "weight": "0.6 kg",
+      "material": "Polyester",
+      "lock_type": "None",
+      "featured": false,
+      "created_at": "2024-01-20T00:00:00Z"
+    },
+    {
+      "id": "prod_103",
+      "name": "Priority Travel Kit (6-Piece)",
+      "category": "Accessories",
+      "price": 1499,
+      "original_price": 2099,
+      "colors": [
+        "Navy Blue",
+        "Graphite Grey"
+      ],
+      "sizes": [
+        "Standard"
+      ],
+      "features": [
+        "TSA-friendly locks",
+        "Luggage tag included",
+        "Packing cubes"
+      ],
+      "image_url": "/assets/Category/Accessories.png",
+      "badge": "New",
+      "rating": 4.5,
+      "reviews": 85,
+      "stock": 200,
+      "description": "A must-have set of travel accessories to keep you organised and secure.",
+      "weight": "0.5 kg",
+      "material": "Mixed",
+      "lock_type": "Various",
+      "featured": true,
+      "created_at": "2024-03-01T00:00:00Z"
+    },
+    {
+      "id": "prod_113",
+      "name": "TSA Steel Combination Lock",
+      "category": "Accessories",
+      "price": 499,
+      "original_price": 799,
+      "colors": [
+        "Silver",
+        "Black",
+        "Gold"
+      ],
+      "sizes": [
+        "Standard"
+      ],
+      "features": [
+        "TSA approved",
+        "4-digit code",
+        "Stainless steel body"
+      ],
+      "image_url": "/assets/Category/Accessories.png",
+      "badge": "Bestseller",
+      "rating": 4.7,
+      "reviews": 320,
+      "stock": 500,
+      "description": "The most trusted TSA-approved lock. Reset your code anytime.",
+      "weight": "0.08 kg",
+      "material": "Stainless Steel",
+      "lock_type": "TSA",
+      "featured": true,
+      "created_at": "2023-12-01T00:00:00Z"
+    },
+    {
+      "id": "prod_114",
+      "name": "Packing Cubes Set (6-Piece)",
+      "category": "Accessories",
+      "price": 999,
+      "original_price": 1499,
+      "colors": [
+        "Blue",
+        "Grey",
+        "Coral"
+      ],
+      "sizes": [
+        "Mixed (S, M, L, XL)"
+      ],
+      "features": [
+        "Lightweight mesh top",
+        "YKK zippers",
+        "6 sizes included"
+      ],
+      "image_url": "/assets/Category/Accessories.png",
+      "badge": "Sale",
+      "rating": 4.8,
+      "reviews": 175,
+      "stock": 300,
+      "description": "Keep your suitcase neatly organized on every trip with these premium packing cubes.",
+      "weight": "0.3 kg",
+      "material": "Ripstop Nylon",
+      "lock_type": "None",
+      "featured": false,
+      "created_at": "2024-02-28T00:00:00Z"
+    },
+    {
+      "id": "prod_115",
+      "name": "Leather Luggage Tag",
+      "category": "Accessories",
+      "price": 299,
+      "original_price": 499,
+      "colors": [
+        "Tan Brown",
+        "Black",
+        "Navy"
+      ],
+      "sizes": [
+        "Standard"
+      ],
+      "features": [
+        "Genuine leather",
+        "Privacy flap",
+        "Secure loop attachment"
+      ],
+      "image_url": "/assets/Category/Accessories.png",
+      "badge": "New",
+      "rating": 4.6,
+      "reviews": 95,
+      "stock": 400,
+      "description": "Stylish genuine leather luggage tag to identify your bag at baggage claim instantly.",
+      "weight": "0.05 kg",
+      "material": "Genuine Leather",
+      "lock_type": "None",
+      "featured": false,
+      "created_at": "2024-04-15T00:00:00Z"
+    }
+  ]
+}

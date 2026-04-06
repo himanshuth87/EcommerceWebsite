@@ -1,0 +1,65 @@
+.premium-atelier {
+  min-height: 100vh;
+}
+
+.premium-hero {
+  padding: 100px 0;
+  max-width: 800px;
+}
+
+.display-lg {
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 0.9;
+  margin: 40px 0;
+}
+
+.body-md {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.premium-catalog {
+  margin-top: 100px;
+}
+
+.premium-catalog .section-intro {
+  margin-bottom: 60px;
+}
+
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+@media (max-width: 1024px) {
+  .premium-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .premium-grid { grid-template-columns: 1fr; }
+}
+
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-top: 160px;
+}
+
+@media (max-width: 768px) {
+  .manifesto-grid { grid-template-columns: 1fr; }
+}
+
+.manifesto-item {
+  padding: 60px;
+}
+
+.manifesto-item h3 {
+  font-size: 1.8rem;
+  margin: 20px 0 12px;
+}
+
+.premium-skeleton {
+  aspect-ratio: 4/5;
+}

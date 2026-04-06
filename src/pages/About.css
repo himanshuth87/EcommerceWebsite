@@ -1,0 +1,93 @@
+.about-page {
+  padding-top: 120px;
+  background: var(--background);
+  color: var(--on-background);
+}
+
+.about-hero {
+  padding: 80px 0;
+  text-align: center;
+  border-bottom: 1px solid var(--outline-variant);
+  margin-bottom: 80px;
+}
+
+.about-hero h1 {
+  font-family: var(--font-headline);
+  font-size: 3.5rem;
+  letter-spacing: -2px;
+  margin-bottom: 32px;
+}
+
+.about-hero p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  opacity: 0.7;
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 100px;
+}
+
+.policy-card {
+  padding: 48px;
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: 16px;
+  transition: all 0.4s ease;
+}
+
+.policy-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+}
+
+.policy-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.policy-card p {
+  opacity: 0.6;
+  line-height: 1.6;
+}
+
+.content-section {
+  padding-bottom: 100px;
+}
+
+.content-section h2 {
+  font-size: 2rem;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.support-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.support-item {
+  padding: 32px;
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.support-item h4 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.support-item p {
+  opacity: 0.7;
+}
+
+[data-theme='dark'] .policy-card {
+  background: rgba(255, 255, 255, 0.03);
+}

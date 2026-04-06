@@ -1,0 +1,241 @@
+:root {
+  /* Common Variables */
+  --font-headline: 'Noto Serif', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Inter', sans-serif;
+  --transition-standard: 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-fast: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  --radius-none: 0px;
+}
+
+[data-theme='dark'] {
+  --background: #131313;
+  --on-background: #e5e2e1;
+  --on-background-rgb: 229, 226, 225;
+  --surface: #131313;
+  --on-surface: #e5e2e1;
+  --surface-variant: #353534;
+  --on-surface-variant: #ccc6b9;
+  --surface-container: #201f1f;
+  --surface-container-low: #1c1b1b;
+  --surface-container-low-rgb: 28, 27, 27;
+  --surface-container-high: #2a2a2a;
+  --surface-container-highest: #353534;
+  --surface-container-lowest: #0e0e0e;
+  
+  --primary: #eee2ba;
+  --on-primary: #373015;
+  --primary-container: #d1c6a0;
+  --on-primary-container: #5a5234;
+  
+  --secondary: #c8c6c5;
+  --on-secondary: #303030;
+  --secondary-container: #474747;
+  --on-secondary-container: #b6b5b4;
+  
+  --tertiary: #e7def9;
+  --on-tertiary: #332d41;
+  --tertiary-container: #cbc2dc;
+  
+  --outline: #959084;
+  --outline-variant: #4a473d;
+}
+
+[data-theme='light'] {
+  /* We keep it consistent for now, focusing on premium dark mode as per brief */
+  --background: #fdfcf7;
+  --on-background: #131313;
+  --on-background-rgb: 19, 19, 19;
+  --surface: #fdfcf7;
+  --on-surface: #131313;
+  --surface-variant: #eae8e1;
+  --on-surface-variant: #4a473d;
+  --surface-container: #f6f3ed;
+  --surface-container-low: #fcf9f3;
+  --surface-container-low-rgb: 252, 249, 243;
+  --surface-container-high: #f0eee6;
+  --surface-container-highest: #eae8e0;
+  --surface-container-lowest: #ffffff;
+  
+  --primary: #857a5c;
+  --on-primary: #ffffff;
+  --primary-container: #d1c6a0;
+  --on-primary-container: #373015;
+  
+  --secondary: #474747;
+  --on-secondary: #ffffff;
+  --secondary-container: #f3f4f6;
+  --on-secondary-container: #1a1a1a;
+  
+  --tertiary: #6c2e00;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #feefda;
+  
+  --outline: #d1d5db;
+  --outline-variant: #9ca3af;
+}
+
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+html { 
+  scroll-behavior: smooth; 
+  font-size: 16px; 
+  background: var(--background);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--background);
+  color: var(--on-background);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(var(--surface-container-low-rgb), 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--on-background-rgb), 0.05);
+}
+
+/* The "No-Line" Rule - defined through tonal shifts */
+.section-split {
+  background: var(--surface-container-low);
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+button { cursor: pointer; border: none; outline: none; font-family: var(--font-body); transition: var(--transition-fast); }
+input, select, textarea { 
+  outline: none; 
+  font-family: var(--font-body); 
+  border: none;
+  border-bottom: 1px solid var(--outline-variant);
+  background: transparent;
+  padding: 12px 0;
+  color: var(--on-surface);
+  transition: var(--transition-fast);
+}
+input:focus {
+  border-bottom-color: var(--primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--surface-variant); border-radius: 0px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-container); }
+
+/* Utilities */
+.container { max-width: 1600px; margin: 0 auto; padding: 0 80px; }
+@media (max-width: 1024px) { .container { padding: 0 40px; } }
+@media (max-width: 768px) { .container { padding: 0 20px; } }
+
+.section-pad { padding: 160px 0; }
+@media (max-width: 768px) { .section-pad { padding: 80px 0; } }
+
+/* Typography Refinement */
+.editorial-header {
+  font-family: var(--font-headline);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 40px;
+  border-radius: var(--radius-none);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: var(--transition-standard);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+.btn-primary:hover {
+  background: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary-container);
+  border: 1px solid var(--outline-variant);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary-container);
+  color: var(--primary);
+  background: rgba(var(--on-background-rgb), 0.03);
+}
+
+/* Card base */
+.card {
+  background: var(--surface-container-low);
+  border-radius: var(--radius-none);
+  overflow: hidden;
+  transition: var(--transition-standard);
+  position: relative;
+}
+
+.card:hover {
+  background: var(--surface-container-high);
+  transform: translateY(-8px);
+}
+
+/* Premium Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.5s var(--transition-standard), transform 1.5s var(--transition-standard);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-container-low) 25%, var(--surface-container-high) 50%, var(--surface-container-low) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
