@@ -43,15 +43,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 1 }}
-          >
-            <Link to="/products" className="btn btn-primary">Discover the Collection</Link>
-          </motion.div>
-        </motion.div>
+        />
         <div className="hero-visual">
           <img src="/assets/Creatives/hero-main.jpg" alt="Luxury Travel" className="hero-img" />
           <div className="hero-overlay" />
