@@ -14,6 +14,8 @@ import Account from './pages/Account'
 import Premium from './pages/Premium'
 import Admin from './pages/Admin'
 import About from './pages/About'
+import BotDashboard from './pages/BotDashboard'
+
 import { useEffect } from 'react'
 import './styles/globals.css'
 
@@ -45,7 +47,9 @@ function AppRoutes() {
         <Route path="/account" element={<Account />} />
         <Route path="/premium" element={<Premium />} />
         <Route path="/about" element={<About />} />
+        <Route path="/bot-dashboard" element={<BotDashboard />} />
         <Route path="/admin/*" element={<Admin />} />
+
       </Routes>
       {!isAdmin && <Footer />}
     </>

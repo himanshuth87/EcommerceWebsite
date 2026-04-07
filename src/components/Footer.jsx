@@ -15,7 +15,6 @@ export default function Footer() {
             </Link>
             <p className="footer-tagline">
               The Art of Global Odyssey. <br />
-              Precision-engineered for those who move.
             </p>
             <div className="footer-socials">
               {['facebook', 'instagram', 'youtube', 'x-twitter'].map(social => (
@@ -56,15 +55,11 @@ export default function Footer() {
             <div className="trust-item">
               <span className="material-symbols-outlined">local_shipping</span>
               <div>
-                <h5>Priority Global Shipping</h5>
-                <p>Complimentary on orders above ₹10,000</p>
               </div>
             </div>
             <div className="trust-item">
               <span className="material-symbols-outlined">verified_user</span>
               <div>
-                <h5>International Warranty</h5>
-                <p>Protected for decades of travel</p>
               </div>
             </div>
           </div>

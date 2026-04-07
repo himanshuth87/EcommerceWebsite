@@ -19,6 +19,8 @@ const multer = require('multer');
 const catalogRoutes = require('./server-src/modules/catalog/catalog.routes');
 const authV1Routes  = require('./server-src/modules/auth/auth.routes');
 const orderV1Routes = require('./server-src/modules/orders/orders.routes');
+const whatsappV1Routes = require('./server-src/modules/whatsapp/whatsapp.routes');
+
 
 const app = express();
 
@@ -49,6 +51,8 @@ app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
 app.use('/api/v1/catalog', catalogRoutes);
 app.use('/api/v1/user',    authV1Routes);
 app.use('/api/v1/orders',  orderV1Routes);
+app.use('/api/v1/whatsapp', whatsappV1Routes);
+
 
 // ── Razorpay ───────────────────────────────────────────
 const razorpay = new Razorpay({
