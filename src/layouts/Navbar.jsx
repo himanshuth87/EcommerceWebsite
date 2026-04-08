@@ -12,7 +12,6 @@ export default function Navbar() {
   const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [panelOpen, setPanelOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -20,20 +19,20 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleSearch = (e) => {
-    if (e.key === 'Enter' && searchQuery.trim()) {
-      navigate(`/products?q=${encodeURIComponent(searchQuery)}`)
-      setSearchQuery('')
-    }
-  }
+  const navLinks = [
+    { name: 'Luggage', path: '/products?cat=Luggage', icon: 'keyboard_arrow_down' },
+    { name: 'Backpacks', path: '/products?cat=Backpack' },
+    { name: 'Duffle', path: '/products?sub=Duffle' },
+    { name: 'Accessories', path: '/products?cat=Accessories' }
+  ]
 
   return (
     <>
       <motion.header 
         className={`navbar-atelier ${scrolled ? 'scrolled' : ''}`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
+        initial={{ y: -60, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
       >
         <div className="container navbar-inner">
           <div className="nav-left">
@@ -44,36 +43,40 @@ export default function Navbar() {
           
           <nav className="nav-center">
             <ul className="nav-list">
-              <li><Link to="/products" className={`nav-item ${location.pathname === '/products' ? 'active' : ''}`}>Collection</Link></li>
-              <li><Link to="/premium" className={`nav-item premium-gold ${location.pathname === '/premium' ? 'active' : ''}`}>Signature</Link></li>
-              <li><Link to="/about" className={`nav-item ${location.pathname === '/about' ? 'active' : ''}`}>Legacy</Link></li>
+              {navLinks.map(link => (
+                <li key={link.name}>
+                  <Link 
+                    to={link.path} 
+                    className={`nav-item ${location.search.includes(link.name) ? 'active' : ''}`}
+                  >
+                    {link.name} {link.icon && <span className="material-symbols-outlined">{link.icon}</span>}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
           <div className="nav-right">
-            <div className="search-box desktop-only">
-              <span className="material-symbols-outlined">search</span>
-              <input 
-                type="text" 
-                placeholder="SEARCH" 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleSearch}
-              />
+            <div className="nav-icon-group">
+              <button className="icon-btn desktop-only" onClick={() => navigate('/products')}>
+                <span className="material-symbols-outlined">search</span>
+              </button>
+              <button className="icon-btn desktop-only" onClick={() => navigate('/about')}>
+                <span className="material-symbols-outlined">location_on</span>
+              </button>
+              <Link to="/account" className="icon-btn">
+                <span className="material-symbols-outlined">account_circle</span>
+              </Link>
+              <div className="cart-btn-vessel">
+                <button className="icon-btn" onClick={() => setIsOpen(true)}>
+                  <span className="material-symbols-outlined">shopping_cart</span>
+                  {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
+                </button>
+              </div>
+              <button className="icon-btn mobile-only" onClick={() => setPanelOpen(true)}>
+                <span className="material-symbols-outlined">menu</span>
+              </button>
             </div>
-            
-            <button className="icon-btn" onClick={() => setIsOpen(true)}>
-              <span className="material-symbols-outlined">shopping_bag</span>
-              {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
-            </button>
-
-            <button className="icon-btn mobile-only" onClick={() => setPanelOpen(true)}>
-              <span className="material-symbols-outlined">menu_open</span>
-            </button>
-            
-            <Link to="/account" className="icon-btn desktop-only">
-              <span className="material-symbols-outlined">account_circle</span>
-            </Link>
           </div>
         </div>
       </motion.header>
@@ -95,22 +98,23 @@ export default function Navbar() {
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
               onClick={e => e.stopPropagation()}
             >
-              <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '60px' }}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '40px' }}>
                 <button className="icon-btn" onClick={() => setPanelOpen(false)}>
                   <span className="material-symbols-outlined" style={{ fontSize: '2rem' }}>close</span>
                 </button>
               </div>
               <div className="panel-links">
-                <Link to="/products" className="panel-link" onClick={() => setPanelOpen(false)}>Collection</Link>
-                <Link to="/premium" className="panel-link" onClick={() => setPanelOpen(false)}>Signature Line</Link>
-                <Link to="/account" className="panel-link" onClick={() => setPanelOpen(false)}>Account</Link>
+                {navLinks.map(l => (
+                  <Link key={l.name} to={l.path} className="panel-link" onClick={() => setPanelOpen(false)}>{l.name}</Link>
+                ))}
+                <Link to="/account" className="panel-link" onClick={() => setPanelOpen(false)}>My Account</Link>
                 {user?.role === 'admin' && (
-                   <Link to="/admin" className="panel-link admin-link" onClick={() => setPanelOpen(false)}>Control Center</Link>
+                   <Link to="/admin" className="panel-link admin-link" onClick={() => setPanelOpen(false)}>Admin Panel</Link>
                 )}
                 {user ? (
-                   <button onClick={() => { logout(); setPanelOpen(false); navigate('/') }} className="panel-link">Sign Out</button>
+                   <button onClick={() => { logout(); setPanelOpen(false); navigate('/') }} className="panel-link">Logout</button>
                 ) : (
-                   <Link to="/login" className="panel-link" onClick={() => setPanelOpen(false)}>Identify</Link>
+                   <Link to="/login" className="panel-link" onClick={() => setPanelOpen(false)}>Login / Register</Link>
                 )}
               </div>
             </motion.div>
