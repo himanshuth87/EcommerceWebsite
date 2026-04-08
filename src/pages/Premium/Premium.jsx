@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import ProductCard from '../components/ProductCard'
-import { apiFetch } from '../hooks/useApi'
+import ProductCard from '../../components/common/ProductCard'
+import { apiFetch } from '../../hooks/useApi'
 import './Premium.css'
 
 export default function Premium() {
