@@ -1,0 +1,158 @@
+/* Digital Atelier Login System */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #090909;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-bg-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  filter: grayscale(1) contrast(1.2);
+}
+
+.login-card-atelier {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 480px;
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(40px) saturate(1.8);
+  padding: 80px 60px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.login-header h1 {
+  font-family: 'Noto Serif', serif;
+  font-size: 2.5rem;
+  letter-spacing: -0.05em;
+  margin-bottom: 12px;
+  color: #fff;
+  font-weight: 400;
+}
+
+.login-header p {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #d4af37;
+}
+
+.form-group-atelier {
+  margin-bottom: 32px;
+}
+
+.form-group-atelier label {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.form-group-atelier input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 0;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  font-size: 0.95rem;
+}
+
+.form-group-atelier input:focus {
+  border-bottom-color: #d4af37;
+  padding-left: 8px;
+}
+
+.login-error {
+  font-size: 0.75rem;
+  color: #ff5252;
+  margin-top: -16px;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+}
+
+.btn-login-gold {
+  width: 100%;
+  background: #d4af37;
+  color: #000;
+  border: none;
+  padding: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.75rem;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-login-gold:hover {
+  background: #f2ca50;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+}
+
+.btn-login-gold:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-toggle-text {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.8rem;
+  color: #555;
+  letter-spacing: 0.05em;
+}
+
+.login-toggle-text span {
+  color: #d4af37;
+  cursor: pointer;
+  margin-left: 8px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.login-toggle-text span:hover {
+  color: #fff;
+}
+
+.login-back-home {
+  display: block;
+  text-align: center;
+  margin-top: 32px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #444;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.login-back-home:hover {
+  color: #888;
+}

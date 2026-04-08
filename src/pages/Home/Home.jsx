@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { apiFetch, formatCurrency } from '../hooks/useApi'
+import { apiFetch, formatCurrency } from '../../hooks/useApi'
 import './Home.css'
 
 export default function Home() {

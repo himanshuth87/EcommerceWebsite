@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { useCart } from '../context/CartContext'
-import { apiFetch, formatCurrency, calcDiscount, COLOR_MAP, getBadgeClass } from '../hooks/useApi'
-import ProductCard from '../components/ProductCard'
+import { useCart } from '../../context/CartContext'
+import { apiFetch, formatCurrency, calcDiscount, COLOR_MAP, getBadgeClass } from '../../hooks/useApi'
+import ProductCard from '../../components/common/ProductCard'
 import './ProductDetail.css'
 
 export default function ProductDetail() {

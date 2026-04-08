@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { useCart } from '../context/CartContext'
-import { formatCurrency, calcDiscount } from '../hooks/useApi'
+import { useCart } from '../../context/CartContext'
+import { formatCurrency, calcDiscount } from '../../hooks/useApi'
 import './ProductCard.css'
 
 export default function ProductCard({ product }) {

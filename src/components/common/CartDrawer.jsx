@@ -1,6 +1,6 @@
-import { useCart } from '../context/CartContext'
+import { useCart } from '../../context/CartContext'
 import { useNavigate } from 'react-router-dom'
-import { formatCurrency } from '../hooks/useApi'
+import { formatCurrency } from '../../hooks/useApi'
 import './CartDrawer.css'
 
 export default function CartDrawer() {
