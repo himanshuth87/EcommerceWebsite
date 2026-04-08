@@ -22,7 +22,8 @@ export default function Navbar() {
     { name: 'Luggage', path: '/products?cat=Luggage' },
     { name: 'Backpacks', path: '/products?cat=Backpack' },
     { name: 'Duffle', path: '/products?sub=Duffle' },
-    { name: 'Accessories', path: '/products?cat=Accessories' }
+    { name: 'Accessories', path: '/products?cat=Accessories' },
+    { name: 'Premium', path: '/premium' }
   ]
 
   return (

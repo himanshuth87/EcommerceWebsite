@@ -30,23 +30,32 @@ export default function Premium() {
   return (
     <main className="premium-atelier section-pad" data-theme="dark">
       <div className="container">
-        {/* Cinematic Hero */}
-        <section className="premium-hero">
-          <motion.div 
-            className="premium-hero-content"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-          >
-            <span className="label-sm gold-gradient-text editorial-header">The Signature Line</span>
-            <h1 className="editorial-header display-lg">
-              Precision <br /> <span className="gold-gradient-text">Manifesto</span>
-            </h1>
-            <p className="body-md opacity-70">
-              Each piece in the Signature Line is a masterclass in industrial design. Crafted with titanium-infused polycarbonate and serialized for authenticity. For the voyager who demands the absolute summit of performance.
-            </p>
-          </motion.div>
-        </section>
+      <div className="premium-hero-container">
+        {/* Cinematic Hero Background */}
+        <div className="premium-visual">
+          <img src="/assets/Creatives/editorial-5.jpg" alt="Premium Craftsmanship" className="premium-hero-img" />
+          <div className="premium-overlay" />
+        </div>
+
+        <div className="container">
+          <section className="premium-hero">
+            <motion.div 
+              className="premium-hero-content"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
+            >
+              <span className="label-sm gold-gradient-text editorial-header" style={{ letterSpacing: '8px' }}>THE SIGNATURE ARCHIVE</span>
+              <h1 className="editorial-header display-lg">
+                Precision <br /> <span className="gold-gradient-text">Manifesto</span>
+              </h1>
+              <p className="body-md opacity-70" style={{ maxWidth: '600px', margin: '20px 0 40px' }}>
+                Each piece in the Signature Line is a masterclass in industrial design. Crafted with titanium-infused polycarbonate and serialized for authenticity. For the voyager who demands the absolute summit of performance.
+              </p>
+            </motion.div>
+          </section>
+        </div>
+      </div>
 
         {/* Exclusive Archives */}
         <section className="premium-catalog">
