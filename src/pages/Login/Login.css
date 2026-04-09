@@ -156,3 +156,15 @@
 .login-back-home:hover {
   color: #888;
 }
+
+@media (max-width: 600px) {
+  .login-card-atelier {
+    padding: 48px 28px;
+    margin: 16px;
+    max-width: 100%;
+  }
+  .login-header { margin-bottom: 36px; }
+  .login-header h1 { font-size: 1.8rem; }
+  .form-group-atelier { margin-bottom: 24px; }
+  .btn-login-gold { padding: 18px; }
+}

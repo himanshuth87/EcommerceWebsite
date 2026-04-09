@@ -151,8 +151,16 @@
 .pd-not-found h2 { font-family: var(--font-display); font-size: 2rem; color: var(--white); margin-bottom: 24px; }
 
 @media (max-width: 768px) {
-  .pd-main-grid { grid-template-columns: 1fr; gap: 40px; }
-  .products-grid-related { grid-template-columns: repeat(2, 1fr); }
+  .pd-page { padding-top: 80px; }
+  .pd-main-grid { grid-template-columns: 1fr; gap: 32px; }
+  .pd-loading { grid-template-columns: 1fr; padding-top: 90px; }
+  .products-grid-related { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .pd-add-row { flex-wrap: wrap; }
   .pd-add-btn { flex: none; width: 100%; }
+  .pd-tab-btn { padding: 12px 14px; font-size: 0.82rem; }
+}
+
+@media (max-width: 480px) {
+  .products-grid-related { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .pd-price { font-size: 1.6rem; }
 }

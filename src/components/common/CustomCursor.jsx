@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './CustomCursor.css';
 
 const CustomCursor = () => {
+  // Don't run on touch devices — saves event listener overhead on phones
+  const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
   useEffect(() => {
+    if (isTouch) return;
     const moveCursor = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
@@ -41,13 +44,15 @@ const CustomCursor = () => {
     };
   }, []);
 
+  if (isTouch) return null;
+
   return (
     <>
-      <div 
+      <div
         className={`cursor-dot ${isHovering ? 'hover' : ''} ${isClicking ? 'clicking' : ''}`}
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
       />
-      <div 
+      <div
         className={`cursor-outline ${isHovering ? 'hover' : ''} ${isClicking ? 'clicking' : ''}`}
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
       />

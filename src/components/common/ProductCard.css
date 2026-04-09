@@ -137,3 +137,24 @@
 .color-hint {
   opacity: 0.4;
 }
+
+/* On touch devices: always show quick-add (no hover available) */
+@media (hover: none) {
+  .media-overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+    align-items: flex-end;
+    padding-bottom: 12px;
+  }
+  .quick-add {
+    transform: translateY(0);
+    padding: 10px 20px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-media { padding: 20px; }
+  .title-row h3 { font-size: 0.82rem; }
+  .current-price { font-size: 1rem; }
+}

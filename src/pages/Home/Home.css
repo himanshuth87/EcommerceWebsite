@@ -275,7 +275,7 @@
 
 /* Editorial Banner */
 .editorial-banner {
-  padding: 160px 40px;
+  padding: 100px 40px;
 }
 
 .banner-vessel {
@@ -295,12 +295,45 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 80px;
+  padding: 48px;
   text-align: center;
-  min-width: 600px;
+  width: 90%;
+  max-width: 600px;
+  min-width: unset;
 }
 
 .thumb-skeleton {
   aspect-ratio: 1/1.2;
+}
+
+/* ── Mobile overrides ──────────────────────────── */
+@media (max-width: 768px) {
+  .hero-actions { flex-direction: column; align-items: center; gap: 12px; }
+  .hero-actions .btn { width: 100%; max-width: 280px; text-align: center; }
+
+  .narrative-grid { grid-template-columns: 1fr; gap: 40px; }
+  .narrative-text h2 { font-size: 2rem; }
+  .narrative-text p { font-size: 1rem; }
+
+  .showcase-grid-layout { grid-template-columns: 1fr; gap: 32px; }
+
+  .thumb-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .thumb-vessel { padding: 16px; }
+
+  .craft-layout { grid-template-columns: 1fr; gap: 40px; }
+  .craft-accent { position: static; padding: 20px; max-width: 100%; margin-top: 16px; }
+
+  .editorial-banner { padding: 60px 20px; }
+  .banner-vessel { height: 400px; }
+  .banner-overlay { padding: 28px 20px; width: 92%; }
+
+  .feature-content { bottom: 20px; left: 20px; }
+  .feature-content h3 { font-size: 1.4rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-headline { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+  .narrative-text h2 { font-size: 1.6rem; }
+  .banner-vessel { height: 300px; }
 }
 
