@@ -15,12 +15,21 @@ export default function Login() {
 
   const onChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
+  const validate = () => {
+    if (mode === 'register' && !form.name.trim()) return 'Full name is required'
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return 'Valid email address is required'
+    if (!form.password || form.password.length < 6) return 'Password must be at least 6 characters'
+    return null
+  }
+
   const handleSubmit = async e => {
     e.preventDefault()
+    const validationError = validate()
+    if (validationError) { setError(validationError); return }
     setError('')
     setLoading(true)
     try {
-      const endpoint = mode === 'login' ? '/api/login' : '/api/register'
+      const endpoint = mode === 'login' ? '/api/v1/user/login' : '/api/v1/user/register'
       const data = await apiFetch(endpoint, {
         method: 'POST',
         body: JSON.stringify(form),

@@ -18,37 +18,66 @@ export default function Checkout() {
 
   const onChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
+  const validateStep1 = () => {
+    if (!form.name.trim()) return 'Full name is required'
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return 'Valid email is required'
+    if (!form.phone.trim() || !/^[6-9]\d{9}$/.test(form.phone.replace(/\s/g, ''))) return 'Valid 10-digit Indian phone number is required'
+    if (!form.address.trim()) return 'Address is required'
+    if (!form.city.trim()) return 'City is required'
+    if (!form.pincode.trim() || !/^\d{6}$/.test(form.pincode)) return 'Valid 6-digit pincode is required'
+    if (!form.state.trim()) return 'State is required'
+    return null
+  }
+
+  const handleStep1Continue = () => {
+    const err = validateStep1()
+    if (err) { setError(err); return }
+    setError('')
+    setStep(2)
+  }
+
   const handleOrder = async () => {
     if (payMethod === 'cod') {
       return handleCodOrder()
     }
-    
+
     setLoading(true)
     setError('')
     try {
-      const orderData = await apiFetch('/api/create-order', {
+      const orderData = await apiFetch('/api/v1/orders/create', {
         method: 'POST',
         body: JSON.stringify({ amount: total, customerName: form.name, email: form.email, phone: form.phone }),
       })
 
       const options = {
-        key: 'rzp_test_placeholder', // Should be in .env
-        amount: orderData.amount,
-        currency: orderData.currency,
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: orderData.order.amount,
+        currency: orderData.order.currency,
         name: "Priority Bags",
         description: "The Digital Atelier Checkout",
-        order_id: orderData.id,
+        order_id: orderData.order.id,
         handler: async function (response) {
-          // In real world, verify payment on server here
-          clearCart()
-          setSuccess(true)
+          try {
+            await apiFetch('/api/v1/orders/verify', {
+              method: 'POST',
+              body: JSON.stringify({
+                order_id: response.razorpay_order_id,
+                payment_id: response.razorpay_payment_id,
+                signature: response.razorpay_signature,
+              }),
+            })
+            clearCart()
+            setSuccess(true)
+          } catch {
+            setError('Payment verification failed. Please contact support.')
+          }
         },
         prefill: { name: form.name, email: form.email, contact: form.phone },
         theme: { color: "#c9a84c" }
-      };
-      
-      const rzp = new window.Razorpay(options);
-      rzp.open();
+      }
+
+      const rzp = new window.Razorpay(options)
+      rzp.open()
     } catch (err) {
       setError('Payment initiation failed. Please try again.')
     } finally {
@@ -153,9 +182,8 @@ export default function Checkout() {
                       <input name="state" value={form.state} onChange={onChange} placeholder="Maharashtra" />
                     </div>
                   </div>
-                  <button className="btn btn-gold btn-lg btn-full"
-                    disabled={!form.name || !form.email || !form.phone || !form.address}
-                    onClick={() => setStep(2)}>
+                  {error && <div className="checkout-error">{error}</div>}
+                  <button className="btn btn-gold btn-lg btn-full" onClick={handleStep1Continue}>
                     Continue to Review →
                   </button>
                 </div>

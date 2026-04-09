@@ -5,6 +5,7 @@ import { ThemeProvider } from './context/ThemeContext'
 import Navbar from './layouts/Navbar'
 import Footer from './layouts/Footer'
 import CartDrawer from './components/common/CartDrawer'
+import { ProtectedRoute, AdminRoute } from './components/common/ProtectedRoute'
 import Home from './pages/Home/Home'
 import Products from './pages/Products/Products'
 import ProductDetail from './pages/ProductDetail/ProductDetail'
@@ -42,14 +43,13 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetail />} />
-        <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/premium" element={<Premium />} />
         <Route path="/about" element={<About />} />
-        <Route path="/bot-dashboard" element={<BotDashboard />} />
-        <Route path="/admin/*" element={<Admin />} />
-
+        <Route path="/premium" element={<Premium />} />
+        <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+        <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+        <Route path="/bot-dashboard" element={<ProtectedRoute><BotDashboard /></ProtectedRoute>} />
+        <Route path="/admin/*" element={<AdminRoute><Admin /></AdminRoute>} />
       </Routes>
       {!isAdmin && <Footer />}
     </>

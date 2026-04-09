@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const crypto = require('crypto');
 const { query } = require('../../config/db');
 const { auth, adminOnly } = require('../../middleware/auth');
 const Razorpay = require('razorpay');
@@ -43,12 +44,25 @@ router.post('/create', auth, async (req, res) => {
 router.post('/verify', auth, async (req, res) => {
     try {
         const { order_id, payment_id, signature } = req.body;
-        // Verify signature implementation (omitted for brevity, requires crypto check)
-        
+        if (!order_id || !payment_id || !signature) {
+            return res.status(400).json({ error: 'Missing payment details' });
+        }
+
+        // Verify HMAC SHA256 signature from Razorpay
+        const expectedSignature = crypto
+            .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+            .update(`${order_id}|${payment_id}`)
+            .digest('hex');
+
+        if (expectedSignature !== signature) {
+            return res.status(400).json({ error: 'Payment verification failed: invalid signature' });
+        }
+
         await query('UPDATE orders SET status = ?, payment_id = ? WHERE order_id = ?', ['paid', payment_id, order_id]);
-        
+
         res.json({ success: true, message: 'Payment successfully verified!' });
     } catch (err) {
+        console.error('Verify Error:', err);
         res.status(500).json({ error: 'Verification failed' });
     }
 });
