@@ -28,6 +28,7 @@ const CATEGORIES = [
 export default function Home() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState('COLLEGE BACKPACKS')
 
   useEffect(() => {
     setLoading(true)
@@ -35,6 +36,13 @@ export default function Home() {
       .then(d => { setProducts(d.data || []); setLoading(false) })
       .catch(() => setLoading(false))
   }, [])
+
+  const TABS = [
+    'COLLEGE BACKPACKS', 
+    'SCHOOL BACKPACKS', 
+    'LAPTOP BACKPACKS', 
+    'TREKKING BACKPACKS'
+  ]
 
   const featured = products.slice(0, 4)
   const trending = products.slice(4, 8)
@@ -74,31 +82,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── JOURNEY BANNER ── */}
-      <section className="campus-banner-wrap">
+      {/* ── NEW ARRIVAL SECTION (IMAGE REFERENCE) ── */}
+      <section className="new-arrival-editorial">
         <div className="container">
-          <motion.div
-            className="campus-banner"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-          >
-            <div className="banner-text">
-              <span className="banner-eyebrow">HOLIDAY SEASON</span>
-              <h2>Ready for<br />your Journey</h2>
-              <p>Up to 40% off on travel-ready packs. Fly light, stay loud.</p>
-              <Link to="/products" className="btn-pill btn-pill-dark">Shop the sale →</Link>
+          {/* Tabs */}
+          <nav className="category-tabs">
+            {TABS.map(tab => (
+              <button
+                key={tab}
+                className={`tab-btn ${activeTab === tab ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </nav>
+
+          <div className="editorial-grid">
+            {/* Left Column: Mustard Banner */}
+            <div className="editorial-banner">
+              <div className="banner-mustard">
+                <img src="/assets/Creatives/editorial-1.jpg" alt="Trendy College" />
+                <div className="banner-overlay">
+                  <h2 className="banner-tag">TRENDY COLLEGE<br /><span>BACKPACKS</span></h2>
+                </div>
+              </div>
             </div>
-            <div className="banner-visual">
-              <img
-                src="https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?q=80&w=1200&auto=format&fit=crop"
-                alt="Travel backpack"
-              />
+
+            {/* Right Column: 3 products */}
+            <div className="editorial-products">
+              <div className="grid-3">
+                {products.slice(0, 3).map(p => (
+                  <ArrivalProductCard key={p.id} product={p} />
+                ))}
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
+
 
       {/* ── FEATURED PRODUCTS ── */}
       <section className="campus-products">
@@ -138,6 +160,30 @@ export default function Home() {
         </section>
       )}
     </main>
+  )
+}
+
+function ArrivalProductCard({ product }) {
+  return (
+    <div className="arrival-product-card">
+      <div className="card-image-wrap">
+        <img src={product.image_url} alt={product.name} />
+        <span className="badge-new">NEW</span>
+      </div>
+      <div className="card-info">
+        <h3 className="card-title">{product.name}</h3>
+        <div className="card-rating">
+          <span className="stars">★★★★★</span>
+          <span className="reviews">10 reviews</span>
+        </div>
+        <div className="card-pricing">
+          <span className="price-curr">₹ {product.price}.00</span>
+          <span className="price-old">₹ {product.price * 1.5}.00</span>
+          <span className="price-off">50% off</span>
+        </div>
+        <button className="btn-move-cart">+ MOVE TO CART</button>
+      </div>
+    </div>
   )
 }
 
