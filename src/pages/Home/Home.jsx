@@ -112,11 +112,12 @@ export default function Home() {
             {/* Right Column: 3 products */}
             <div className="editorial-products">
               <div className="grid-3">
-                {products.slice(0, 3).map(p => (
-                  <ArrivalProductCard key={p.id} product={p} />
-                ))}
+                {(loading || products.length === 0)
+                  ? [...Array(3)].map((_, i) => <div key={i} className="skeleton arrival-skeleton" />)
+                  : products.slice(0, 3).map(p => <ArrivalProductCard key={p.id} product={p} />)}
               </div>
             </div>
+
           </div>
         </div>
       </section>

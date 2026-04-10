@@ -282,7 +282,21 @@
 .product-meta h4 { font-size: 1rem; margin-bottom: 5px; }
 .product-meta p { font-weight: 800; color: var(--purple); }
 
+.arrival-skeleton {
+  aspect-ratio: 1/1.5;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 @media (max-width: 1024px) {
+
   .editorial-grid { grid-template-columns: 1fr; }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
