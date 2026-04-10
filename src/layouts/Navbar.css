@@ -137,6 +137,140 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+/* Caret + dropdown */
+.nav-li { position: relative; }
+.nav-item .caret {
+  font-size: 0.7rem;
+  margin-left: 4px;
+  opacity: 0.7;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+  background: #5b3eed;
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  z-index: 1100;
+}
+
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.nav-dropdown-item {
+  padding: 10px 24px;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s ease, padding-left 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  padding-left: 32px;
+}
+
+/* ── CAMPUS VARIANT (home page) ──────────────────────── */
+.navbar-atelier.navbar-campus {
+  background: #5b3eed;
+  backdrop-filter: none;
+  border-bottom: none;
+}
+.navbar-atelier.navbar-campus.scrolled {
+  background: #5b3eed;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.18);
+  border-bottom: none;
+}
+
+.navbar-campus .atelier-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.navbar-campus .atelier-logo .logo-mark {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: #ffd84d;
+  clip-path: polygon(0 0, 60% 0, 100% 50%, 60% 100%, 0 100%, 40% 50%);
+}
+
+.navbar-campus .atelier-logo .gold-dot { display: none; }
+
+.navbar-campus .nav-item {
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  opacity: 0.95;
+}
+.navbar-campus .nav-item:hover,
+.navbar-campus .nav-item.active {
+  color: #ffd84d;
+  opacity: 1;
+}
+
+.navbar-campus .nav-list {
+  gap: 38px;
+}
+
+/* white square icon buttons */
+.navbar-campus .nav-icon-group {
+  gap: 10px;
+}
+
+.navbar-campus .icon-btn {
+  background: #fff;
+  color: #1a1530;
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  opacity: 1;
+}
+
+.navbar-campus .icon-btn:hover {
+  background: #ffd84d;
+  color: #1a1530;
+  transform: translateY(-2px);
+}
+
+.navbar-campus .icon-btn .material-symbols-outlined {
+  font-size: 1.1rem;
+}
+
+.navbar-campus .cart-count {
+  background: #ff4d6d;
+  color: #fff;
+  top: -4px;
+  right: -4px;
+}
+
+.navbar-campus .nav-dropdown {
+  background: #4a2dd8;
+}
+
 /* Hamburger — hidden on desktop */
 .hamburger-btn { display: none; }
 
