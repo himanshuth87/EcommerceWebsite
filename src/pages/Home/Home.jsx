@@ -54,34 +54,23 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section className="campus-hero">
+        <div className="hero-grid-pattern" />
         <div className="container campus-hero-grid">
           <div className="campus-hero-copy">
-            <span className="hero-eyebrow">#PRIORITY</span>
+            <div className="hero-brand">PRIORITY</div>
             <h1 className="hero-title">
-              Carry the style<br />
-              <em>your way</em>
+              <span className="hero-line-1">CARRY THE STYLE</span>
+              <span className="hero-line-2">YOUR WAY</span>
+              <span className="hero-line-3">EXPLORE CAMPUS PICKS</span>
             </h1>
-            <p className="hero-sub">Explore campus picks built for the everyday hustle — light, loud, and ready to roll.</p>
-            <div className="hero-cta">
-              <Link to="/products" className="btn-pill btn-pill-light">Shop Now</Link>
-              <Link to="/premium" className="btn-pill btn-pill-ghost">Explore Premium</Link>
-            </div>
-            <div className="hero-stats">
-              <div><strong>50k+</strong><span>Happy students</span></div>
-              <div><strong>4.9★</strong><span>Avg rating</span></div>
-              <div><strong>2yr</strong><span>Warranty</span></div>
-            </div>
           </div>
 
           <div className="campus-hero-visual">
-            <div className="hero-blob" />
             <img
-              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop"
+              src="/assets/Creatives/hero-main.jpg"
               alt="Students with backpacks"
+              onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop' }}
             />
-            <div className="hero-floating-tag">
-              <span className="dot" /> New Drop · 26
-            </div>
           </div>
         </div>
       </section>
