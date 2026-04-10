@@ -6,9 +6,10 @@ import { apiFetch } from '../../hooks/useApi'
 import './Products.css'
 
 const CATEGORY_MAP = {
-  'Luggage': ['Duffle', 'Trekking', 'Hard Luggage'],
-  'Backpack': ['School', 'College', 'Laptop'],
-  'Accessories': ['Pouches', 'Lunch Bags', 'Shopping Bag']
+  'Backpack': ['Laptop', 'School', 'College', 'Trekking', 'Overnight'],
+  'Luggage': ['Soft Luggage', 'Hard Luggage'],
+  'Accessories': ['Duffle', 'Side Bags', 'Shopping Bag', 'Lunch Bags', 'Pouches'],
+  'Kids': []
 }
 
 export default function Products() {
@@ -35,6 +36,16 @@ export default function Products() {
     }
   }
 
+  const setSub = (sub) => {
+    if (!sub) {
+      setSearchParams({ cat: activeCat })
+    } else {
+      setSearchParams({ cat: activeCat, sub })
+    }
+  }
+
+  const subOptions = (CATEGORY_MAP[activeCat] || [])
+
   let filtered = products
   if (activeCat !== 'All') filtered = filtered.filter(p => p.category === activeCat)
   if (activeSub) filtered = filtered.filter(p => p.sub_category === activeSub)
@@ -52,6 +63,7 @@ export default function Products() {
             <span className="label-sm gold-gradient-text editorial-header">The Catalog</span>
             <h1 className="editorial-header display-sm">
               {activeCat === 'All' ? 'Signature Collection' : activeCat}
+              {activeSub && <span className="title-sub"> · {activeSub}</span>}
             </h1>
           </motion.div>
           <div className="catalog-meta label-xs">
@@ -80,6 +92,27 @@ export default function Products() {
               ))}
             </div>
 
+            {subOptions.length > 0 && (
+              <div className="sidebar-group">
+                <h4 className="label-sm gold-gradient-text">Type</h4>
+                <button
+                  className={`filter-btn label-xs ${!activeSub ? 'active' : ''}`}
+                  onClick={() => setSub('')}
+                >
+                  All {activeCat}
+                </button>
+                {subOptions.map(sub => (
+                  <button
+                    key={sub}
+                    className={`filter-btn label-xs ${activeSub === sub ? 'active' : ''}`}
+                    onClick={() => setSub(sub)}
+                  >
+                    {sub}
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div className="sidebar-group">
               <h4 className="label-sm gold-gradient-text">Parameters</h4>
               <div className="price-filter">
@@ -105,7 +138,7 @@ export default function Products() {
               <div className="no-archives">
                 <h3 className="editorial-header">No Archive Found</h3>
                 <p className="body-sm opacity-50">Adjust your parameters and search once more.</p>
-                <button className="btn btn-outline" onClick={() => { setCat('All'); setPriceRange([0, 30000]) }}>Reset Catalog</button>
+                <button className="btn btn-outline" onClick={() => { setSearchParams({}); setPriceRange([0, 30000]) }}>Reset Catalog</button>
               </div>
             ) : (
               <motion.div 

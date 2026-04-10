@@ -21,8 +21,8 @@ const NAV_LINKS = [
     name: 'Luggage',
     path: '/products?cat=Luggage',
     children: [
-      { name: 'Soft Luggage', path: '/products?cat=Luggage&sub=Soft' },
-      { name: 'Hard Luggage', path: '/products?cat=Luggage&sub=Hard' },
+      { name: 'Soft Luggage', path: '/products?cat=Luggage&sub=Soft Luggage' },
+      { name: 'Hard Luggage', path: '/products?cat=Luggage&sub=Hard Luggage' },
     ],
   },
   {
@@ -30,9 +30,9 @@ const NAV_LINKS = [
     path: '/products?cat=Accessories',
     children: [
       { name: 'Duffle', path: '/products?cat=Accessories&sub=Duffle' },
-      { name: 'Side Bags', path: '/products?cat=Accessories&sub=SideBags' },
-      { name: 'Shopping Bag', path: '/products?cat=Accessories&sub=Shopping' },
-      { name: 'Lunch Bags', path: '/products?cat=Accessories&sub=Lunch' },
+      { name: 'Side Bags', path: '/products?cat=Accessories&sub=Side Bags' },
+      { name: 'Shopping Bag', path: '/products?cat=Accessories&sub=Shopping Bag' },
+      { name: 'Lunch Bags', path: '/products?cat=Accessories&sub=Lunch Bags' },
       { name: 'Pouches', path: '/products?cat=Accessories&sub=Pouches' },
     ],
   },
