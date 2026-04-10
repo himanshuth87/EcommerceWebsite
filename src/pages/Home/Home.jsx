@@ -7,31 +7,21 @@ import './Home.css'
 const CATEGORIES = [
   {
     name: 'Backpacks',
-    tag: 'Daily Carry',
     color: '#f4d35e',
-    img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop',
-    link: '/products?cat=Backpacks',
+    img: '/assets/Category/Backpack.png',
+    link: '/products?cat=Backpack',
   },
   {
     name: 'Accessories',
-    tag: 'Add-ons',
     color: '#a8e6cf',
-    img: 'https://images.unsplash.com/photo-1547949003-9792a18a2601?q=80&w=800&auto=format&fit=crop',
+    img: '/assets/Category/Accessories.png',
     link: '/products?cat=Accessories',
   },
   {
     name: 'Travel',
-    tag: 'Go anywhere',
     color: '#ffafcc',
-    img: 'https://images.unsplash.com/photo-1581605405669-fcdf81165afa?q=80&w=800&auto=format&fit=crop',
-    link: '/products?cat=Travel',
-  },
-  {
-    name: 'Campus',
-    tag: 'Student picks',
-    color: '#cdb4f7',
-    img: 'https://images.unsplash.com/photo-1577733966973-d680bffd2e80?q=80&w=800&auto=format&fit=crop',
-    link: '/products?cat=Campus',
+    img: '/assets/Category/Travelling Bag.png',
+    link: '/products?cat=Luggage',
   },
 ]
 
@@ -52,27 +42,13 @@ export default function Home() {
   return (
     <main className="home-campus">
 
-      {/* ── HERO ── */}
+      {/* ── HERO BANNER ── */}
       <section className="campus-hero">
-        <div className="hero-grid-pattern" />
-        <div className="container campus-hero-grid">
-          <div className="campus-hero-copy">
-            <div className="hero-brand">PRIORITY</div>
-            <h1 className="hero-title">
-              <span className="hero-line-1">CARRY THE STYLE</span>
-              <span className="hero-line-2">YOUR WAY</span>
-              <span className="hero-line-3">EXPLORE CAMPUS PICKS</span>
-            </h1>
-          </div>
-
-          <div className="campus-hero-visual">
-            <img
-              src="/assets/Creatives/hero-main.jpg"
-              alt="Students with backpacks"
-              onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop' }}
-            />
-          </div>
-        </div>
+        <img
+          className="campus-hero-banner"
+          src="/assets/Creatives/hero-main.jpg"
+          alt="Priority — Carry the style your way"
+        />
       </section>
 
       {/* ── CATEGORY TILES ── */}
@@ -89,11 +65,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
               >
-                <Link to={c.link}>
-                  <div className="cat-tile-text">
-                    <span className="cat-tag">{c.tag}</span>
-                    <h3>{c.name}</h3>
-                  </div>
+                <Link to={c.link} aria-label={c.name}>
                   <img src={c.img} alt={c.name} />
                 </Link>
               </motion.div>

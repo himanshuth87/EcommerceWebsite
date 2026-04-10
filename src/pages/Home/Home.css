@@ -27,85 +27,22 @@
   text-transform: none;
 }
 
-/* ── HERO ─────────────────────────────────── */
+/* ── HERO BANNER ─────────────────────────── */
 .campus-hero {
-  background: #5b3eed;
-  color: #fff;
-  padding: 100px 0 60px;
-  position: relative;
-  overflow: hidden;
-  min-height: 640px;
-}
-
-.hero-grid-pattern {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 80px 80px;
-  background-position: -1px -1px;
-  mask-image: radial-gradient(ellipse at center, #000 40%, transparent 95%);
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 95%);
-}
-
-.campus-hero-grid {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 40px;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  min-height: 480px;
-}
-
-.campus-hero-copy {
-  position: relative;
-  z-index: 3;
-}
-
-.hero-brand {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: #ffd84d;
-  margin-bottom: 60px;
-  line-height: 1;
-}
-
-.hero-title {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  width: 100%;
   margin: 0;
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-weight: 900;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  line-height: 0.95;
+  padding: 0;
+  background: #5b3eed;
+  line-height: 0;
+  padding-top: 64px; /* clear fixed navbar */
 }
 
-.hero-line-1 {
-  font-size: clamp(2rem, 4.2vw, 3.4rem);
-  color: rgba(255, 255, 255, 0.42);
-  font-weight: 800;
-}
-
-.hero-line-2 {
-  font-size: clamp(3.4rem, 7.5vw, 6.4rem);
-  color: #ffffff;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  margin: 4px 0 18px;
-}
-
-.hero-line-3 {
-  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
-  color: #ffffff;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+.campus-hero-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
 .btn-pill {
@@ -132,27 +69,6 @@
   transform: translateY(-3px);
 }
 
-/* hero visual */
-.campus-hero-visual {
-  position: relative;
-  height: 100%;
-  min-height: 480px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.campus-hero-visual img {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  max-height: 560px;
-  object-fit: contain;
-  object-position: bottom center;
-  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.35));
-}
 
 /* ── CATEGORIES ──────────────────────────── */
 .campus-categories {
@@ -162,15 +78,15 @@
 
 .cat-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
 .cat-tile {
   position: relative;
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
-  aspect-ratio: 3/4;
+  aspect-ratio: 1/1;
   transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .cat-tile:hover {
@@ -178,51 +94,22 @@
 }
 
 .cat-tile a {
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
-  position: relative;
-}
-
-.cat-tile-text {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  right: 24px;
-  z-index: 2;
-  color: var(--ink);
-}
-
-.cat-tag {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  background: rgba(255,255,255,0.5);
-  border-radius: 999px;
-  margin-bottom: 8px;
-}
-
-.cat-tile h3 {
-  font-size: 1.4rem;
-  margin: 0;
-  color: var(--ink);
+  align-items: center;
+  justify-content: center;
+  padding: 12%;
 }
 
 .cat-tile img {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 90%;
-  height: 65%;
-  object-fit: cover;
-  border-top-left-radius: 80px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .cat-tile:hover img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 /* ── JOURNEY BANNER ─────────────────────── */
@@ -415,11 +302,7 @@
 
 /* ── RESPONSIVE ─────────────────────────── */
 @media (max-width: 1024px) {
-  .campus-hero-grid { grid-template-columns: 1fr; gap: 30px; min-height: auto; }
-  .campus-hero { padding: 120px 0 60px; min-height: auto; }
-  .hero-brand { margin-bottom: 30px; }
-  .campus-hero-visual { min-height: 360px; max-width: 520px; margin: 0 auto; }
-  .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .cat-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .campus-banner { grid-template-columns: 1fr; }
   .banner-visual img { min-height: 240px; }
@@ -427,19 +310,11 @@
 }
 
 @media (max-width: 640px) {
-  .campus-hero { padding: 110px 0 40px; }
-  .hero-brand { font-size: 1.8rem; margin-bottom: 24px; }
-  .hero-line-1 { font-size: 1.4rem; }
-  .hero-line-2 { font-size: 2.6rem; }
-  .hero-line-3 { font-size: 1.1rem; }
-  .campus-hero-visual { min-height: 320px; }
+  .campus-hero { padding-top: 56px; }
 
   .campus-categories { padding: 50px 0 20px; }
-  .cat-grid { gap: 14px; }
-  .cat-tile { aspect-ratio: 1/1.1; border-radius: 20px; }
-  .cat-tile-text { top: 16px; left: 16px; right: 16px; }
-  .cat-tile h3 { font-size: 1.05rem; }
-  .cat-tile img { border-top-left-radius: 50px; }
+  .cat-grid { gap: 12px; }
+  .cat-tile { border-radius: 20px; }
 
   .campus-banner-wrap { padding: 40px 0; }
   .campus-banner { border-radius: 24px; }

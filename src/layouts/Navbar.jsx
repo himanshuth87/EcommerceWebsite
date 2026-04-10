@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useCart } from '../context/CartContext'
-import { useAuth } from '../context/AuthContext'
 import './Navbar.css'
 
 const NAV_LINKS = [
@@ -42,11 +41,9 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const { totalItems, setIsOpen } = useCart()
-  const { user } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
 
   const isHome = location.pathname === '/'
@@ -57,12 +54,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => { setMenuOpen(false); setOpenDropdown(null) }, [location.pathname, location.search])
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+  useEffect(() => { setOpenDropdown(null) }, [location.pathname, location.search])
 
   return (
     <>
@@ -136,62 +128,10 @@ export default function Navbar() {
                   {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
                 </button>
               </div>
-
-              <button
-                className="icon-btn hamburger-btn"
-                onClick={() => setMenuOpen(o => !o)}
-                aria-label="Menu"
-              >
-                <span className="material-symbols-outlined">
-                  {menuOpen ? 'close' : 'menu'}
-                </span>
-              </button>
             </div>
           </div>
         </div>
       </motion.header>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <>
-            <motion.div
-              className="mobile-menu-overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMenuOpen(false)}
-            />
-            <motion.nav
-              className="mobile-menu"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-            >
-              <div className="mobile-menu-header">
-                <span className="atelier-logo">
-                  <span className="logo-mark" aria-hidden="true" />
-                  PRIORITY
-                </span>
-                <button className="icon-btn" onClick={() => setMenuOpen(false)}>
-                  <span className="material-symbols-outlined">close</span>
-                </button>
-              </div>
-              <ul className="mobile-nav-list">
-                {NAV_LINKS.map(link => (
-                  <li key={link.name}>
-                    <Link to={link.path} className="mobile-nav-item">
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-                <li><Link to="/account" className="mobile-nav-item">My Account</Link></li>
-              </ul>
-            </motion.nav>
-          </>
-        )}
-      </AnimatePresence>
     </>
   )
 }
