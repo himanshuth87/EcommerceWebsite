@@ -29,11 +29,12 @@
 
 /* ── HERO ─────────────────────────────────── */
 .campus-hero {
-  background: var(--purple);
+  background: #5b3eed;
   color: #fff;
-  padding: 80px 0 100px;
+  padding: 160px 0 100px;
   position: relative;
   overflow: hidden;
+  min-height: 600px;
 }
 
 .campus-hero::before {

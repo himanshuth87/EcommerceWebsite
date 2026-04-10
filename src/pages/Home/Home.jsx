@@ -55,13 +55,8 @@ export default function Home() {
       {/* ── HERO ── */}
       <section className="campus-hero">
         <div className="container campus-hero-grid">
-          <motion.div
-            className="campus-hero-copy"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
-          >
-            <span className="hero-eyebrow">#PROXKAT</span>
+          <div className="campus-hero-copy">
+            <span className="hero-eyebrow">#PRIORITY</span>
             <h1 className="hero-title">
               Carry the style<br />
               <em>your way</em>
@@ -76,14 +71,9 @@ export default function Home() {
               <div><strong>4.9★</strong><span>Avg rating</span></div>
               <div><strong>2yr</strong><span>Warranty</span></div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="campus-hero-visual"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.1, ease: [0.19, 1, 0.22, 1] }}
-          >
+          <div className="campus-hero-visual">
             <div className="hero-blob" />
             <img
               src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop"
@@ -92,7 +82,7 @@ export default function Home() {
             <div className="hero-floating-tag">
               <span className="dot" /> New Drop · 26
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
