@@ -34,10 +34,21 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
+const allowedOrigins = (process.env.ALLOWED_ORIGIN || '*')
+  .split(',')
+  .map(o => o.trim())
+  .filter(Boolean);
+
 app.use(cors({
-  origin: process.env.ALLOWED_ORIGIN || '*',
-  methods: ['GET','POST','PUT','DELETE'],
-  allowedHeaders: ['Content-Type','Authorization'],
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes('*') || !origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS: origin ${origin} not allowed`));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
